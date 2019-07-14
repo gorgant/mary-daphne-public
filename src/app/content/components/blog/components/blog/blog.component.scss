@@ -1,0 +1,37 @@
+@import '../../../../../variables';
+
+// This is a class is applied to the component itself, so needs the :host pseudo-class
+// See: https://blog.angular-university.io/angular-host-context/
+:host {
+  width: 100%;
+  max-width: $max-screen-width;
+}
+
+app-page-hero {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.header {
+  font-size: 32px;
+  font-weight: $font-weight-light;
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  max-width: 1000px;
+  padding: 16px;
+}
+
+.collection-container {
+  @include collection-container-bounds;
+}
+
+@media screen and (max-width: $mobile-cutoff-width) {
+  
+  .header {
+    font-size: 24px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
+

@@ -1,0 +1,44 @@
+<mat-nav-list>
+
+  <a mat-list-item 
+    routerLinkActive="active-list-item"
+    [routerLink]="appRoutes.HOME"
+    [routerLinkActiveOptions]="{exact: true}"
+    (click)="onToggleSideNav()">
+    <mat-icon mat-list-icon>home</mat-icon>
+    <p mat-line>Home</p>
+  </a>
+
+  <a mat-list-item 
+    routerLinkActive="active-list-item"
+    [routerLink]="appRoutes.ABOUT_ME"
+    (click)="onToggleSideNav()">
+    <mat-icon mat-list-icon>explore</mat-icon>
+    <p mat-line>About Me</p>
+  </a>
+  
+  <a mat-list-item 
+    routerLinkActive="active-list-item"
+    [routerLink]="appRoutes.PRODUCTS"
+    (click)="onToggleSideNav()">
+    <mat-icon mat-list-icon>people</mat-icon>
+    <p mat-line>Services</p>
+</a>
+  
+  <a mat-list-item 
+    routerLinkActive="active-list-item"
+    [routerLink]="appRoutes.BLOG"
+    (click)="onToggleSideNav()">
+    <mat-icon mat-list-icon>subscriptions</mat-icon>
+    <p mat-line>Blog</p>
+  </a>
+
+  <a mat-list-item 
+    routerLinkActive="active-list-item"
+    [routerLink]="appRoutes.CONTACT"
+    (click)="onToggleSideNav()">
+    <mat-icon mat-list-icon>chat_bubble</mat-icon>
+    <p mat-line>Contact</p>
+  </a>
+
+</mat-nav-list>
