@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "marydaphne-public",
+    "sandbox-public": "marydaphne-sandbox-public"
+  }
+}
