@@ -12,6 +12,8 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { environment } from '../environments/environment';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RootStoreModule } from './root-store';
+import { NavigationModule } from './navigation/modules/navigation.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
@@ -27,7 +28,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AngularFireStorageModule,
     AngularFireFunctionsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    RootStoreModule,
+    NavigationModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

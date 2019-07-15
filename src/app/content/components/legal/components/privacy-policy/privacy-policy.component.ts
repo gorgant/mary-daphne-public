@@ -20,7 +20,7 @@ export class PrivacyPolicyComponent implements OnInit, OnDestroy {
 
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
-    this.titleService.setTitle(`Privacy Policy - Explearning`);
+    this.titleService.setTitle(`Privacy Policy - Mary Daphne`);
     this.analyticsService.logPageViewWithCustomDimensions();
     this.analyticsService.createNavStamp();
   }

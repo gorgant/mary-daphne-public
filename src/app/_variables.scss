@@ -3,26 +3,26 @@
 
 // Copied from theme.scss
 $explearning-primary: (
-  50 : #e4f2fe,
-    100 : #bce0fb,
-    200 : #90cbf9,
-    300 : #64b6f7,
-    400 : #42a6f5,
-    500 : #2196f3,
-    600 : #1d8ef1,
-    700 : #1883ef,
-    800 : #1479ed,
-    900 : #0b68ea,
-    A100 : #ffffff,
-    A200 : #e1ecff,
-    A400 : #aeccff,
-    A700 : #95bcff,
+    50 : #e0f2f1,
+    100 : #b3e0db,
+    200 : #80cbc4,
+    300 : #4db6ac,
+    400 : #26a69a,
+    500 : #009688,
+    600 : #008e80,
+    700 : #008375,
+    800 : #00796b,
+    900 : #006858,
+    A100 : #97ffec,
+    A200 : #64ffe3,
+    A400 : #31ffda,
+    A700 : #18ffd5,
     contrast: (
         50 : #000000,
         100 : #000000,
         200 : #000000,
         300 : #000000,
-        400 : #000000,
+        400 : #ffffff,
         500 : #ffffff,
         600 : #ffffff,
         700 : #ffffff,
@@ -36,20 +36,20 @@ $explearning-primary: (
 );
 
 $explearning-accent: (
-    50 : #e7e9fe,
-    100 : #c2c9fd,
-    200 : #99a5fc,
-    300 : #7080fb,
-    400 : #5265fa,
-    500 : #334af9,
-    600 : #2e43f8,
-    700 : #273af7,
-    800 : #2032f6,
-    900 : #1422f5,
+    50 : #fae0fe,
+    100 : #f2b3fd,
+    200 : #ea80fc,
+    300 : #e24dfb,
+    400 : #db26fa,
+    500 : #d500f9,
+    600 : #d000f8,
+    700 : #ca00f7,
+    800 : #c400f6,
+    900 : #ba00f5,
     A100 : #ffffff,
-    A200 : #f1f1ff,
-    A400 : #bec1ff,
-    A700 : #a4a8ff,
+    A200 : #f9e8ff,
+    A400 : #ebb5ff,
+    A700 : #e49cff,
     contrast: (
         50 : #000000,
         100 : #000000,
@@ -83,7 +83,7 @@ $font-weight-medium: 500;
 $font-weight-bold: 700;
 $font-weight-black: 900;
 
-$logo-font-family: HarlowSolid;
+$logo-font-family: Satisfy;
 
 $max-screen-width: 2500px;
 $min-screen-width: 320px;
@@ -101,8 +101,9 @@ $form-border-color: #EEEEEE;
 
 $text-block-font-weight: $font-weight-regular;
 $text-block-font-size: 22px;
-$text-block-mobile-font-size: 16px;
+$text-block-mobile-font-size: 20px;
 $text-block-max-width: 670px;
+$text-block-padding: 16px 24px 16px 24px;
 
 
 $inactive-item-opacity: 0.8;

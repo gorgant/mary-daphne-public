@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicImagePaths } from 'src/app/core/models/routes-and-paths/image-paths.model';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { PublicAppRoutes } from 'src/app/core/models/routes-and-paths/app-routes.model';
 
 @Component({
   selector: 'app-about-body',
@@ -9,6 +10,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class AboutBodyComponent implements OnInit {
 
+  appRoutes = PublicAppRoutes;
   imagePaths = PublicImagePaths;
   videoUrl = `https://youtu.be/X949bB9fqMA`;
 

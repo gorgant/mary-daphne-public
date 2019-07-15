@@ -28,7 +28,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = `Contact Me - Explearning`;
+    const title = `Contact Me - Mary Daphne`;
     // tslint:disable-next-line:max-line-length
     const description = `Get in touch with the Explearning team using this contact form. We welcome questions, suggestions, and any thoughtful input. Let us know if there is anything else we can do to help you improve your speaking and communication skills!`;
     const localImagePath = this.heroData.imageProps.src;

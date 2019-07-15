@@ -6,6 +6,7 @@ import { ProductIdList, ProductUrlSlugList } from 'src/app/core/models/products/
 import { ImageProps } from 'src/app/core/models/images/image-props.model';
 import { environment } from 'src/environments/environment';
 import { AnalyticsService } from 'src/app/core/services/analytics/analytics.service';
+import { PRODUCTION_APPS, SANDBOX_APPS } from 'src/app/core/models/environments/env-vars.model';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +16,11 @@ import { AnalyticsService } from 'src/app/core/services/analytics/analytics.serv
 export class HomeComponent implements OnInit, OnDestroy {
 
   private productionEnvironment: boolean = environment.production;
-  remoteCoachProductId: string;
-  remoteCoachUrlSlug: string;
+  explearningUrl: string;
+  // remoteCoachProductId: string;
+  // remoteCoachUrlSlug: string;
+  remoteCoachUrl: string;
+  blogUrl: string;
 
   heroData: PageHeroData;
   appRoutes = PublicAppRoutes;
@@ -34,9 +38,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = `Explearning - Communicate With Clarity`;
+    const title = `Mary Daphne - Upgrades for Life`;
     // tslint:disable-next-line:max-line-length
-    const description = `Improve your speaking skills and communication skills with research-backed techniques to ensure effective communication. We teach you public speaking techniques, interview strategies, negotiation tactics, and much more. Our goal is to make you the best communicator you can be.`;
+    const description = `Build skills that last for life through a suite of personal development services, spanning communications, business coaching, personal branding, and much more. Explore what Mary Daphne has to offer and take your first step toward your upgraded self.`;
     const localImagePath = this.heroData.imageProps.src;
 
     this.analyticsService.setSeoTags(title, description, localImagePath);
@@ -48,17 +52,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     switch (this.productionEnvironment) {
       case true:
         console.log('Setting productIdList to production');
-        this.remoteCoachProductId = ProductIdList.REMOTE_COACH;
-        this.remoteCoachUrlSlug = ProductUrlSlugList.REMOTE_COACH;
+        this.explearningUrl = `https://${PRODUCTION_APPS.publicApp.websiteDomain}`;
+        // tslint:disable-next-line:max-line-length
+        this.remoteCoachUrl = `${this.explearningUrl}${this.appRoutes.PRODUCTS}/${ProductIdList.REMOTE_COACH}/${ProductUrlSlugList.REMOTE_COACH}`;
         break;
       case false:
         console.log('Setting productIdList to sandbox');
-        this.remoteCoachProductId = ProductIdList.SANDBOX_REMOTE_COACH;
-        this.remoteCoachUrlSlug = ProductUrlSlugList.SANDBOX_REMOTE_COACH;
+        this.explearningUrl = `https://${SANDBOX_APPS.publicApp.websiteDomain}`;
+        // tslint:disable-next-line:max-line-length
+        this.remoteCoachUrl = `${this.explearningUrl}${this.appRoutes.PRODUCTS}/${ProductIdList.SANDBOX_REMOTE_COACH}/${ProductUrlSlugList.SANDBOX_REMOTE_COACH}`;
         break;
       default:
-        this.remoteCoachProductId = ProductIdList.SANDBOX_REMOTE_COACH;
-        this.remoteCoachUrlSlug = ProductUrlSlugList.SANDBOX_REMOTE_COACH;
+        console.log('Setting productIdList to sandbox');
+        this.explearningUrl = `https://${SANDBOX_APPS.publicApp.websiteDomain}`;
+        // tslint:disable-next-line:max-line-length
+        this.remoteCoachUrl = `${this.explearningUrl}${this.appRoutes.PRODUCTS}/${ProductIdList.SANDBOX_REMOTE_COACH}/${ProductUrlSlugList.SANDBOX_REMOTE_COACH}`;
         break;
     }
   }
@@ -72,7 +80,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     };
 
     this.heroData = {
-      pageTitle: 'Communicate with Clarity and Purpose',
+      pageTitle: 'Equip Yourself for Opportunity',
       pageSubtitle: null,
       imageProps,
       actionMessage: 'Learn More'
