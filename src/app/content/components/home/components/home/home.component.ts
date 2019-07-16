@@ -7,6 +7,7 @@ import { ImageProps } from 'src/app/core/models/images/image-props.model';
 import { environment } from 'src/environments/environment';
 import { AnalyticsService } from 'src/app/core/services/analytics/analytics.service';
 import { PRODUCTION_APPS, SANDBOX_APPS } from 'src/app/core/models/environments/env-vars.model';
+import { metaTagDefaultTitle, metaTagDefaultDescription } from 'src/app/core/models/analytics/metatags.model';
 
 @Component({
   selector: 'app-home',
@@ -38,9 +39,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = `Mary Daphne - Upgrades for Life`;
+    const title = metaTagDefaultTitle;
     // tslint:disable-next-line:max-line-length
-    const description = `Build skills that last for life through a suite of personal development services, spanning communications, business coaching, personal branding, and much more. Explore what Mary Daphne has to offer and take your first step toward your upgraded self.`;
+    const description = metaTagDefaultDescription;
     const localImagePath = this.heroData.imageProps.src;
 
     this.analyticsService.setSeoTags(title, description, localImagePath);
@@ -80,7 +81,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     };
 
     this.heroData = {
-      pageTitle: 'Equip Yourself for Opportunity',
+      // pageTitle: 'Equip Yourself for Opportunity',
+      pageTitle: 'Develop Skills That Last a Lifetime',
       pageSubtitle: null,
       imageProps,
       actionMessage: 'Learn More'
