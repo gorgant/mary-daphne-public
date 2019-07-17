@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ImageProps } from 'src/app/core/models/images/image-props.model';
-import { PublicImagePaths } from 'src/app/core/models/routes-and-paths/image-paths.model';
-import { PageHeroData } from 'src/app/core/models/forms-and-components/page-hero-data.model';
 import { AnalyticsService } from 'src/app/core/services/analytics/analytics.service';
+import { PageHeroData } from 'shared-models/forms-and-components/page-hero-data.model';
+import { ImageProps } from 'shared-models/images/image-props.model';
+import { PublicImagePaths } from 'shared-models/routes-and-paths/image-paths.model';
+import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
 
 @Component({
   selector: 'app-about',
@@ -24,9 +25,9 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
-    const title = `About Mary Daphne`;
+    const title = `About Us - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`;
     // tslint:disable-next-line:max-line-length
-    const description = `Our mission at Mary Daphne is to empower you to become the best version of yourself.  With expertise in communications, business, and personal development, we offer powerful, research-backed strategies to help you develop critical skills that position you for success.`;
+    const description = `Our mission at ${metaTagDefaults.maryDaphnePublic.metaTagSiteName} is to empower you to become the best version of yourself.  With expertise in communications, business, and personal development, we offer powerful, research-backed strategies to help you develop critical skills that position you for success.`;
     const localImagePath = this.heroData.imageProps.src;
 
     this.analyticsService.setSeoTags(title, description, localImagePath);

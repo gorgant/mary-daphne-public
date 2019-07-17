@@ -5,20 +5,13 @@ import { AuthService } from './core/services/auth.service';
 import { Store } from '@ngrx/store';
 import { RootStoreState, UserStoreSelectors, AuthStoreSelectors, AuthStoreActions, UserStoreActions } from './root-store';
 import { withLatestFrom, map, takeWhile } from 'rxjs/operators';
-import { ProductStrings } from './core/models/products/product-strings.model';
-import { Product } from './core/models/products/product.model';
 import { Meta } from '@angular/platform-browser';
 import { AngularFirestore } from '@angular/fire/firestore';
-import {
-  metaTagDefaultKeywords,
-  metaTagSiteName,
-  metaTagFbAppId,
-  metaTagTwitterHandle,
-  metaTagTwitterCardType,
-  metaTagAuthor
-} from './core/models/analytics/metatags.model';
-import { PublicImagePaths } from './core/models/routes-and-paths/image-paths.model';
 import { AnalyticsService } from './core/services/analytics/analytics.service';
+import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
+import { ProductStrings } from 'shared-models/products/product-strings.model';
+import { Product } from 'shared-models/products/product.model';
+import { PublicImagePaths } from 'shared-models/routes-and-paths/image-paths.model';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +19,7 @@ import { AnalyticsService } from './core/services/analytics/analytics.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Mary Daphne - Upgrades For Life';
+  title = metaTagDefaults.maryDaphnePublic.metaTagDefaultTitle;
   appVersion = '1.0.0';
 
   private userAuthenticationRequested: boolean;
@@ -139,14 +132,14 @@ export class AppComponent implements OnInit {
 
     this.metaTagService.addTags([
       // tslint:disable-next-line:max-line-length
-      { name: 'keywords', content: metaTagDefaultKeywords },
+      { name: 'keywords', content: metaTagDefaults.maryDaphnePublic.metaTagDefaultKeywords },
       // tslint:disable-next-line:max-line-length
       { name: 'description', content: description },
-      { name: 'author', content: metaTagAuthor },
-      { name: 'twitter:site', content: metaTagTwitterHandle }, // Twitter analytics
-      { name: 'twitter:card', content: metaTagTwitterCardType }, // Twitter card display properties
-      { property: 'og:site_name', content: metaTagSiteName },
-      { property: 'fb:app_id', content: metaTagFbAppId }, // Facebook analytics
+      { name: 'author', content: metaTagDefaults.maryDaphnePublic.metaTagAuthor },
+      { name: 'twitter:site', content: metaTagDefaults.maryDaphnePublic.metaTagTwitterHandle }, // Twitter analytics
+      { name: 'twitter:card', content: metaTagDefaults.maryDaphnePublic.metaTagTwitterCardType }, // Twitter card display properties
+      { property: 'og:site_name', content: metaTagDefaults.maryDaphnePublic.metaTagSiteName },
+      { property: 'fb:app_id', content: metaTagDefaults.maryDaphnePublic.metaTagFbAppId }, // Facebook analytics
     ]);
   }
 

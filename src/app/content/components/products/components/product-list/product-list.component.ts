@@ -4,9 +4,10 @@ import { Store } from '@ngrx/store';
 import { RootStoreState } from 'src/app/root-store';
 import { ProductStoreSelectors, ProductStoreActions } from 'src/app/root-store/product-store';
 import { withLatestFrom, map } from 'rxjs/operators';
-import { Product } from 'src/app/core/models/products/product.model';
 import { AnalyticsService } from 'src/app/core/services/analytics/analytics.service';
-import { PublicImagePaths } from 'src/app/core/models/routes-and-paths/image-paths.model';
+import { Product } from 'shared-models/products/product.model';
+import { PublicImagePaths } from 'shared-models/routes-and-paths/image-paths.model';
+import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
 
 @Component({
   selector: 'app-product-list',
@@ -31,9 +32,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = `Services - Mary Daphne`;
+    const title = `Services - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`;
     // tslint:disable-next-line:max-line-length
-    const description = `Explearning offers a variety of services to help you improve your speaking skills and communication skills. From professional communications coaching to high quality web courses, our goal is to make you the best communicator you can be.`;
+    const description = `${metaTagDefaults.maryDaphnePublic.metaTagSiteName} offers a variety of services to help you improve your confidence, communication, and personal brand. From professional communications coaching to high quality web courses, our goal is to equip you for when opportunity comes knocking.`;
     const image = PublicImagePaths.HOME;
 
     this.analyticsService.setSeoTags(title, description, image);

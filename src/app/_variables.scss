@@ -2,7 +2,7 @@
 @import '~@angular/material/theming';
 
 // Copied from theme.scss
-$explearning-primary: (
+$mary-daphne-primary: (
     50 : #e0f2f1,
     100 : #b3e0db,
     200 : #80cbc4,
@@ -35,7 +35,7 @@ $explearning-primary: (
     )
 );
 
-$explearning-accent: (
+$mary-daphne-accent: (
     50 : #fae0fe,
     100 : #f2b3fd,
     200 : #ea80fc,
@@ -68,8 +68,8 @@ $explearning-accent: (
     )
 );
 
-$theme-primary: mat-palette($explearning-primary);
-$theme-accent:  mat-palette($explearning-accent);
+$theme-primary: mat-palette($mary-daphne-primary);
+$theme-accent:  mat-palette($mary-daphne-accent);
 $theme-warn:    mat-palette($mat-red);
 
 // Create your Sass color vars (will be available in all the project)

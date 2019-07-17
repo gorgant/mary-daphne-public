@@ -8,13 +8,13 @@ const getAdminProjectId = (): string => {
 
   switch (currentEnvironmentType) {
     case EnvironmentTypes.PRODUCTION:
-      projectId = PRODUCTION_APPS.adminApp.projectId;
+      projectId = PRODUCTION_APPS.maryDaphneAdminApp.projectId;
       break;
     case EnvironmentTypes.SANDBOX:
-      projectId = SANDBOX_APPS.adminApp.projectId;
+      projectId = SANDBOX_APPS.maryDaphneAdminApp.projectId;
       break;
     default:
-      projectId = SANDBOX_APPS.adminApp.projectId;
+      projectId = SANDBOX_APPS.maryDaphneAdminApp.projectId;
       break;
   }
   return projectId;
@@ -27,13 +27,13 @@ const getPublicProjectId = (): string => {
 
   switch (currentEnvironmentType) {
     case EnvironmentTypes.PRODUCTION:
-      projectId = PRODUCTION_APPS.publicApp.projectId;
+      projectId = PRODUCTION_APPS.maryDaphnePublicApp.projectId;
       break;
     case EnvironmentTypes.SANDBOX:
-      projectId = SANDBOX_APPS.publicApp.projectId;
+      projectId = SANDBOX_APPS.maryDaphnePublicApp.projectId;
       break;
     default:
-      projectId = SANDBOX_APPS.publicApp.projectId;
+      projectId = SANDBOX_APPS.maryDaphnePublicApp.projectId;
       break;
   }
   return projectId;
@@ -46,13 +46,13 @@ const getPublicAppUrl = (): string => {
 
   switch (currentEnvironmentType) {
     case EnvironmentTypes.PRODUCTION:
-      appUrl = PRODUCTION_APPS.publicApp.websiteDomain;
+      appUrl = PRODUCTION_APPS.maryDaphnePublicApp.websiteDomain;
       break;
     case EnvironmentTypes.SANDBOX:
-      appUrl = SANDBOX_APPS.publicApp.websiteDomain;
+      appUrl = SANDBOX_APPS.maryDaphnePublicApp.websiteDomain;
       break;
     default:
-      appUrl = SANDBOX_APPS.publicApp.websiteDomain;
+      appUrl = SANDBOX_APPS.maryDaphnePublicApp.websiteDomain;
       break;
   }
   return appUrl
