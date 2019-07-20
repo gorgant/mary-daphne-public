@@ -4,6 +4,11 @@ import { WebpageUrl } from '../../../shared-models/ssr/webpage-url.model';
 import { puppeteerSsr } from './puppeteer';
 import { WebpageRequestType } from '../../../shared-models/ssr/webpage-request-type.model';
 
+
+
+
+/////// DEPLOYABLE FUNCTIONS ///////
+
 const opts = {memory: '1GB', timeoutSeconds: 60};
 
 // Listen for pubsub message
@@ -12,13 +17,15 @@ export const updateWebpageCache = functions.runWith((opts as functions.RuntimeOp
   const wepageUrl = (message.json as WebpageUrl).url;
   console.log('Message from pubsub', wepageUrl);
 
-  const fakeReq = {
-    headers: {
-      'user-agent': 'explearning auto-cache'
-    }
-  } as any;
+  // const fakeReq = {
+  //   headers: {
+  //     'user-agent': 'explearning auto-cache'
+  //   }
+  // } as any;
+  const userAgent = `"user-agent": "explearning auto-cache"`;
 
-  const updateResponse = await puppeteerSsr(wepageUrl, fakeReq, WebpageRequestType.AUTO_CACHE) // Cacheupdate === true ensures proper caching behavior
+
+  const updateResponse = await puppeteerSsr(wepageUrl, userAgent, WebpageRequestType.AUTO_CACHE) // Cacheupdate === true ensures proper caching behavior
     .catch(error => {
       console.log('Error with puppeteerSsr during autocache');
       return error;

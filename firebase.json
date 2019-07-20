@@ -20,7 +20,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "puppeteerServer"
+        "function": "puppeteerServer"
       }
     ]
   }
