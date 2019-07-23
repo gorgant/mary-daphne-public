@@ -20,7 +20,7 @@ import { PublicImagePaths } from 'shared-models/routes-and-paths/image-paths.mod
 })
 export class AppComponent implements OnInit {
   title = metaTagDefaults.maryDaphnePublic.metaTagDefaultTitle;
-  appVersion = '1.1.0';
+  appVersion = '1.1.1';
 
   private userAuthenticationRequested: boolean;
   private userLoaded: boolean;
