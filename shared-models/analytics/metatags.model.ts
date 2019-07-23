@@ -6,7 +6,7 @@ export const metaTagDefaults = {
     metaTagAuthor: 'Mary Daphne, LLC',
     metaTagDefaultKeywords: 'mary daphne, personal brand, personal development, self improvement, be more confident',
     metaTagSiteName: 'Mary Daphne',
-    metaTagFbAppId: '',
+    metaTagFbAppId: '2361383644073374',
     metaTagTwitterHandle: '@MaryDaphne',
     metaTagTwitterCardType: 'summary_large_image'
   },
