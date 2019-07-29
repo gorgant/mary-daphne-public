@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const title = metaTagDefaults.maryDaphnePublic.metaTagDefaultTitle;
     // tslint:disable-next-line:max-line-length
     const description = metaTagDefaults.maryDaphnePublic.metaTagDefaultDescription;
-    const localImagePath = this.heroData.imageProps.src;
+    const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
 
     this.analyticsService.setSeoTags(title, description, localImagePath);
     this.analyticsService.logPageViewWithCustomDimensions();

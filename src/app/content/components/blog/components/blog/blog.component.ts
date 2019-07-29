@@ -40,7 +40,7 @@ export class BlogComponent implements OnInit, OnDestroy {
     const title = `Blog - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`;
     // tslint:disable-next-line:max-line-length
     const description = `On ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}'s blog you have access to our complete library of insights and personal development content. From communications skills to confidence boosting strategies, our goal is to provide you with upgrades that last a lifetime.`;
-    const localImagePath = this.heroData.imageProps.src;
+    const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
 
     this.analyticsService.setSeoTags(title, description, localImagePath);
     this.analyticsService.logPageViewWithCustomDimensions();

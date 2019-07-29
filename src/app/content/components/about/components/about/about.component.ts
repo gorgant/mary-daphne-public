@@ -28,7 +28,7 @@ export class AboutComponent implements OnInit, OnDestroy {
     const title = `About Us - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`;
     // tslint:disable-next-line:max-line-length
     const description = `Our mission at ${metaTagDefaults.maryDaphnePublic.metaTagSiteName} is to empower you to become the best version of yourself.  With expertise in communications, business, and personal development, we offer powerful, research-backed strategies to help you develop critical skills that position you for success.`;
-    const localImagePath = this.heroData.imageProps.src;
+    const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
 
     this.analyticsService.setSeoTags(title, description, localImagePath);
     this.analyticsService.logPageViewWithCustomDimensions();

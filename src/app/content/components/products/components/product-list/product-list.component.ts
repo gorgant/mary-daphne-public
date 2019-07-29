@@ -35,9 +35,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
     const title = `Services - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`;
     // tslint:disable-next-line:max-line-length
     const description = `${metaTagDefaults.maryDaphnePublic.metaTagSiteName} offers a variety of services to help you improve your confidence, communication, and personal brand. From professional communications coaching to high quality web courses, our goal is to equip you for when opportunity comes knocking.`;
-    const image = PublicImagePaths.HOME;
+    const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
 
-    this.analyticsService.setSeoTags(title, description, image);
+    this.analyticsService.setSeoTags(title, description, localImagePath);
     this.analyticsService.logPageViewWithCustomDimensions();
     this.analyticsService.createNavStamp();
   }
