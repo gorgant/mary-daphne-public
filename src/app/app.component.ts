@@ -17,7 +17,7 @@ import { Product } from 'shared-models/products/product.model';
 })
 export class AppComponent implements OnInit {
   title = metaTagDefaults.maryDaphnePublic.metaTagDefaultTitle;
-  appVersion = '1.1.4';
+  appVersion = '1.1.5';
 
   private userAuthenticationRequested: boolean;
   private userLoaded: boolean;
