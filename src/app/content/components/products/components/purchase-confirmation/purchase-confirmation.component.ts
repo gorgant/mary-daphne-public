@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import * as StripeDefs from 'stripe';
 import { Title } from '@angular/platform-browser';
 import { AnalyticsService } from 'src/app/core/services/analytics/analytics.service';
+import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model';
+import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
 
 @Component({
   selector: 'app-purchase-confirmation',
@@ -28,9 +30,12 @@ export class PurchaseConfirmationComponent implements OnInit, OnDestroy {
 
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
-    this.titleService.setTitle(`Purchase Confirmation - Mary Daphne`);
-    this.analyticsService.logPageViewWithCustomDimensions();
-    this.analyticsService.createNavStamp();
+
+    const canonicalUrlPath = PublicAppRoutes.PURCHASE_CONFIRMATION;
+
+    this.titleService.setTitle(`Purchase Confirmation - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`);
+    this.analyticsService.logPageViewWithCustomDimensions(canonicalUrlPath);
+    this.analyticsService.createNavStamp(canonicalUrlPath);
   }
 
   private initializePurchaseData() {

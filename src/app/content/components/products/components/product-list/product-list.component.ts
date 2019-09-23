@@ -8,6 +8,7 @@ import { AnalyticsService } from 'src/app/core/services/analytics/analytics.serv
 import { Product } from 'shared-models/products/product.model';
 import { PublicImagePaths } from 'shared-models/routes-and-paths/image-paths.model';
 import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
+import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model';
 
 @Component({
   selector: 'app-product-list',
@@ -36,10 +37,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
     // tslint:disable-next-line:max-line-length
     const description = `${metaTagDefaults.maryDaphnePublic.metaTagSiteName} offers a variety of services to help you improve your confidence, communication, and personal brand. From professional communications coaching to high quality web courses, our goal is to equip you for when opportunity comes knocking.`;
     const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
+    const canonicalUrlPath = PublicAppRoutes.PRODUCTS;
 
-    this.analyticsService.setSeoTags(title, description, localImagePath);
-    this.analyticsService.logPageViewWithCustomDimensions();
-    this.analyticsService.createNavStamp();
+    this.analyticsService.setSeoTags(title, description, localImagePath, canonicalUrlPath);
+    this.analyticsService.logPageViewWithCustomDimensions(canonicalUrlPath);
+    this.analyticsService.createNavStamp(canonicalUrlPath);
   }
 
   private initializeProducts() {

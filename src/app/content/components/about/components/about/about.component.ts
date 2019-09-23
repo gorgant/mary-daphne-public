@@ -4,6 +4,7 @@ import { PageHeroData } from 'shared-models/forms-and-components/page-hero-data.
 import { ImageProps } from 'shared-models/images/image-props.model';
 import { PublicImagePaths } from 'shared-models/routes-and-paths/image-paths.model';
 import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
+import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model';
 
 @Component({
   selector: 'app-about',
@@ -29,10 +30,11 @@ export class AboutComponent implements OnInit, OnDestroy {
     // tslint:disable-next-line:max-line-length
     const description = `Our mission at ${metaTagDefaults.maryDaphnePublic.metaTagSiteName} is to empower you to become the best version of yourself.  With expertise in communications, business, and personal development, we offer powerful, research-backed strategies to help you develop critical skills that position you for success.`;
     const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
+    const canonicalUrlPath = PublicAppRoutes.ABOUT_ME;
 
-    this.analyticsService.setSeoTags(title, description, localImagePath);
-    this.analyticsService.logPageViewWithCustomDimensions();
-    this.analyticsService.createNavStamp();
+    this.analyticsService.setSeoTags(title, description, localImagePath, canonicalUrlPath);
+    this.analyticsService.logPageViewWithCustomDimensions(canonicalUrlPath);
+    this.analyticsService.createNavStamp(canonicalUrlPath);
   }
 
   private initializeHeroData() {

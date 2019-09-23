@@ -12,6 +12,7 @@ import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model
 import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
 import { PRODUCTION_APPS, SANDBOX_APPS } from 'shared-models/environments/env-vars.model';
 import { DOCUMENT } from '@angular/common';
+import { UiService } from 'src/app/core/services/ui.service';
 
 @Component({
   selector: 'app-post',
@@ -46,7 +47,8 @@ export class PostComponent implements OnInit, OnDestroy {
     private analyticsService: AnalyticsService,
     private router: Router,
     private renderer: Renderer2,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private uiService: UiService
   ) { }
 
   ngOnInit() {
@@ -62,10 +64,12 @@ export class PostComponent implements OnInit, OnDestroy {
     const localImagePath = this.heroData.imageProps.src;
     const keywords = post.keywords;
     const type = 'article';
+    const postSlug = this.uiService.convertToFriendlyUrlFormat(post.title);
+    const canonicalUrlPath = `${PublicAppRoutes.BLOG}/${post.id}/${postSlug}`;
 
-    this.analyticsService.setSeoTags(title, description, localImagePath, keywords, type);
-    this.analyticsService.logPageViewWithCustomDimensions();
-    this.analyticsService.createNavStamp();
+    this.analyticsService.setSeoTags(title, description, localImagePath, canonicalUrlPath, keywords, type);
+    this.analyticsService.logPageViewWithCustomDimensions(canonicalUrlPath);
+    this.analyticsService.createNavStamp(canonicalUrlPath);
   }
 
   private loadExistingPostData() {

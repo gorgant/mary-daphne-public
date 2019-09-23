@@ -9,6 +9,7 @@ import { PageHeroData } from 'shared-models/forms-and-components/page-hero-data.
 import { ImageProps } from 'shared-models/images/image-props.model';
 import { PublicImagePaths } from 'shared-models/routes-and-paths/image-paths.model';
 import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
+import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model';
 
 @Component({
   selector: 'app-blog',
@@ -41,10 +42,11 @@ export class BlogComponent implements OnInit, OnDestroy {
     // tslint:disable-next-line:max-line-length
     const description = `On ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}'s blog you have access to our complete library of insights and personal development content. From communications skills to confidence boosting strategies, our goal is to provide you with upgrades that last a lifetime.`;
     const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
+    const canonicalUrlPath = PublicAppRoutes.BLOG;
 
-    this.analyticsService.setSeoTags(title, description, localImagePath);
-    this.analyticsService.logPageViewWithCustomDimensions();
-    this.analyticsService.createNavStamp();
+    this.analyticsService.setSeoTags(title, description, localImagePath, canonicalUrlPath);
+    this.analyticsService.logPageViewWithCustomDimensions(canonicalUrlPath);
+    this.analyticsService.createNavStamp(canonicalUrlPath);
   }
 
   private initializeHeroData() {
