@@ -6,6 +6,8 @@ import { publicAppUrl } from '../environments/config';
 import { puppeteerSsr } from './puppeteer';
 import { WebpageRequestType } from '../../../shared-models/ssr/webpage-request-type.model';
 import { PuppeteerResponse } from '../../../shared-models/ssr/puppeteer-response';
+import { UAParser } from 'ua-parser-js';
+import { PublicAppRoutes } from '../../../shared-models/routes-and-paths/app-routes.model';
 
 const appUrl = publicAppUrl;
 
@@ -16,11 +18,10 @@ const generateUrl = (request: express.Request) => {
     host: appUrl,
     pathname: request.originalUrl
   });
-  console.log('Generated this new URL', updatedUrl);
   return updatedUrl;
 }
 
-  // List of bots to target, add more if you'd like
+// List of bots to target, add more if you'd like
 const detectBot = (userAgent: any) => {
 
   const bots = [
@@ -80,15 +81,10 @@ const detectGoogleBot = (userAgent: string): boolean => {
   return isGoogleBot;
 }
 
-const renderOnClient = async (userAgent: string, res: express.Response) => {
+const renderOnClient = async (res: express.Response) => {
   console.log('Rendering on client');
 
-  const isHeadless = detectHeadlessChrome(userAgent);
-
-  if (isHeadless) {
-    console.log('Headless request detected');
-  }
-
+  // For some reason, only need the root directory here (rather than the sub directory of the queried url)
   const fullStandardUrl = `https://${appUrl}`;
   console.log('Fetching standard url', fullStandardUrl);
 
@@ -107,10 +103,11 @@ const renderOnClient = async (userAgent: string, res: express.Response) => {
 
   // This is not an infinite loop because Firebase Hosting Priorities dictate index.html will be loaded first
   const processRes = (body: string) => {
-    res.send(body.toString());
+    res.status(200).send(body.toString());
   }
   
   processRes(resBody);
+  console.log('Client res sent', resBody);
 }
 
 // Prevent arbitrary server requests from unknown domains
@@ -134,14 +131,38 @@ const validateServerRequest = (request: express.Request) => {
   return true;
 }
 
-const preRenderWithPuppeteer = async (req: express.Request, userAgent: string, res: express.Response) => {
+const validateUrlPath = (request: express.Request): boolean => {
+  
+  const targetUrl = generateUrl(request);
+  
+
+  const contentUrlArray: string[] = Object.values(PublicAppRoutes).map(pageSlugWithSlashPrefix => {
+    const pageUrl: string = `https://${appUrl}${pageSlugWithSlashPrefix}`;
+    
+    // Exclude the home page route to prevent universal matches
+    if (pageSlugWithSlashPrefix === '') {
+      return 'home page invalid';
+    }
+    return pageUrl;
+  });
+  
+  // Check if target URL includes a valid content path
+  if (contentUrlArray.find(regex => targetUrl.includes(regex))) {
+    return true;
+  }
+  console.log('Invalid path', targetUrl);
+  return false;
+
+}
+
+const preRenderWithPuppeteer = async (req: express.Request, userAgent: string, res: express.Response, isBot: boolean) => {
 
   const isGoogleBot = detectGoogleBot(userAgent);
   const requestType = isGoogleBot ? WebpageRequestType.GOOGLE_BOT : WebpageRequestType.OTHER_BOT;
-  const botUrl = generateUrl(req);
+  const targetUrl = generateUrl(req);
 
-  console.log('Sending this url to puppeteer', botUrl);
-  const puppeteerResponse: PuppeteerResponse = await puppeteerSsr(botUrl, userAgent, requestType)
+  console.log('Sending this url to puppeteer', targetUrl);
+  const puppeteerResponse: PuppeteerResponse = await puppeteerSsr(targetUrl, userAgent, requestType, isBot)
     .catch(err => {
       console.log('Error with puppeteerSsr', err);
       return err;
@@ -149,7 +170,7 @@ const preRenderWithPuppeteer = async (req: express.Request, userAgent: string, r
   
   // If response is empty, switch to rendering on client
   if (puppeteerResponse.emptyResponse) {
-    await renderOnClient(userAgent, res);
+    await renderOnClient(res);
     return;
   }
 
@@ -158,6 +179,21 @@ const preRenderWithPuppeteer = async (req: express.Request, userAgent: string, r
   // Add Server-Timing! See https://w3c.github.io/server-timing/.
   res.set('Server-Timing', `Prerender;dur=${puppeteerResponse.ttRenderMs};desc="Headless render time (ms)"`);
   res.status(200).send(puppeteerResponse.html); // Serve prerendered page as response.
+  console.log('Pupp res sent');
+}
+
+const detectMobileDevice = (userAgent: string): boolean => {
+  
+  // const uaParser = new parser.UAParser();
+  const uaParser = new UAParser(userAgent);
+  const parserResult = uaParser.getResult();
+  console.log('UA Parser response', parserResult);
+  const deviceType = parserResult.device.type;
+  console.log('Detected device', deviceType);
+  if (deviceType === 'mobile') {
+    return true;
+  }
+  return false;
 }
 
 
@@ -172,13 +208,36 @@ const app = express().get( '*', async (req: express.Request, res: express.Respon
   const userAgent: string = (req.headers['user-agent'] as string) ? (req.headers['user-agent'] as string) : '';
   const isBot = detectBot(userAgent);
   const isValidRequest = validateServerRequest(req);
+  const isHeadless = detectHeadlessChrome(userAgent);
+  const isMobileDevice = detectMobileDevice(userAgent);
+  const isValidPath = validateUrlPath(req);
 
-  if (isBot && isValidRequest) {
-    await preRenderWithPuppeteer(req, userAgent, res);
-  } else {
-    await renderOnClient(userAgent, res);
+  // If bot with valid request, render with puppeteer
+  if (isBot && isValidRequest && isValidPath) {
+    await preRenderWithPuppeteer(req, userAgent, res, isBot);
+    return;
   }
-  
+
+  // Render headless and invalid requests on client
+  if (isHeadless || !isValidPath || !isValidRequest) {
+    await renderOnClient(res); 
+    return;
+  }
+
+  // Render human non-mobile devices on client
+  if (!isBot && !isMobileDevice) {
+    await renderOnClient(res); 
+    return;
+  }
+
+  // Render bots and human mobile with puppeteer
+  if (isBot || isMobileDevice) {
+    await preRenderWithPuppeteer(req, userAgent, res, isBot);
+    return;
+  }
+
+  // Render any other non-matches on client
+  await renderOnClient(res);
 });
 
 const opts = {memory: '1GB', timeoutSeconds: 60};

@@ -17,9 +17,9 @@ export const updateWebpageCache = functions.runWith((opts as functions.RuntimeOp
   const wepageUrl = (message.json as WebpageUrl).url;
   console.log('Message from pubsub', wepageUrl);
 
-  const userAgent = `marydaphne-auto-cache`;
+  const userAgent = `explearning-auto-cache`;
 
-  const updateResponse = await puppeteerSsr(wepageUrl, userAgent, WebpageRequestType.AUTO_CACHE) // Cacheupdate === true ensures proper caching behavior
+  const updateResponse = await puppeteerSsr(wepageUrl, userAgent, WebpageRequestType.AUTO_CACHE, true) // Cacheupdate === true ensures proper caching behavior
     .catch(error => {
       console.log('Error with puppeteerSsr during autocache');
       return error;
