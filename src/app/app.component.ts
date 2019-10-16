@@ -28,7 +28,7 @@ import { Router, NavigationStart } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = metaTagDefaults.maryDaphnePublic.metaTagDefaultTitle;
-  appVersion = '1.1.6';
+  appVersion = '1.1.7';
 
   private userAuthenticationRequested: boolean;
   private userLoaded: boolean;
