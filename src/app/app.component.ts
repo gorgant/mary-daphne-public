@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
 import { UiService } from './core/services/ui.service';
 import { MatSidenav } from '@angular/material';
 import { AuthService } from './core/services/auth.service';
@@ -20,6 +20,7 @@ import { Product } from 'shared-models/products/product.model';
 import { Observable } from 'rxjs';
 import { Meta } from '@angular/platform-browser';
 import { Router, NavigationStart } from '@angular/router';
+import { isPlatformServer } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit {
   private routeNavCount = 0;
   cachedHtmlActive$: Observable<boolean>;
   private isBot: boolean;
+  private isAngularUniversal: boolean;
 
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
 
@@ -44,7 +46,8 @@ export class AppComponent implements OnInit {
     private store$: Store<RootStoreState.State>,
     private afs: AngularFirestore,
     private metaTagService: Meta,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: {}
   ) {}
 
   ngOnInit() {
@@ -60,12 +63,15 @@ export class AppComponent implements OnInit {
   }
 
   private checkForBot() {
-    const botMetaTag = this.metaTagService.getTag(`name=${metaTagDefaults.explearningPublic.metaTagIsBot}`);
+    const botMetaTag = this.metaTagService.getTag(`name=${metaTagDefaults.maryDaphnePublic.metaTagIsBot}`);
     if (botMetaTag) {
       this.store$.dispatch(new UiStoreActions.BotDetected());
       console.log('Bot detected', botMetaTag);
+    } else if (isPlatformServer(this.platformId)) {
+      this.store$.dispatch(new UiStoreActions.AngularUniversalDetected());
+    } else {
+      console.log('No bot or angular universal detected');
     }
-    console.log('No bot detected');
 
     // Keep this updated in the app component state;
     this.store$.select(UiStoreSelectors.selectBotDetected)
@@ -74,10 +80,18 @@ export class AppComponent implements OnInit {
           this.isBot = true;
         }
       });
+
+    // Keep this updated in the app component state;
+    this.store$.select(UiStoreSelectors.selectAngularUniversalDetected)
+      .subscribe(isAngularUniversal => {
+        if (isAngularUniversal) {
+          this.isAngularUniversal = true;
+        }
+      });
   }
 
   private checkIfCachedHtml() {
-    const cachedMetaTag = this.metaTagService.getTag(`name=${metaTagDefaults.explearningPublic.metaTagCachedHtml}`);
+    const cachedMetaTag = this.metaTagService.getTag(`name=${metaTagDefaults.maryDaphnePublic.metaTagCachedHtml}`);
     if (cachedMetaTag) {
       this.store$.dispatch(new UiStoreActions.HTMLCacheActivated());
       console.log('Cached content detected', cachedMetaTag);
@@ -110,17 +124,25 @@ export class AppComponent implements OnInit {
       .pipe(map(htmlCacheActive => htmlCacheActive));
   }
 
-
   private setUserSessionId() {
     const userSessionId = this.afs.createId();
     this.store$.dispatch(new UserStoreActions.SetUserSessionId({userSessionId}));
   }
 
   private initializePublicUser() {
+
+    // Don't init user if bot
     if (this.isBot) {
       console.log('Bot detected, not initializing user');
       return;
     }
+
+    // Don't init user if Angular Universal rendering
+    if (this.isAngularUniversal) {
+      console.log('Angular Universal detected, not initializing user');
+      return;
+    }
+
     this.store$.select(UserStoreSelectors.selectUser)
       .pipe(
         takeWhile(() => !this.userLoaded),
@@ -158,10 +180,20 @@ export class AppComponent implements OnInit {
   }
 
   private configureAuthDetection() {
+
+    // Don't detect auth if bot
     if (this.isBot) {
-      console.log('Bot detected, not initializing auth services');
+      console.log('Bot detected, not initializing user');
       return;
     }
+
+    // Don't detect auth if Angular Universal rendering
+    if (this.isAngularUniversal) {
+      console.log('Angular Universal detected, not initializing user');
+      return;
+    }
+
+
     this.authService.initAuthListener();
     this.authService.authStatus$
     .pipe(
@@ -188,10 +220,18 @@ export class AppComponent implements OnInit {
   }
 
   private checkForOfflineProductData() {
+    // Don't check for offline product if bot
     if (this.isBot) {
-      console.log('Bot detected, not checking for offline product data');
+      console.log('Bot detected, not initializing user');
       return;
     }
+
+    // Don't check for offline product if Angular Universal rendering
+    if (this.isAngularUniversal) {
+      console.log('Angular Universal detected, not initializing user');
+      return;
+    }
+
     const offlineProductData = localStorage.getItem(ProductStrings.OFFLINE_PRODUCT_DATA);
     if (offlineProductData) {
       const productData: Product = JSON.parse(localStorage.getItem(ProductStrings.OFFLINE_PRODUCT_DATA));

@@ -25,7 +25,7 @@ export class PrivacyPolicyComponent implements OnInit, OnDestroy {
 
     const canonicalUrlPath = PublicAppRoutes.PRIVACY_POLICY;
 
-    this.titleService.setTitle(`Privacy Policy - ${metaTagDefaults.explearningPublic.metaTagSiteName}`);
+    this.titleService.setTitle(`Privacy Policy - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`);
     this.analyticsService.logPageViewWithCustomDimensions(canonicalUrlPath);
     this.analyticsService.createNavStamp(canonicalUrlPath);
   }
