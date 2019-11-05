@@ -19,17 +19,17 @@ export {
 } from './contact-form/transmit-contact-form-to-admin';
 
 export {
-  puppeteerServer
-} from './puppeteer/puppeteer-server';
-
-export {
-  transmitWebpageUrlsToPuppeteer
-} from './puppeteer/transmit-webpage-urls-to-puppeteer';
+  transmitWebpageUrlsToSsr
+} from './web-cache/transmit-webpage-urls-to-ssr';
 
 export {
   updateWebpageCache
-} from './puppeteer/update-webpage-cache';
+} from './web-cache/update-webpage-cache';
 
 export {
   purgeInactiveUsers
 } from './users/purge-inactive-users';
+
+export {
+  universalSsr
+} from './universal/universal-ssr';

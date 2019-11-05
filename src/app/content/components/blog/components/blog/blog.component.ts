@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { RootStoreState, PostStoreSelectors, PostStoreActions } from 'src/app/root-store';
 import { Observable } from 'rxjs';
-import { withLatestFrom, map } from 'rxjs/operators';
+import { withLatestFrom, map, filter } from 'rxjs/operators';
 import { AnalyticsService } from 'src/app/core/services/analytics/analytics.service';
 import { Post } from 'shared-models/posts/post.model';
 import { PageHeroData } from 'shared-models/forms-and-components/page-hero-data.model';
@@ -78,7 +78,8 @@ export class BlogComponent implements OnInit, OnDestroy {
           this.store$.dispatch(new PostStoreActions.AllPostsRequested());
         }
         return posts;
-      })
+      }),
+      filter(posts => posts.length > 0), // Catches the first emission which is an empty array
     );
 
     this.error$ = this.store$.select(

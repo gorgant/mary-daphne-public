@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,12 +15,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RootStoreModule } from './root-store';
 import { NavigationModule } from './navigation/modules/navigation.module';
 
+import { TransferHttpCacheModule } from '@nguniversal/common';
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({ appId: 'mary-daphne' }),
+    TransferHttpCacheModule,
+    BrowserTransferStateModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
@@ -28,6 +32,7 @@ import { NavigationModule } from './navigation/modules/navigation.module';
     AngularFireStorageModule,
     AngularFireFunctionsModule,
     MaterialModule,
+    FlexLayoutModule.withConfig({ssrObserveBreakpoints: ['gt-sm', 'gt-md', 'lt-md']}),
     FlexLayoutModule,
     RootStoreModule,
     NavigationModule,

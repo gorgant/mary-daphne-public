@@ -14,6 +14,7 @@ import { AvatarPortraitComponent } from './components/avatar-portrait/avatar-por
 import { ScrollableDirective } from './directives/scrollable.directive';
 import { AppShellNoRenderDirective } from './directives/app-shell-no-render.directive';
 import { AppShellRenderDirective } from './directives/app-shell-render.directive';
+import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { AppShellRenderDirective } from './directives/app-shell-render.directive
     AvatarPortraitComponent,
     ScrollableDirective,
     AppShellNoRenderDirective,
-    AppShellRenderDirective
+    AppShellRenderDirective,
   ],
   imports: [
     CommonModule,
@@ -35,6 +36,7 @@ import { AppShellRenderDirective } from './directives/app-shell-render.directive
     FormsModule,
     MaterialModule,
     FlexLayoutModule,
+    LazyLoadImageModule
   ],
   exports: [
     CommonModule,
@@ -51,7 +53,8 @@ import { AppShellRenderDirective } from './directives/app-shell-render.directive
     AvatarPortraitComponent,
     ScrollableDirective,
     AppShellNoRenderDirective,
-    AppShellRenderDirective
+    AppShellRenderDirective,
+    LazyLoadImageModule,
   ]
 })
 export class SharedModule { }
