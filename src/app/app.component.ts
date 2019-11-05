@@ -29,7 +29,7 @@ import { isPlatformServer } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   title = metaTagDefaults.maryDaphnePublic.metaTagDefaultTitle;
-  appVersion = '1.1.7';
+  appVersion = '1.1.8';
 
   private userAuthenticationRequested: boolean;
   private userLoaded: boolean;
