@@ -4,10 +4,10 @@ import { Store } from '@ngrx/store';
 import { RootStoreState, UserStoreActions, UserStoreSelectors } from 'src/app/root-store';
 import { Observable } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
+import { SUBSCRIBE_VALIDATION_MESSAGES } from 'shared-models/forms-and-components/public-validation-messages.model';
 import { PublicUser } from 'shared-models/user/public-user.model';
 import { EmailSubData } from 'shared-models/subscribers/email-sub-data.model';
 import { SubscriptionSource } from 'shared-models/subscribers/subscription-source.model';
-import { SUBSCRIBE_VALIDATION_MESSAGES } from 'shared-models/forms-and-components/public-validation-messages.model';
 import { EmailSenderAddresses } from 'shared-models/email/email-vars.model';
 
 @Component({

@@ -16,6 +16,7 @@ import { RootStoreModule } from './root-store';
 import { NavigationModule } from './navigation/modules/navigation.module';
 
 import { TransferHttpCacheModule } from '@nguniversal/common';
+import { DownloadPromoComponent } from './shared/components/email-collection/download-promo/download-promo.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,9 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
     AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DownloadPromoComponent
+  ]
 })
 export class AppModule { }
