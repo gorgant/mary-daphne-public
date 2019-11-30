@@ -149,7 +149,7 @@ const retrieveSegmentedWebPageCache = async (segmentRefData: Webpage, isBot: boo
 
 
 // Store cache in Firebase for rapid access
-export const storeWebPageCache = async (url: string, userAgent: string, html: string, requestType: WebpageRequestType) => {
+export const storeWebPageCache = async (url: string, userAgent: string, html: string) => {
   
   const fbSafeUrl: string = createOrReverseFirebaseSafeUrl(url);
 
