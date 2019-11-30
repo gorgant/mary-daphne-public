@@ -4,7 +4,6 @@ import { Webpage } from "../../../shared-models/ssr/webpage.model";
 import { now } from "moment";
 import { publicFirestore } from "../db";
 import { PublicCollectionPaths } from "../../../shared-models/routes-and-paths/fb-collection-paths";
-import { WebpageRequestType } from "../../../shared-models/ssr/webpage-request-type.model";
 
 const db = publicFirestore;
 const charLimit = 700000; // Sets the character limit for a segment (FB max is 1M bytes, which is typically ~1.2x chars)
