@@ -13,6 +13,7 @@ import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
 import { PRODUCTION_APPS, SANDBOX_APPS } from 'shared-models/environments/env-vars.model';
 import { DOCUMENT } from '@angular/common';
 import { UiService } from 'src/app/core/services/ui.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-post',
@@ -35,8 +36,8 @@ export class PostComponent implements OnInit, OnDestroy {
   sanitizedPostBody: SafeHtml;
   videoHtml: SafeHtml;
 
-  productionEnvironment: boolean;
-  origin: string;
+  private productionEnvironment: boolean = environment.production;
+  private origin: string;
   sanitizedSubscribeButtonContent: SafeHtml;
 
 
@@ -131,13 +132,13 @@ export class PostComponent implements OnInit, OnDestroy {
   private setYouTubeIframeOriginBasedOnEnvironment(): string {
     switch (this.productionEnvironment) {
       case true:
-        this.origin = PRODUCTION_APPS.maryDaphnePublicApp.websiteDomain;
+        this.origin = `https://${PRODUCTION_APPS.maryDaphnePublicApp.websiteDomain}`;
         break;
       case false:
-        this.origin = SANDBOX_APPS.maryDaphnePublicApp.websiteDomain;
+        this.origin = `https://${SANDBOX_APPS.maryDaphnePublicApp.websiteDomain}`;
         break;
       default:
-        this.origin = SANDBOX_APPS.maryDaphnePublicApp.websiteDomain;
+        this.origin = `https://${SANDBOX_APPS.maryDaphnePublicApp.websiteDomain}`;
         break;
     }
     return this.origin;

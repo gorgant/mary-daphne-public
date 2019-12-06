@@ -14,6 +14,8 @@ import { PartialCustomDimensionsSet } from 'shared-models/analytics/custom-dimen
 import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
 
 import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { environment } from 'src/environments/environment';
+import { PRODUCTION_APPS, SANDBOX_APPS } from 'shared-models/environments/env-vars.model';
 
 // Courtesy of: https://medium.com/quick-code/set-up-analytics-on-an-angular-app-via-google-tag-manager-5c5b31e6f41
 @Injectable({
@@ -30,6 +32,8 @@ export class AnalyticsService {
 
   private isBot: boolean;
   private isAngularUniversal: boolean;
+
+  private productionEnvironment: boolean = environment.production;
 
   constructor(
     private dataLayerCustomDimensions: DataLayerService,
@@ -187,12 +191,18 @@ export class AnalyticsService {
   private getFulllUrl(path: string) {
     let origin = '';
 
-    // If rendered on Angular Universal, must use this injection token
-    if (this.isAngularUniversal) {
-        const request = this.injector.get(REQUEST);
-        origin = request.protocol + '://' + request.get('host');
-    } else {
-        origin = this.location[`_platformStrategy`]._platformLocation.location.origin;
+    switch (this.productionEnvironment) {
+      case true:
+        origin = `https://${PRODUCTION_APPS.maryDaphnePublicApp.websiteDomain}`;
+        console.log('Prod mode detected, using prod origin', origin);
+        break;
+      case false:
+        origin = `https://${SANDBOX_APPS.maryDaphnePublicApp.websiteDomain}`;
+        console.log('Sandbox detected, using sandbox origin', origin);
+        break;
+      default:
+        origin = `https://${SANDBOX_APPS.maryDaphnePublicApp.websiteDomain}`;
+        break;
     }
 
     let fullPath: string;
@@ -207,18 +217,29 @@ export class AnalyticsService {
   }
 
   private getFullImagePath(path: string) {
+
+    // Dynamic images will include the full origin in URL (served from Firebase storage)
     if (path.includes('https://')) {
       return path;
     }
+
+    // Statically served assets (e.g. home page background) require origin to be added (served from origin file folder vs firebase storage)
     let origin = '';
 
-    // If rendered on Angular Universal, must use this injection token
-    if (this.isAngularUniversal) {
-        const request = this.injector.get(REQUEST);
-        origin = request.protocol + '://' + request.get('host');
-    } else {
-        origin = this.location[`_platformStrategy`]._platformLocation.location.origin;
+    switch (this.productionEnvironment) {
+      case true:
+        origin = `https://${PRODUCTION_APPS.maryDaphnePublicApp.websiteDomain}`;
+        console.log('Prod mode detected, using prod origin', origin);
+        break;
+      case false:
+        origin = `https://${SANDBOX_APPS.maryDaphnePublicApp.websiteDomain}`;
+        console.log('Sandbox detected, using sandbox origin', origin);
+        break;
+      default:
+        origin = `https://${SANDBOX_APPS.maryDaphnePublicApp.websiteDomain}`;
+        break;
     }
+
     const imagePath = `${origin}/${path}`;
     return imagePath;
   }
