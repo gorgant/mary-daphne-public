@@ -22,7 +22,7 @@ import { EnvironmentTypes } from '../../../shared-models/environments/env-vars.m
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../../../app-bundle/main');
 
 // These are a few globals to help with longpage loads
-let charLimit = 900000; // Min length for blog page (this may need to be increased)
+let charLimit = 100000; // Min length for blog page (this may need to be increased)
 if (currentEnvironmentType === EnvironmentTypes.SANDBOX) {
   charLimit = 100000; // reduce charlimit if sandbox
 }

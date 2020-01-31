@@ -30,7 +30,7 @@ import { DownloadPromoComponent } from './shared/components/email-collection/dow
 })
 export class AppComponent implements OnInit {
   title = metaTagDefaults.maryDaphnePublic.metaTagDefaultTitle;
-  appVersion = '1.2.1';
+  appVersion = '1.2.2';
 
   private userAuthenticationRequested: boolean;
   private userLoaded: boolean;
