@@ -23,7 +23,7 @@ export class SubscribeComponent implements OnInit {
   subscribeProcessing$: Observable<boolean>;
   subscribeSubmitted$: Observable<boolean>;
   emailSubmitted: boolean;
-  senderEmail: string = EmailSenderAddresses.MARY_DAPHNE_DEFAULT;
+  senderEmail: string = EmailSenderAddresses.MARY_DAPHNE_NEWSLETTER;
 
   constructor(
     private fb: FormBuilder,

@@ -27,6 +27,10 @@ const routes: Routes = [
     loadChildren: () => import('../components/legal/modules/legal.module').then(m => m.LegalModule)
   },
   {
+    path: 'confirmation',
+    loadChildren: () => import('../components/confirmation/modules/confirmation.module').then(m => m.ConfirmationModule)
+  },
+  {
     path: 'home',
     redirectTo: '',
     pathMatch: 'full'
