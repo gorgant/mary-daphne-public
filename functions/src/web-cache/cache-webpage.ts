@@ -17,7 +17,7 @@ const updateHtml = (html: string, docTarget: string, textToAdd: string): string 
 // Applied before storing in database
 const tagCacheInHtml = (html: string): string => {
   const docTarget = '<head>';
-  const cacheTag = `<meta name="${metaTagDefaults.explearningPublic.metaTagCachedHtml}" content="true">`;
+  const cacheTag = `<meta name="${metaTagDefaults.maryDaphnePublic.metaTagCachedHtml}" content="true">`;
   const updatedHtml = updateHtml(html, docTarget, cacheTag);
   console.log('Marking cache in HTML');
   return updatedHtml;
@@ -26,7 +26,7 @@ const tagCacheInHtml = (html: string): string => {
 // Applied after retrieving from database
 const tagBotInHtml = (html: string): string => {
   const docTarget = '<head>';
-  const botTag = `<meta name="${metaTagDefaults.explearningPublic.metaTagIsBot}" content="true">`;
+  const botTag = `<meta name="${metaTagDefaults.maryDaphnePublic.metaTagIsBot}" content="true">`;
   const updatedHtml = updateHtml(html, docTarget, botTag);
   console.log('Marking bot in HTML');
   return updatedHtml;
@@ -62,7 +62,9 @@ const storePageHtmlSegments = async (url: string, userAgent: string, html: strin
       payload: htmlSegment,
       saved: now(),
       url: createOrReverseFirebaseSafeUrl(fbSafeUrl, true), // Revert to normal url
-      segmentId: docId
+      segmentId: docId,
+      segmentCharLength: htmlSegment.length,
+      pageCharLength: charLength
     }
     return webpage;
   })
@@ -75,7 +77,8 @@ const storePageHtmlSegments = async (url: string, userAgent: string, html: strin
     saved: now(),
     url: createOrReverseFirebaseSafeUrl(fbSafeUrl, true),
     htmlSegmentIdArray: htmlSegmentIds,
-    segmentId: fbSafeUrl
+    segmentId: fbSafeUrl,
+    pageCharLength: charLength
   };
 
   webpageArray.push(referenceWebpage); // Add ID reference to the array for upload
@@ -170,7 +173,8 @@ export const storeWebPageCache = async (url: string, userAgent: string, html: st
     userAgent,
     payload: updatedHtml,
     saved: now(),
-    url: createOrReverseFirebaseSafeUrl(fbSafeUrl, true) // Revert to normal url
+    url: createOrReverseFirebaseSafeUrl(fbSafeUrl, true), // Revert to normal url
+    pageCharLength: htmlCharLength
   }
   
   const fbRes = await db.collection(PublicCollectionPaths.PUBLIC_SITE_CACHE).doc(fbSafeUrl).set(webpage)
@@ -200,7 +204,7 @@ export const retrieveWebPageCache = async (url: string, isBot: boolean): Promise
 
     // If htmlSegmentIdArray has an item, it is a ref doc with segmented data, so fetch appropriately
     if (webPageData.htmlSegmentIdArray && webPageData.htmlSegmentIdArray.length > 0) {
-      webPageData= await retrieveSegmentedWebPageCache(webPageData, isBot);
+      webPageData = await retrieveSegmentedWebPageCache(webPageData, isBot);
     }
     
     // If a bot is accessing page, indicate that in the html

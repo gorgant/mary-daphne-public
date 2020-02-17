@@ -31,10 +31,13 @@ export class PostComponent implements OnInit, OnDestroy {
   titleSet: boolean;
   postSubscription: Subscription;
 
+  podcastEpisodeLoaded: boolean;
+
   heroData: PageHeroData;
 
   sanitizedPostBody: SafeHtml;
   videoHtml: SafeHtml;
+  podcastEpisodeHtml: SafeHtml;
 
   private productionEnvironment: boolean = environment.production;
   private origin: string;
@@ -49,7 +52,7 @@ export class PostComponent implements OnInit, OnDestroy {
     private router: Router,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document,
-    private uiService: UiService
+    private uiService: UiService,
   ) { }
 
   ngOnInit() {
@@ -100,7 +103,7 @@ export class PostComponent implements OnInit, OnDestroy {
           this.store$.dispatch(new PostStoreActions.SinglePostRequested({postId: this.postId}));
         }
         this.loadPostTriggered = true; // Prevents loading from firing more than needed
-        return post;
+        return post as Post;
       })
     );
 
@@ -165,6 +168,7 @@ export class PostComponent implements OnInit, OnDestroy {
     const embedHtml = `
       <iframe
         src="${updatedUrl}"
+        class="youtube-iframe"
         frameborder="0"
         allowfullscreen
         allow="
