@@ -1,6 +1,11 @@
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    match /blogIndex/{postRef} {
+      // Anyone can read posts
+      allow read;
+    }
+
     match /posts/{post} {
     	// Anyone can read posts
       allow read;
@@ -23,6 +28,16 @@ service cloud.firestore {
         allow read, write: if isOwner(userId);
       }
     }
+
+    match /podcastFeedCache/{podcastId} {
+      // Anyone can read podcasts
+      allow read;
+      match /podcastFeedEpisodes/{episodeId} {
+        allow read;
+      }
+    }
+
+    
 
     /// FUNCTIONS ///
     
