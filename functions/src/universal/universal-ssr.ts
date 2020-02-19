@@ -27,13 +27,13 @@ import { transmitWebpageLoadFailureDataToAdmin } from '../web-cache/transmit-web
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../../../app-bundle/main');
 
 // These are a few globals to help with longpage loads
-let minBlogPostCount = 100;
+let minBlogPostCount = 4;
 if (currentEnvironmentType === EnvironmentTypes.SANDBOX) {
-  minBlogPostCount = 1;
+  minBlogPostCount = 0;
 }
-let minPodcastEpisodeCount = 50;
+let minPodcastEpisodeCount = 4;
 if (currentEnvironmentType === EnvironmentTypes.SANDBOX) {
-  minPodcastEpisodeCount = 1;
+  minPodcastEpisodeCount = 0;
 }
 let reloadAttempts = 0; // Track reload attempts
 const reloadLimit = 2; // Set a max number of reload attempts
