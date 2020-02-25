@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable, throwError, BehaviorSubject } from 'rxjs';
-import { MatSnackBarConfig, MatSnackBar } from '@angular/material';
+import { MatSnackBarConfig, MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { take, map, catchError } from 'rxjs/operators';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
@@ -37,7 +37,8 @@ export class UiService {
   }
 
   fetchGeographicData(): Observable<GeographicData> {
-    const geographicDataDoc = this.afs.collection(SharedCollectionPaths.PUBLIC_RESOURCES).doc<GeographicData>('geographicData');
+    const geographicDataDoc = this.afs.collection(SharedCollectionPaths.PUBLIC_RESOURCES)
+      .doc<GeographicData>(SharedCollectionPaths.GEOGRAPHIC_DATA);
 
     return geographicDataDoc.valueChanges()
       .pipe(
@@ -75,6 +76,21 @@ export class UiService {
   // Replace spaces with dashes and set lower case
   convertToFriendlyUrlFormat(stringWithSpaces: string): string {
     return stringWithSpaces.split(' ').join('-').toLowerCase();
+  }
+
+  // Firebase can't handle back slashes
+  createOrReverseFirebaseSafeUrl = (url: string, reverse?: boolean): string => {
+    if (reverse) {
+      const urlWithSlashes = url.replace(/~1/g, '/'); // Revert to normal url
+      return urlWithSlashes;
+    }
+    const removedProtocol = url.split('//').pop() as string;
+    const replacedSlashes = removedProtocol.replace(/\//g, '~1');
+    return replacedSlashes;
+  }
+
+  getPodcastId = (podcastRssUrl: string): string => {
+    return podcastRssUrl.split('users:')[1].split('/')[0];
   }
 
 

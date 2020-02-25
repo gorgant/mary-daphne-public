@@ -1,5 +1,5 @@
 import { EnvironmentTypes, PRODUCTION_APPS, SANDBOX_APPS } from "../../../shared-models/environments/env-vars.model";
-import { currentEnvironmentType } from "../environments/config";
+import { currentEnvironmentType } from "../config/environments-config";
 import { PublicAppRoutes } from "../../../shared-models/routes-and-paths/app-routes.model";
 import { TransferStateKeys } from '../../../shared-models/ssr/ssr-vars';
 import { BlogIndexPostRef } from "../../../shared-models/posts/blog-index-post-ref.model";
@@ -28,7 +28,7 @@ export const parseTransferState = (htmlString: string, routeType: PublicAppRoute
 
   console.log('Attempting to parse html doc');
 
-  const appId: string = currentEnvironmentType === EnvironmentTypes.PRODUCTION ? PRODUCTION_APPS.maryDaphnePublicApp.projectId : SANDBOX_APPS.maryDaphnePublicApp.projectId;
+  const appId: string = currentEnvironmentType === EnvironmentTypes.PRODUCTION ? PRODUCTION_APPS.explearningPublicApp.projectId : SANDBOX_APPS.explearningPublicApp.projectId;
 
   const scriptId = `${appId}-state`;
 
@@ -80,7 +80,8 @@ export const parseTransferState = (htmlString: string, routeType: PublicAppRoute
     }
 
   } catch (e) {
-    throw new Error(`Error parsing HTML for script content: ${e}`);
+    console.log(`Error parsing HTML for script content:`, e);
+    return e;
   }
   
 
