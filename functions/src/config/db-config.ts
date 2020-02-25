@@ -1,4 +1,4 @@
-import { explearningAdminApp, explearningPublicApp } from "./app-config";
+import { maryDaphneAdminApp, maryDaphnePublicApp } from "./app-config";
 
-export const adminFirestore = explearningAdminApp.firestore();
-export const publicFirestore = explearningPublicApp.firestore();
+export const adminFirestore = maryDaphneAdminApp.firestore();
+export const publicFirestore = maryDaphnePublicApp.firestore();

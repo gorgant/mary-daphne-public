@@ -5,18 +5,18 @@ import * as functions from 'firebase-functions';
 
 
 // Access to public app requires admin service account to be added to public IAM
-const getExplearningAdminStorage = (): Storage => {
+const getMaryDaphneAdminStorage = (): Storage => {
   let storageConstructor: Storage;
 
   switch (currentEnvironmentType) {
     case EnvironmentTypes.PRODUCTION:
       storageConstructor = new Storage({
-        projectId: PRODUCTION_APPS.explearningAdminApp.projectId
+        projectId: PRODUCTION_APPS.maryDaphneAdminApp.projectId
       });
       break;
     case EnvironmentTypes.SANDBOX:
       storageConstructor = new Storage({
-        projectId: SANDBOX_APPS.explearningAdminApp.projectId
+        projectId: SANDBOX_APPS.maryDaphneAdminApp.projectId
       });
       break;
     default:
@@ -24,21 +24,21 @@ const getExplearningAdminStorage = (): Storage => {
   }
   return storageConstructor;
 };
-export const explearningAdminStorage = getExplearningAdminStorage();
+export const maryDaphneAdminStorage = getMaryDaphneAdminStorage();
 
 // Access to public app requires admin service account to be added to public IAM
-const getExplearningPublicStorage = (): Storage => {
+const getMaryDaphnePublicStorage = (): Storage => {
   let storageConstructor: Storage;
 
   switch (currentEnvironmentType) {
     case EnvironmentTypes.PRODUCTION:
       storageConstructor = new Storage({
-        projectId: PRODUCTION_APPS.explearningPublicApp.projectId
+        projectId: PRODUCTION_APPS.maryDaphnePublicApp.projectId
       });
       break;
     case EnvironmentTypes.SANDBOX:
       storageConstructor = new Storage({
-        projectId: SANDBOX_APPS.explearningPublicApp.projectId
+        projectId: SANDBOX_APPS.maryDaphnePublicApp.projectId
       });
       break;
     default:
@@ -46,4 +46,4 @@ const getExplearningPublicStorage = (): Storage => {
   }
   return storageConstructor;
 };
-export const explearningPublicStorage = getExplearningPublicStorage();
+export const maryDaphnePublicStorage = getMaryDaphnePublicStorage();

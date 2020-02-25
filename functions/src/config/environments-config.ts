@@ -10,10 +10,10 @@ const getAdminProjectId = (): string => {
 
   switch (currentEnvironmentType) {
     case EnvironmentTypes.PRODUCTION:
-      projectId = PRODUCTION_APPS.explearningAdminApp.projectId
+      projectId = PRODUCTION_APPS.maryDaphneAdminApp.projectId
       break;
     case EnvironmentTypes.SANDBOX:
-      projectId = SANDBOX_APPS.explearningAdminApp.projectId
+      projectId = SANDBOX_APPS.maryDaphneAdminApp.projectId
       break;
     default:
       throw new functions.https.HttpsError('failed-precondition', `No environment type detected when getting admin project ID`);
@@ -27,10 +27,10 @@ const getPublicProjectId = (): string => {
 
   switch (currentEnvironmentType) {
     case EnvironmentTypes.PRODUCTION:
-      projectId = PRODUCTION_APPS.explearningPublicApp.projectId;
+      projectId = PRODUCTION_APPS.maryDaphnePublicApp.projectId;
       break;
     case EnvironmentTypes.SANDBOX:
-      projectId = SANDBOX_APPS.explearningPublicApp.projectId;
+      projectId = SANDBOX_APPS.maryDaphnePublicApp.projectId;
       break;
     default:
       throw new functions.https.HttpsError('failed-precondition', `No environment type detected when getting public project ID`);
@@ -45,10 +45,10 @@ const getPublicAppUrl = (): string => {
 
   switch (currentEnvironmentType) {
     case EnvironmentTypes.PRODUCTION:
-      appUrl = PRODUCTION_APPS.explearningPublicApp.websiteDomain;
+      appUrl = PRODUCTION_APPS.maryDaphnePublicApp.websiteDomain;
       break;
     case EnvironmentTypes.SANDBOX:
-      appUrl = SANDBOX_APPS.explearningPublicApp.websiteDomain;
+      appUrl = SANDBOX_APPS.maryDaphnePublicApp.websiteDomain;
       break;
     default:
       throw new functions.https.HttpsError('failed-precondition', `No environment type detected when getting public project ID`);
@@ -62,10 +62,10 @@ const getRemoteCoachProductId = (): string => {
 
   switch (currentEnvironmentType) {
     case EnvironmentTypes.PRODUCTION:
-      remoteCoachId = ProductIdList.EXPLEARNING_REMOTE_COACH
+      remoteCoachId = ProductIdList.MARY_DAPHNE_REMOTE_COACH
       break;
     case EnvironmentTypes.SANDBOX:
-      remoteCoachId = ProductIdList.EXPLEARNING_SANDBOX_REMOTE_COACH;
+      remoteCoachId = ProductIdList.MARY_DAPHNE_SANDBOX_REMOTE_COACH;
       break;
     default:
       throw new functions.https.HttpsError('failed-precondition', `No environment type detected when getting Remote Coach product ID`);

@@ -5,20 +5,20 @@ import * as functions from 'firebase-functions';
 
 
 // Access to public app requires admin service account to be added to public IAM
-const getExplearningAdminApp = () => {
+const getMaryDaphneAdminApp = () => {
   let app: admin.app.App;
 
   switch (currentEnvironmentType) {
     case EnvironmentTypes.PRODUCTION:
       app = admin.initializeApp(
-        PRODUCTION_APPS.explearningAdminApp,
-        'explearningAdminApp'
+        PRODUCTION_APPS.maryDaphneAdminApp,
+        'maryDaphneAdminApp'
       );
       break;
     case EnvironmentTypes.SANDBOX:
       app = admin.initializeApp(
-        SANDBOX_APPS.explearningAdminApp,
-        'explearningAdminApp'
+        SANDBOX_APPS.maryDaphneAdminApp,
+        'maryDaphneAdminApp'
       );
       break;
     default:
@@ -26,23 +26,23 @@ const getExplearningAdminApp = () => {
   }
   return app;
 };
-export const explearningAdminApp = getExplearningAdminApp();
+export const maryDaphneAdminApp = getMaryDaphneAdminApp();
 
 // Access to public app requires admin service account to be added to public IAM
-const getExplearningPublicApp = () => {
+const getMaryDaphnePublicApp = () => {
   let app: admin.app.App;
 
   switch (currentEnvironmentType) {
     case EnvironmentTypes.PRODUCTION:
       app = admin.initializeApp(
-        PRODUCTION_APPS.explearningPublicApp,
-        'explearningPublicApp'
+        PRODUCTION_APPS.maryDaphnePublicApp,
+        'maryDaphnePublicApp'
       );
       break;
     case EnvironmentTypes.SANDBOX:
       app = admin.initializeApp(
-        SANDBOX_APPS.explearningPublicApp,
-        'explearningPublicApp'
+        SANDBOX_APPS.maryDaphnePublicApp,
+        'maryDaphnePublicApp'
       );
       break;
     default:
@@ -50,4 +50,4 @@ const getExplearningPublicApp = () => {
   }
   return app;
 };
-export const explearningPublicApp = getExplearningPublicApp();
+export const maryDaphnePublicApp = getMaryDaphnePublicApp();

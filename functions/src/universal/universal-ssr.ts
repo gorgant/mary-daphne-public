@@ -114,7 +114,7 @@ const renderAndCachePageWithUniversal = async (res: express.Response, req: expre
     if (reloadAttempts >= reloadLimit) {
       console.log(`Exceeded reload limit after ${reloadAttempts} attempts, using data from most recent load`);
       const webpageLoadFailureData: WebpageLoadFailureData = {
-        domain: currentEnvironmentType === EnvironmentTypes.SANDBOX ? SANDBOX_APPS.explearningPublicApp.websiteDomain : PRODUCTION_APPS.explearningPublicApp.websiteDomain,
+        domain: currentEnvironmentType === EnvironmentTypes.SANDBOX ? SANDBOX_APPS.maryDaphnePublicApp.websiteDomain : PRODUCTION_APPS.maryDaphnePublicApp.websiteDomain,
         urlPath: requestPath,
         errorMessage: `Not all the required items loaded after ${reloadAttempts} attempts`
       }
