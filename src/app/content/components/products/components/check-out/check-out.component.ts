@@ -43,7 +43,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
     const canonicalUrlPath = PublicAppRoutes.CHECKOUT;
 
-    this.titleService.setTitle(`Checkout - ${metaTagDefaults.explearningPublic.metaTagSiteName}`);
+    this.titleService.setTitle(`Checkout - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`);
     this.analyticsService.logPageViewWithCustomDimensions(canonicalUrlPath);
     this.analyticsService.createNavStamp(canonicalUrlPath);
   }
