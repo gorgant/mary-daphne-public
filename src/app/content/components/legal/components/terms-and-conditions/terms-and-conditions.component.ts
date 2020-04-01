@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { AnalyticsService } from 'src/app/core/services/analytics/analytics.service';
 import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
 import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model';
+import { LegalBusinessNames } from 'shared-models/forms-and-components/legal-vars.model';
 
 @Component({
   selector: 'app-terms-and-conditions',
@@ -12,6 +13,7 @@ import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model
 export class TermsAndConditionsComponent implements OnInit, OnDestroy {
 
   appRoutes = PublicAppRoutes;
+  legalBusinessName = LegalBusinessNames.MARY_DAPHNE;
 
   constructor(
     private titleService: Title,

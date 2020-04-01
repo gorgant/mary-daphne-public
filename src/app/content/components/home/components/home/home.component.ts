@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.heroData = {
       // pageTitle: 'Equip Yourself for Opportunity',
       pageTitle: 'Develop Skills That Last a Lifetime',
-      pageSubtitle: null,
+      pageHeroSubtitle: null,
       imageProps,
       actionMessage: 'Learn More'
     };
