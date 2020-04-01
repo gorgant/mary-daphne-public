@@ -6,6 +6,7 @@ import { now } from 'moment';
 import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model';
 import { SocialUrls } from 'shared-models/routes-and-paths/social-urls.model';
 import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
+import { LegalBusinessNames } from 'shared-models/forms-and-components/legal-vars.model';
 
 @Component({
   selector: 'app-footer',
@@ -16,7 +17,7 @@ export class FooterComponent implements OnInit {
 
   @Input() appVersion: string;
   showAppVersion = false;
-  companyName = metaTagDefaults.maryDaphnePublic.metaTagSiteName;
+  legalBusinessName = LegalBusinessNames.MARY_DAPHNE;
 
   activeUrl$: Observable<string>;
   appRoutes = PublicAppRoutes;

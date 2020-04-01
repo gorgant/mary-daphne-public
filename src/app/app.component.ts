@@ -31,7 +31,7 @@ import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model
 })
 export class AppComponent implements OnInit {
   title = metaTagDefaults.maryDaphnePublic.metaTagDefaultTitle;
-  appVersion = '1.2.6';
+  appVersion = '1.2.7';
 
   private userAuthenticationRequested: boolean;
   private userLoaded: boolean;
