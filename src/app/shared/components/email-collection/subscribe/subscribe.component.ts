@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { RootStoreState, UserStoreActions, UserStoreSelectors } from 'src/app/root-store';
-import { Observable } from 'rxjs';
-import { takeWhile } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { withLatestFrom, take } from 'rxjs/operators';
 import { SUBSCRIBE_VALIDATION_MESSAGES } from 'shared-models/forms-and-components/public-validation-messages.model';
 import { PublicUser } from 'shared-models/user/public-user.model';
 import { EmailSubData } from 'shared-models/subscribers/email-sub-data.model';
@@ -16,14 +16,17 @@ import { BillingKeys } from 'shared-models/billing/billing-details.model';
   templateUrl: './subscribe.component.html',
   styleUrls: ['./subscribe.component.scss']
 })
-export class SubscribeComponent implements OnInit {
+export class SubscribeComponent implements OnInit, OnDestroy {
 
   subscribeForm: FormGroup;
   formValidationMessages = SUBSCRIBE_VALIDATION_MESSAGES;
 
-  subscribeProcessing$: Observable<boolean>;
-  subscribeSubmitted$: Observable<boolean>;
-  emailSubmitted: boolean;
+  isSubscribingUser$: Observable<boolean>;
+  subscribeUserError$: Observable<any>;
+  userSubscribed: boolean;
+  subscribeUserSubscription: Subscription;
+  existingSubscriber: boolean;
+
   senderEmail: string = EmailSenderAddresses.MARY_DAPHNE_NEWSLETTER;
 
   constructor(
@@ -41,18 +44,35 @@ export class SubscribeComponent implements OnInit {
   }
 
   onSubmit() {
+    this.userSubscribed = false; // Reset this variable
     // Prevent submission if either field is blank (allows submit button to stay illuminated even when blank)
     if (this[BillingKeys.EMAIL].value === '' || this[BillingKeys.FIRST_NAME].value === '') {
+      console.log('Blank field, no form submitted');
       return;
     }
 
     this.store$.select(UserStoreSelectors.selectUser) // User initialized in app component
       .pipe(
-        takeWhile(() => !this.emailSubmitted)
+        take(1)
       )
       .subscribe(user => {
         console.log('Checking for user to subscribe', user);
+
+        // If no user, do nothing
+        if (!user) {
+          console.log('Error processing subscription, no user available');
+          return;
+        }
+
+        // If user, submit data to admin
         if (user) {
+
+          // If user already subscribed, notify user and don't process
+          if (user.optInConfirmed && user.billingDetails.email === this[BillingKeys.EMAIL].value) {
+            this.existingSubscriber = true;
+            this.userSubscribed = true;
+            return;
+          }
           // Update the user's name and email address (or add to a new billing details object)
           const updatedUser: PublicUser = {
             ...user,
@@ -66,8 +86,6 @@ export class SubscribeComponent implements OnInit {
             }
           };
 
-          console.log('Subscribe email submitted', updatedUser);
-
           // Update user record
           this.store$.dispatch(new UserStoreActions.StoreUserDataRequested({userData: updatedUser}));
 
@@ -78,15 +96,39 @@ export class SubscribeComponent implements OnInit {
           };
           this.store$.dispatch(new UserStoreActions.SubscribeUserRequested({emailSubData}));
 
-          // Mark email submitted to close the subscription
-          this.emailSubmitted = true;
+          this.reactToSubscribeUserOutcome(updatedUser);
+        }
+      });
+  }
+
+  private reactToSubscribeUserOutcome(updatedUser: PublicUser) {
+    this.subscribeUserSubscription = this.store$.select(UserStoreSelectors.selectIsSubscribingUser)
+      .pipe(
+        withLatestFrom(
+          this.store$.select(UserStoreSelectors.selectSubscribeUserError)
+        )
+      )
+      .subscribe(([isSubscribingUser, subscribeError]) => {
+        if (!isSubscribingUser && !subscribeError) {
+          console.log('User subscribed', updatedUser);
+          this.userSubscribed = true;
+        }
+        if (subscribeError) {
+          console.log('Error subscribing user');
+          this.userSubscribed = false;
         }
       });
   }
 
   private initializeSubscribeObservers() {
-    this.subscribeProcessing$ = this.store$.select(UserStoreSelectors.selectSubscribeProcessing);
-    this.subscribeSubmitted$ = this.store$.select(UserStoreSelectors.selectSubscribeSubmitted);
+    this.isSubscribingUser$ = this.store$.select(UserStoreSelectors.selectIsSubscribingUser);
+    this.subscribeUserError$ = this.store$.select(UserStoreSelectors.selectSubscribeUserError);
+  }
+
+  ngOnDestroy() {
+    if (this.subscribeUserSubscription) {
+      this.subscribeUserSubscription.unsubscribe();
+    }
   }
 
   // These getters are used for easy access in the HTML template

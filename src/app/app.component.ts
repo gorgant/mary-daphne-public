@@ -233,11 +233,8 @@ export class AppComponent implements OnInit {
     this.store$.select(UserStoreSelectors.selectUser)
       .pipe(
         takeWhile(() => !this.userLoaded),
-        withLatestFrom(
-          this.store$.select(UserStoreSelectors.selectUserLoaded)
-        ),
-        map(([user, userLoaded]) => {
-          if (!userLoaded && !this.userAuthenticationRequested) {
+        map((user) => {
+          if (!user && !this.userAuthenticationRequested) {
             console.log('No user in store, dispatching authentication request');
             this.store$.dispatch(new AuthStoreActions.AuthenticationRequested());
           }
@@ -285,7 +282,7 @@ export class AppComponent implements OnInit {
     this.authService.authStatus$
     .pipe(
       withLatestFrom(
-        this.store$.select(UserStoreSelectors.selectUserIsLoading),
+        this.store$.select(UserStoreSelectors.selectIsLoading),
         this.store$.select(AuthStoreSelectors.selectIsAuth)
       )
     )

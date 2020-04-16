@@ -1,23 +1,26 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SUBSCRIBE_VALIDATION_MESSAGES } from 'shared-models/forms-and-components/public-validation-messages.model';
 import { Observable, Subscription } from 'rxjs';
 import { EmailSenderAddresses } from 'shared-models/email/email-vars.model';
 import { Store } from '@ngrx/store';
 import { RootStoreState, UserStoreSelectors, UserStoreActions } from 'src/app/root-store';
+import { BillingKeys } from 'shared-models/billing/billing-details.model';
 import { take, withLatestFrom } from 'rxjs/operators';
 import { PublicUser } from 'shared-models/user/public-user.model';
 import { EmailSubData } from 'shared-models/subscribers/email-sub-data.model';
 import { SubscriptionSource } from 'shared-models/subscribers/subscription-source.model';
-import { BillingKeys } from 'shared-models/billing/billing-details.model';
+import { SubSourceProductIdReferences } from 'shared-models/products/product-id-list.model';
 
 @Component({
-  selector: 'app-download-promo',
-  templateUrl: './download-promo.component.html',
-  styleUrls: ['./download-promo.component.scss']
+  selector: 'app-wait-list',
+  templateUrl: './wait-list.component.html',
+  styleUrls: ['./wait-list.component.scss']
 })
-export class DownloadPromoComponent implements OnInit, OnDestroy {
+export class WaitListComponent implements OnInit, OnDestroy {
+
+  @Input() productId: string;
+  subscriptionSource: SubscriptionSource;
 
   subscribeForm: FormGroup;
   formValidationMessages = SUBSCRIBE_VALIDATION_MESSAGES;
@@ -31,18 +34,27 @@ export class DownloadPromoComponent implements OnInit, OnDestroy {
   senderEmail: string = EmailSenderAddresses.MARY_DAPHNE_NEWSLETTER;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public promoData: any,
     private fb: FormBuilder,
     private store$: Store<RootStoreState.State>
   ) { }
 
   ngOnInit() {
+    this.assignSubscriptionSource();
     this.subscribeForm = this.fb.group({
       [BillingKeys.FIRST_NAME]: ['', [Validators.required]],
       [BillingKeys.EMAIL]: ['', [Validators.required, Validators.email]]
     });
 
     this.initializeSubscribeObservers(); // Used to disable subscribe buttons
+  }
+
+  // Assign subscription source based on product id;
+  private assignSubscriptionSource() {
+    this.subscriptionSource = SubSourceProductIdReferences[this.productId].subSource;
+    // Exit function if no matching waitlist found
+    if (!this.subscriptionSource) {
+      console.log('No matching waitlist for product id, hiding list');
+    }
   }
 
   onSubmit() {
@@ -68,11 +80,10 @@ export class DownloadPromoComponent implements OnInit, OnDestroy {
         // If user, submit data to admin
         if (user) {
 
-          // If user already subscribed, notify user and don't process
+          // If user already subscribed, modify response
           if (user.optInConfirmed && user.billingDetails.email === this[BillingKeys.EMAIL].value) {
             this.existingSubscriber = true;
-            this.userSubscribed = true;
-            return;
+            // Continue function because this is separate from primary newsletter
           }
           // Update the user's name and email address (or add to a new billing details object)
           const updatedUser: PublicUser = {
@@ -93,7 +104,7 @@ export class DownloadPromoComponent implements OnInit, OnDestroy {
           // Submit subscriber data to admin
           const emailSubData: EmailSubData = {
             user: updatedUser,
-            subSource: SubscriptionSource.POPUP_SMALLTALK
+            subSource: this.subscriptionSource
           };
           this.store$.dispatch(new UserStoreActions.SubscribeUserRequested({emailSubData}));
 
