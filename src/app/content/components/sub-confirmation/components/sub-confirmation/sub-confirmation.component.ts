@@ -20,7 +20,7 @@ export class SubConfirmationComponent implements OnInit, OnDestroy {
   confirmSubOptInSubscription: Subscription;
   subMarkedConfirmed: boolean;
 
-  supportEmail = EmailSenderAddresses.MARY_DAPHNE_SUPPORT;
+  supportEmail = EmailSenderAddresses.EXPLEARNING_SUPPORT;
 
   constructor(
     private store$: Store<RootStoreState.State>,
@@ -37,8 +37,8 @@ export class SubConfirmationComponent implements OnInit, OnDestroy {
   }
 
   private initializeSubConfirmationStatus() {
-    this.confirmSubscriberProcessing$ = this.store$.select(UserStoreSelectors.selectIsSubscribingUser);
-    this.confirmSubcriberError$ = this.store$.select(UserStoreSelectors.selectSubscribeUserError);
+    this.confirmSubscriberProcessing$ = this.store$.select(UserStoreSelectors.selectIsConfirmingSubOptIn);
+    this.confirmSubcriberError$ = this.store$.select(UserStoreSelectors.selectConfirmSubOptInError);
   }
 
   private markSubscriberConfirmed() {
@@ -62,10 +62,10 @@ export class SubConfirmationComponent implements OnInit, OnDestroy {
   }
 
   private reactToConfirmSubOptInOutcome() {
-    this.confirmSubOptInSubscription = this.store$.select(UserStoreSelectors.selectIsSaving)
+    this.confirmSubOptInSubscription = this.store$.select(UserStoreSelectors.selectIsConfirmingSubOptIn)
       .pipe(
         withLatestFrom(
-          this.store$.select(UserStoreSelectors.selectSaveError)
+          this.store$.select(UserStoreSelectors.selectConfirmSubOptInError)
         )
       )
       .subscribe(([isConfirmingOptIn, optInError]) => {
