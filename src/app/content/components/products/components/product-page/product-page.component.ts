@@ -85,7 +85,9 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   private configureBuyNowBox() {
     if (
       this.productId !== this.productIdList.MARY_DAPHNE_EXECUTIVE_PRESENCE &&
-      this.productId !== this.productIdList.MARY_DAPHNE_SANDBOX_WEB_COURSE
+      this.productId !== this.productIdList.MARY_DAPHNE_REMOTE_WORK &&
+      this.productId !== this.productIdList.MARY_DAPHNE_SANDBOX_WEB_COURSE &&
+      this.productId !== this.productIdList.MARY_DAPHNE_SANDBOX_REMOTE_WORK
       ) {
         this.showBuyNowBox = true;
     }
