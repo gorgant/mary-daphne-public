@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model';
 import { PublicImagePaths } from 'shared-models/routes-and-paths/image-paths.model';
+import { ProductIdList, ProductUrlSlugList } from 'shared-models/products/product-id-list.model';
 
 @Component({
   selector: 'app-about-body',
@@ -16,12 +17,19 @@ export class AboutBodyComponent implements OnInit {
 
   videoHtml: SafeHtml;
 
+  remoteCoachUrl: string;
+
   constructor(
     private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit() {
     this.configureVideoUrl(this.videoUrl);
+    this.setProductPath();
+  }
+
+  private setProductPath() {
+    this.remoteCoachUrl = `${this.appRoutes.PRODUCTS}/${ProductIdList.MARY_DAPHNE_REMOTE_COACH}/${ProductUrlSlugList.REMOTE_COACH}`;
   }
 
   private configureVideoUrl(videoUrl: string) {
