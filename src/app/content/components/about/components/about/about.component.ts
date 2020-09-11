@@ -3,7 +3,7 @@ import { AnalyticsService } from 'src/app/core/services/analytics/analytics.serv
 import { PageHeroData } from 'shared-models/forms-and-components/page-hero-data.model';
 import { ImageProps } from 'shared-models/images/image-props.model';
 import { PublicImagePaths } from 'shared-models/routes-and-paths/image-paths.model';
-import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
+import { metaTagDefaults, metaTagsContentPages } from 'shared-models/analytics/metatags.model';
 import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model';
 
 @Component({
@@ -26,9 +26,9 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
-    const title = `About Us - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`;
+    const title = metaTagsContentPages.maryDaphnePublic.aboutMetaTitle;
     // tslint:disable-next-line:max-line-length
-    const description = `Our mission at ${metaTagDefaults.maryDaphnePublic.metaTagSiteName} is to empower you to become the best version of yourself.  With expertise in communications, business, and personal development, we offer powerful, research-backed strategies to help you develop critical skills that position you for success.`;
+    const description = metaTagsContentPages.maryDaphnePublic.aboutMetaDescription;
     const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
     const canonicalUrlPath = PublicAppRoutes.ABOUT_ME;
 

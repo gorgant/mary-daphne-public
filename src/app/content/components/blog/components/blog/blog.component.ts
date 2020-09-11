@@ -7,7 +7,7 @@ import { AnalyticsService } from 'src/app/core/services/analytics/analytics.serv
 import { PageHeroData } from 'shared-models/forms-and-components/page-hero-data.model';
 import { ImageProps } from 'shared-models/images/image-props.model';
 import { PublicImagePaths } from 'shared-models/routes-and-paths/image-paths.model';
-import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
+import { metaTagDefaults, metaTagsContentPages } from 'shared-models/analytics/metatags.model';
 import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model';
 import { BlogIndexPostRef } from 'shared-models/posts/post.model';
 
@@ -39,9 +39,9 @@ export class BlogComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = `Blog - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`;
+    const title = metaTagsContentPages.maryDaphnePublic.blogMetaTitle;
     // tslint:disable-next-line:max-line-length
-    const description = `On ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}'s blog you have access to our complete library of insights and personal development content. From communications skills to confidence boosting strategies, our goal is to provide you with upgrades that last a lifetime.`;
+    const description = metaTagsContentPages.maryDaphnePublic.blogMetaDescription;
     const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
     const canonicalUrlPath = PublicAppRoutes.BLOG;
 
@@ -59,10 +59,10 @@ export class BlogComponent implements OnInit, OnDestroy {
     };
 
     this.heroData = {
-      pageTitle: 'Mary Daphne Blog',
-      pageHeroSubtitle: `Access our complete library of insights and personal development content`,
+      pageTitle: metaTagsContentPages.maryDaphnePublic.blogPageTitle,
+      pageHeroSubtitle: metaTagsContentPages.maryDaphnePublic.blogPagHeroSubtitle,
       imageProps: blogImageProps,
-      actionMessage: 'View Collection'
+      actionMessage: metaTagsContentPages.maryDaphnePublic.blogActionMessage
     };
   }
 

@@ -13,6 +13,7 @@ import { SubscriptionSource } from 'shared-models/subscribers/subscription-sourc
 import { SubSourceProductIdReferences } from 'shared-models/products/product-id-list.model';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { SubProgressTrackerComponent } from '../sub-progress-tracker/sub-progress-tracker.component';
+import { metaTagsContentPages } from 'shared-models/analytics/metatags.model';
 
 @Component({
   selector: 'app-wait-list',
@@ -34,6 +35,8 @@ export class WaitListComponent implements OnInit, OnDestroy {
   existingSubscriber: boolean;
 
   senderEmail: string = EmailSenderAddresses.MARY_DAPHNE_NEWSLETTER;
+
+  boxDescription = metaTagsContentPages.maryDaphnePublic.waitListBoxDescription;
 
   constructor(
     private fb: FormBuilder,

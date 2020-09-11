@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AnalyticsService } from 'src/app/core/services/analytics/analytics.service';
-import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
+import { metaTagsContentPages } from 'shared-models/analytics/metatags.model';
 import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model';
 import { LegalBusinessNames } from 'shared-models/forms-and-components/legal-vars.model';
 
@@ -27,9 +27,10 @@ export class TermsAndConditionsComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
+    const title = metaTagsContentPages.maryDaphnePublic.termsAndConditionsMetaTitle;
     const canonicalUrlPath = PublicAppRoutes.TERMS_AND_CONDITIONS;
 
-    this.titleService.setTitle(`Terms and Conditions - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`);
+    this.titleService.setTitle(title);
     this.analyticsService.logPageViewWithCustomDimensions(canonicalUrlPath);
     this.analyticsService.createNavStamp(canonicalUrlPath);
   }

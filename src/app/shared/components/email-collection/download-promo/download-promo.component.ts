@@ -12,6 +12,7 @@ import { EmailSubData } from 'shared-models/subscribers/email-sub-data.model';
 import { SubscriptionSource } from 'shared-models/subscribers/subscription-source.model';
 import { BillingKeys } from 'shared-models/billing/billing-details.model';
 import { SubProgressTrackerComponent } from '../sub-progress-tracker/sub-progress-tracker.component';
+import { metaTagsContentPages } from 'shared-models/analytics/metatags.model';
 
 @Component({
   selector: 'app-download-promo',
@@ -30,6 +31,10 @@ export class DownloadPromoComponent implements OnInit, OnDestroy {
   existingSubscriber: boolean;
 
   senderEmail: string = EmailSenderAddresses.MARY_DAPHNE_NEWSLETTER;
+
+  promoTitle = metaTagsContentPages.maryDaphnePublic.downloadPromoTitle;
+  promoDescription = metaTagsContentPages.maryDaphnePublic.downloadPromoDescription;
+  promoDecline = metaTagsContentPages.maryDaphnePublic.downloadPromoDeclineButton;
 
   constructor(
     private dialogRef: MatDialogRef<DownloadPromoComponent>,
