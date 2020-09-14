@@ -1,4 +1,4 @@
-import { Injectable, Inject, PLATFORM_ID, Injector } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { DataLayerService, } from './data-layer.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -7,15 +7,13 @@ import { now } from 'moment';
 import { Store } from '@ngrx/store';
 import { RootStoreState, UserStoreSelectors, UserStoreActions, UiStoreSelectors } from 'src/app/root-store';
 import { withLatestFrom, takeWhile } from 'rxjs/operators';
-import { Location, DOCUMENT, isPlatformServer, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { NavigationStamp } from 'shared-models/analytics/navigation-stamp.model';
 import { PublicUser } from 'shared-models/user/public-user.model';
 import { PartialCustomDimensionsSet } from 'shared-models/analytics/custom-dimensions-set.model';
 import { metaTagDefaults } from 'shared-models/analytics/metatags.model';
-
-import { REQUEST } from '@nguniversal/express-engine/tokens';
-import { environment } from 'src/environments/environment';
 import { PRODUCTION_APPS, SANDBOX_APPS } from 'shared-models/environments/env-vars.model';
+import { environment } from 'src/environments/environment';
 
 // Courtesy of: https://medium.com/quick-code/set-up-analytics-on-an-angular-app-via-google-tag-manager-5c5b31e6f41
 @Injectable({
@@ -42,9 +40,7 @@ export class AnalyticsService {
     private router: Router,
     private afs: AngularFirestore, // Used exclusively to generate an id
     private store$: Store<RootStoreState.State>,
-    private location: Location,
     @Inject(DOCUMENT) private domDoc: Document,
-    private injector: Injector,
   ) {
     this.checkForBot();
     this.checkForAngularUniversal();

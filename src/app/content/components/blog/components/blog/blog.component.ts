@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { RootStoreState, PostStoreSelectors, PostStoreActions } from 'src/app/root-store';
 import { Observable } from 'rxjs';
-import { withLatestFrom, map, filter } from 'rxjs/operators';
+import { map, filter, withLatestFrom } from 'rxjs/operators';
 import { AnalyticsService } from 'src/app/core/services/analytics/analytics.service';
 import { PageHeroData } from 'shared-models/forms-and-components/page-hero-data.model';
 import { ImageProps } from 'shared-models/images/image-props.model';
@@ -20,7 +20,9 @@ export class BlogComponent implements OnInit, OnDestroy {
 
   posts$: Observable<BlogIndexPostRef[]>;
   error$: Observable<string>;
+  nextBatchError$: Observable<string>;
   isLoading$: Observable<boolean>;
+  isLoadingNextBatch$: Observable<boolean>;
   requestBlogIndex: boolean;
 
   heroData: PageHeroData;
@@ -66,6 +68,7 @@ export class BlogComponent implements OnInit, OnDestroy {
     };
   }
 
+  // Fetch first batch from server
   private initializePosts() {
 
     this.error$ = this.store$.select(PostStoreSelectors.selectLoadError);
@@ -85,8 +88,18 @@ export class BlogComponent implements OnInit, OnDestroy {
         );
 
     this.isLoading$ = this.store$.select(
-      PostStoreSelectors.selectIsLoading
+      PostStoreSelectors.selectNextBlogIndexBatchLoading
     );
+  }
+
+  // Fetch next batch from server
+  onGetNextBatchOfPosts() {
+    this.nextBatchError$ = this.store$.select(PostStoreSelectors.selectNextBlogIndexBatchLoadError);
+    this.isLoadingNextBatch$ = this.store$.select(
+      PostStoreSelectors.selectNextBlogIndexBatchLoading
+    );
+
+    this.store$.dispatch(new PostStoreActions.NextBlogIndexBatchRequested());
   }
 
   ngOnDestroy() {

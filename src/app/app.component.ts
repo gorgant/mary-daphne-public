@@ -286,26 +286,26 @@ export class AppComponent implements OnInit {
 
     this.authService.initAuthListener();
     this.authService.authStatus$
-    .pipe(
-      withLatestFrom(
-        this.store$.select(UserStoreSelectors.selectIsLoading),
-        this.store$.select(AuthStoreSelectors.selectIsAuth)
+      .pipe(
+        withLatestFrom(
+          this.store$.select(UserStoreSelectors.selectIsLoading),
+          this.store$.select(AuthStoreSelectors.selectIsAuth)
+        )
       )
-    )
-    .subscribe(([userId, userIsLoading, isAuth]) => {
-      // These if statements determine how to load user data
-      if (userId && !userIsLoading && !isAuth) {
-        // Fires only when app is loaded and user is already logged in
-        this.store$.dispatch( new AuthStoreActions.AuthenticationComplete());
-        this.store$.dispatch( new UserStoreActions.UserDataRequested({userId}));
-      } else if (userId && !userIsLoading && isAuth) {
-        // Fires only when user logged in via Google Auth
-        this.store$.dispatch( new UserStoreActions.UserDataRequested({userId}));
-      } else if (!userId && isAuth) {
-        // Fires only when logout detected on separate client, logs out user automatically
-        this.authService.logout();
-        this.store$.dispatch(new AuthStoreActions.SetUnauthenticated());
-      }
+      .subscribe(([userId, userIsLoading, isAuth]) => {
+        // These if statements determine how to load user data
+        if (userId && !userIsLoading && !isAuth) {
+          // Fires only when app is loaded and user is already logged in
+          this.store$.dispatch( new AuthStoreActions.AuthenticationComplete());
+          this.store$.dispatch( new UserStoreActions.UserDataRequested({userId}));
+        } else if (userId && !userIsLoading && isAuth) {
+          // Fires only when user logged in via Google Auth
+          this.store$.dispatch( new UserStoreActions.UserDataRequested({userId}));
+        } else if (!userId && isAuth) {
+          // Fires only when logout detected on separate client, logs out user automatically
+          this.authService.logout();
+          this.store$.dispatch(new AuthStoreActions.SetUnauthenticated());
+        }
     });
   }
 
