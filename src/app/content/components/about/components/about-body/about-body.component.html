@@ -1,11 +1,11 @@
 <div class="content-container puppeteer-loaded" fxLayout="column" fxLayoutAlign="center center">
   <p class="header">
-    Luck is where hard work meets opportunity. Our mission at Mary Daphne is to equip you to sieze that opportunity.
+    Luck is where hard work meets opportunity. Our mission at {{ shorthandName }} is to equip you to sieze that opportunity.
   </p>
   
   <div class="body-container" fxLayout="column" fxLayoutAlign="start center">
     <div class="body-intro" fxLayout="row" fxLayoutAlign="center center">
-      <app-avatar-portrait [imagePath]="imagePaths.MD_AVATAR"></app-avatar-portrait>
+      <app-avatar-portrait [imagePath]="imagePaths.FOUNDER_AVATAR"></app-avatar-portrait>
       <p class="intro-text">
         Who am I?  Well, since you asked, I'm going to tell you a story about how a starry-eyed girl from New York ended up in an anchor’s seat in Turkey.
       </p>
@@ -31,20 +31,20 @@
         <li>When you encounter an unfamiliar challenge, I want you to take control of the situation with confidence.</li>
       </ul>
       <p>All of that comes down to being ready when the opportunity arises. In order to be ready, you need to prepare ahead of time.</p>
-      <p>Our goal at Mary Daphne is to give you the skills and strategies that ensure you are always prepared.</p>
+      <p>Our goal at {{ shorthandName }} is to give you the skills and strategies that ensure you are always prepared.</p>
       <p>Effective communication, personal branding, systems-oriented thinking. These are the kinds of capabilites that will prepare you for whatever life throws at you.</p>
       <p>There's no silver bullet. Instead, we promote the development of a broad skillset that acknowledges just how unpredictable the real world is.</p>
-      <p>At Mary Daphne, we've spent a lot of time identifying which components of that skillset are most important for success, which are most actionalbe, and which you will turn to over and over again throughout your life.</p>
+      <p>At {{ shorthandName }}, we've spent a lot of time identifying which components of that skillset are most important for success, which are most actionalbe, and which you will turn to over and over again throughout your life.</p>
       <p>We want the opportunity - the privilege - to share everything we've learned with you.</p>
-      <p>At this point I hope you are as fired up as I am! If so, I invite you to dive in and check out everything Mary Daphne has to offer.</p>
+      <p>At this point I hope you are as fired up as I am! If so, I invite you to dive in and check out everything {{ shorthandName }} has to offer.</p>
       <p>A great place to start would be <a [routerLink]="[appRoutes.BLOG]">our blog</a>, which features hundreds of research-backed strategies to address some of the most common challenges our clients face.</p>
       <p>Thank you for taking the time to learn more about what we do.</p>
       <p>And congratulations on taking your first step toward your upgraded self!</p>
     </div>
     <div class="signature-container" fxFlexAlign="start">
-      <img class="signature-image" [src]="imagePaths.MD_CHECKOUT_SIGNATURE" alt="Mary Daphne Signature">
+      <img class="signature-image" [src]="imagePaths.FOUNDER_SIGNATURE" alt="Signature">
       <div class="signature-text">
-        Mary Daphne Root
+        Mary Daphne, CEO
       </div>
     </div>
   </div>

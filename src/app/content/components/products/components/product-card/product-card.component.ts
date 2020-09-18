@@ -71,7 +71,7 @@ export class ProductCardComponent implements OnInit {
     const productRefListValues = Object.entries(ProductReferenceList);
     // console.log('ProductRefListValuse', productRefListValues);
     const explearningProductRef = productRefListValues.filter(([key, value]) => {
-      return value.mdOrExpSisterProduct === this.product.id;
+      return value.masterProductRef === this.product.id;
     })[0][1];
     // console.log('Target Product Ref', explearningProductRef);
     const explearningProductId: string = explearningProductRef.productId;

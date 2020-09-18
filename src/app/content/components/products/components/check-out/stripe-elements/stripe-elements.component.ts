@@ -83,14 +83,14 @@ export class StripeElementsComponent implements OnInit, OnDestroy {
     switch (this.productionEnvironment) {
       case true:
         console.log('Setting publishable key to production');
-        this.stripePublishableKey = StripePublishableKeys.production;
+        this.stripePublishableKey = StripePublishableKeys.MARY_DAPHNE_PROD;
         break;
       case false:
         console.log('Setting publishable key to sandbox');
-        this.stripePublishableKey = StripePublishableKeys.sandbox;
+        this.stripePublishableKey = StripePublishableKeys.MARY_DAPHNE_SANDBOX;
         break;
       default:
-        this.stripePublishableKey = StripePublishableKeys.sandbox;
+        this.stripePublishableKey = StripePublishableKeys.MARY_DAPHNE_SANDBOX;
         break;
     }
   }
