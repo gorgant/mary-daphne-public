@@ -29,7 +29,6 @@
               "src/robots.txt"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss",
               "src/theme.scss"
             ],
@@ -119,8 +118,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/theme.scss"
+
             ],
             "scripts": []
           }

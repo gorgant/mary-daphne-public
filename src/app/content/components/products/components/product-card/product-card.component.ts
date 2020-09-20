@@ -37,7 +37,7 @@ export class ProductCardComponent implements OnInit {
 
   private setProductPathsBasedOnEnvironment() {
     try {
-      const productSlug = this.getProductSlugFromId(this.product.id);
+      const productSlug = this.getProductSlugFromId();
       switch (this.productionEnvironment) {
         case true:
           console.log('Setting productIdList to production');
@@ -52,7 +52,7 @@ export class ProductCardComponent implements OnInit {
           this.explearningUrl = `https://${SANDBOX_APPS.explearningPublicApp.websiteDomain}`;
           break;
       }
-      const explearningProductId = this.getExplearningProductIdFromId(this.product.id);
+      const explearningProductId = ProductReferenceList[this.product.id].masterProductRef;
       this.productUrl = `${this.explearningUrl}${this.appRoutes.PRODUCTS}/${explearningProductId}/${productSlug}`;
 
     } catch {
@@ -61,21 +61,9 @@ export class ProductCardComponent implements OnInit {
     }
   }
 
-  private getProductSlugFromId(productId: string): string {
-    const slug = ProductReferenceList[productId].productUrlSlug;
+  private getProductSlugFromId(): string {
+    const slug = ProductReferenceList[this.product.id].productUrlSlug;
     console.log('Fetched this slug', slug);
     return slug;
   }
-
-  private getExplearningProductIdFromId(productId: string): string {
-    const productRefListValues = Object.entries(ProductReferenceList);
-    // console.log('ProductRefListValuse', productRefListValues);
-    const explearningProductRef = productRefListValues.filter(([key, value]) => {
-      return value.masterProductRef === this.product.id;
-    })[0][1];
-    // console.log('Target Product Ref', explearningProductRef);
-    const explearningProductId: string = explearningProductRef.productId;
-    return explearningProductId;
-  }
-
 }
