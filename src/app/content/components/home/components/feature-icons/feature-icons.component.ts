@@ -8,17 +8,17 @@ import { metaTagsContentPages } from 'shared-models/analytics/metatags.model';
 })
 export class FeatureIconsComponent implements OnInit {
 
-  capTitleOne = metaTagsContentPages.maryDaphnePublic.homeCapTitleOne;
-  capBodyOne = metaTagsContentPages.maryDaphnePublic.homeCapBodyOne;
-  capIconOnePath = metaTagsContentPages.maryDaphnePublic.homeCapIconOnePath;
+  capTitleOne = metaTagsContentPages.mdlsPublic.homeCapTitleOne;
+  capBodyOne = metaTagsContentPages.mdlsPublic.homeCapBodyOne;
+  capIconOnePath = metaTagsContentPages.mdlsPublic.homeCapIconOnePath;
 
-  capTitleTwo = metaTagsContentPages.maryDaphnePublic.homeCapTitleTwo;
-  capBodyTwo = metaTagsContentPages.maryDaphnePublic.homeCapBodyTwo;
-  capIconTwoPath = metaTagsContentPages.maryDaphnePublic.homeCapIconTwoPath;
+  capTitleTwo = metaTagsContentPages.mdlsPublic.homeCapTitleTwo;
+  capBodyTwo = metaTagsContentPages.mdlsPublic.homeCapBodyTwo;
+  capIconTwoPath = metaTagsContentPages.mdlsPublic.homeCapIconTwoPath;
 
-  capTitleThree = metaTagsContentPages.maryDaphnePublic.homeCapTitleThree;
-  capBodyThree = metaTagsContentPages.maryDaphnePublic.homeCapBodyThree;
-  capIconThreePath = metaTagsContentPages.maryDaphnePublic.homeCapIconThreePath;
+  capTitleThree = metaTagsContentPages.mdlsPublic.homeCapTitleThree;
+  capBodyThree = metaTagsContentPages.mdlsPublic.homeCapBodyThree;
+  capIconThreePath = metaTagsContentPages.mdlsPublic.homeCapIconThreePath;
 
   constructor() { }
 

@@ -29,7 +29,7 @@ export class ContactBodyComponent implements OnInit {
   transmitContactFormError$: Observable<any>;
   contactFormSubmissionSubscription: Subscription;
 
-  shorthandBusinessName = ShorthandBusinessNames.MARY_DAPHNE;
+  shorthandBusinessName = ShorthandBusinessNames.MDLS;
 
   constructor(
     private fb: FormBuilder,

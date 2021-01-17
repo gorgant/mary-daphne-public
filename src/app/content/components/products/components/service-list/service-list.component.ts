@@ -32,10 +32,10 @@ export class ServiceListComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = metaTagsContentPages.maryDaphnePublic.serviceListMetaTitle;
+    const title = metaTagsContentPages.mdlsPublic.serviceListMetaTitle;
     // tslint:disable-next-line:max-line-length
-    const description = metaTagsContentPages.maryDaphnePublic.serviceListMetaDescription;
-    const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
+    const description = metaTagsContentPages.mdlsPublic.serviceListMetaDescription;
+    const localImagePath = metaTagDefaults.mdlsPublic.metaTagDefaultImage;
     const canonicalUrlPath = PublicAppRoutes.SERVICES;
 
     this.analyticsService.setSeoTags(title, description, localImagePath, canonicalUrlPath);

@@ -34,9 +34,9 @@ export class WaitListComponent implements OnInit, OnDestroy {
   subscribeUserSubscription: Subscription;
   existingSubscriber: boolean;
 
-  senderEmail: string = EmailSenderAddresses.MARY_DAPHNE_NEWSLETTER;
+  senderEmail: string = EmailSenderAddresses.MDLS_NEWSLETTER;
 
-  boxDescription = metaTagsContentPages.maryDaphnePublic.waitListBoxDescription;
+  boxDescription = metaTagsContentPages.mdlsPublic.waitListBoxDescription;
 
   constructor(
     private fb: FormBuilder,

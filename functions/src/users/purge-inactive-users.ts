@@ -1,9 +1,9 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin'; // Imported for type definition only
 import { now } from 'moment';
-import { maryDaphnePublicApp } from '../config/app-config';
+import { mdlsPublicApp } from '../config/app-config';
 
-const publicApp = maryDaphnePublicApp;
+const publicApp = mdlsPublicApp;
 
 const isExpiredUser = (user: admin.auth.UserRecord): boolean => {
   // Optionally, you could go into user's Firestore profile for a more nuanced expiration asssesment

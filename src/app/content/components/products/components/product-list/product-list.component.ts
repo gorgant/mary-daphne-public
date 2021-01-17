@@ -32,10 +32,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = metaTagsContentPages.maryDaphnePublic.productListMetaTitle;
+    const title = metaTagsContentPages.mdlsPublic.productListMetaTitle;
     // tslint:disable-next-line:max-line-length
-    const description = metaTagsContentPages.maryDaphnePublic.productListMetaDescription;
-    const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
+    const description = metaTagsContentPages.mdlsPublic.productListMetaDescription;
+    const localImagePath = metaTagDefaults.mdlsPublic.metaTagDefaultImage;
     const canonicalUrlPath = PublicAppRoutes.PRODUCTS;
 
     this.analyticsService.setSeoTags(title, description, localImagePath, canonicalUrlPath);

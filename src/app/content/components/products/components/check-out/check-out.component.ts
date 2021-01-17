@@ -25,8 +25,8 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   userAuthenticationRequested: boolean;
 
   imagePaths = PublicImagePaths;
-  legalBusinessName = LegalBusinessNames.MARY_DAPHNE;
-  shorthandBusinessName = ShorthandBusinessNames.MARY_DAPHNE;
+  legalBusinessName = LegalBusinessNames.MDLS;
+  shorthandBusinessName = ShorthandBusinessNames.MDLS;
 
   constructor(
     private store$: Store<RootStoreState.State>,
@@ -46,7 +46,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
     const canonicalUrlPath = PublicAppRoutes.CHECKOUT;
 
-    this.titleService.setTitle(`Checkout - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`);
+    this.titleService.setTitle(`Checkout - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`);
     this.analyticsService.logPageViewWithCustomDimensions(canonicalUrlPath);
     this.analyticsService.createNavStamp(canonicalUrlPath);
   }

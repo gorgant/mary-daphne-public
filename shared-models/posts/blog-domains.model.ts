@@ -1,7 +1,7 @@
 
 export enum BlogDomains {
   EXPLEARNING = 'explearning.co',
-  MARY_DAPHNE = 'marydaphne.com',
+  MDLS = 'marydaphne.com',
   SYW = 'stakeyourwealth.com',
   ADVE = 'advancedenglish.co',
 }

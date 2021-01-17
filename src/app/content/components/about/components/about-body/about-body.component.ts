@@ -15,8 +15,8 @@ export class AboutBodyComponent implements OnInit {
 
   appRoutes = PublicAppRoutes;
   imagePaths = PublicImagePaths;
-  videoUrl = metaTagsContentPages.maryDaphnePublic.aboutBodyVideoUrl;
-  shorthandName = ShorthandBusinessNames.MARY_DAPHNE;
+  videoUrl = metaTagsContentPages.mdlsPublic.aboutBodyVideoUrl;
+  shorthandName = ShorthandBusinessNames.MDLS;
 
   videoHtml: SafeHtml;
 
@@ -32,7 +32,7 @@ export class AboutBodyComponent implements OnInit {
   }
 
   private setProductPath() {
-    this.remoteCoachUrl = `${this.appRoutes.PRODUCTS}/${ProductIdList.MARY_DAPHNE_REMOTE_COACH}/${ProductUrlSlugList.REMOTE_COACH}`;
+    this.remoteCoachUrl = `${this.appRoutes.PRODUCTS}/${ProductIdList.MDLS_REMOTE_COACH}/${ProductUrlSlugList.REMOTE_COACH}`;
   }
 
   private configureVideoUrl(videoUrl: string) {

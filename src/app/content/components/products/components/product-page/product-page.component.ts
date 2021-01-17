@@ -57,7 +57,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
   private configSeoAndAnalytics(product: Product) {
 
-    const title = `${product.name} - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`;
+    const title = `${product.name} - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`;
     const description = `${product.tagline} ${product.productCardData.highlights.join('. ')}.`;
     const localImagePath = this.heroData.imageProps.src;
     const productSlug = this.uiService.convertToFriendlyUrlFormat(product.name);

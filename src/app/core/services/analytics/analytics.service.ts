@@ -189,15 +189,15 @@ export class AnalyticsService {
 
     switch (this.productionEnvironment) {
       case true:
-        origin = `https://${PRODUCTION_APPS.maryDaphnePublicApp.websiteDomain}`;
+        origin = `https://${PRODUCTION_APPS.mdlsPublicApp.websiteDomain}`;
         console.log('Prod mode detected, using prod origin', origin);
         break;
       case false:
-        origin = `https://${SANDBOX_APPS.maryDaphnePublicApp.websiteDomain}`;
+        origin = `https://${SANDBOX_APPS.mdlsPublicApp.websiteDomain}`;
         console.log('Sandbox detected, using sandbox origin', origin);
         break;
       default:
-        origin = `https://${SANDBOX_APPS.maryDaphnePublicApp.websiteDomain}`;
+        origin = `https://${SANDBOX_APPS.mdlsPublicApp.websiteDomain}`;
         break;
     }
 
@@ -224,15 +224,15 @@ export class AnalyticsService {
 
     switch (this.productionEnvironment) {
       case true:
-        origin = `https://${PRODUCTION_APPS.maryDaphnePublicApp.websiteDomain}`;
+        origin = `https://${PRODUCTION_APPS.mdlsPublicApp.websiteDomain}`;
         console.log('Prod mode detected, using prod origin', origin);
         break;
       case false:
-        origin = `https://${SANDBOX_APPS.maryDaphnePublicApp.websiteDomain}`;
+        origin = `https://${SANDBOX_APPS.mdlsPublicApp.websiteDomain}`;
         console.log('Sandbox detected, using sandbox origin', origin);
         break;
       default:
-        origin = `https://${SANDBOX_APPS.maryDaphnePublicApp.websiteDomain}`;
+        origin = `https://${SANDBOX_APPS.mdlsPublicApp.websiteDomain}`;
         break;
     }
 
@@ -253,7 +253,7 @@ export class AnalyticsService {
     });
     this.metaTagService.updateTag({
       name: 'keywords',
-      content: keywords ? keywords : metaTagDefaults.maryDaphnePublic.metaTagDefaultKeywords
+      content: keywords ? keywords : metaTagDefaults.mdlsPublic.metaTagDefaultKeywords
     });
 
     // Social Media Tags

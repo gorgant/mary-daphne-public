@@ -27,10 +27,10 @@ export class ContactComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = metaTagsContentPages.maryDaphnePublic.contactMetaTitle;
+    const title = metaTagsContentPages.mdlsPublic.contactMetaTitle;
     // tslint:disable-next-line:max-line-length
-    const description = metaTagsContentPages.maryDaphnePublic.contactMetaDescription;
-    const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
+    const description = metaTagsContentPages.mdlsPublic.contactMetaDescription;
+    const localImagePath = metaTagDefaults.mdlsPublic.metaTagDefaultImage;
     const canonicalUrlPath = PublicAppRoutes.CONTACT;
 
     this.analyticsService.setSeoTags(title, description, localImagePath, canonicalUrlPath);
@@ -47,10 +47,10 @@ export class ContactComponent implements OnInit, OnDestroy {
     };
 
     this.heroData = {
-      pageTitle: metaTagsContentPages.maryDaphnePublic.contactPageTitle,
-      pageHeroSubtitle: metaTagsContentPages.maryDaphnePublic.contactPageHeroSubtitle,
+      pageTitle: metaTagsContentPages.mdlsPublic.contactPageTitle,
+      pageHeroSubtitle: metaTagsContentPages.mdlsPublic.contactPageHeroSubtitle,
       imageProps: aboutImageProps,
-      actionMessage: metaTagsContentPages.maryDaphnePublic.contactActionMessage
+      actionMessage: metaTagsContentPages.mdlsPublic.contactActionMessage
     };
   }
 

@@ -45,7 +45,7 @@ export class PostComponent implements OnInit, OnDestroy {
   private productionEnvironment: boolean = environment.production;
   private origin: string;
   sanitizedSubscribeButtonContent: SafeHtml;
-  youTubeChannelId = YouTubeChannelIds.MARY_DAPHNE;
+  youTubeChannelId = YouTubeChannelIds.MDLS;
 
   constructor(
     private store$: Store<RootStoreState.State>,
@@ -66,7 +66,7 @@ export class PostComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics(post: Post) {
 
-    const title = `${post.title} - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`;
+    const title = `${post.title} - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`;
     const description = post.description;
     const localImagePath = this.heroData.imageProps.src;
     const keywords = post.keywords;
@@ -138,13 +138,13 @@ export class PostComponent implements OnInit, OnDestroy {
   private setYouTubeIframeOriginBasedOnEnvironment(): string {
     switch (this.productionEnvironment) {
       case true:
-        this.origin = `https://${PRODUCTION_APPS.maryDaphnePublicApp.websiteDomain}`;
+        this.origin = `https://${PRODUCTION_APPS.mdlsPublicApp.websiteDomain}`;
         break;
       case false:
-        this.origin = `https://${SANDBOX_APPS.maryDaphnePublicApp.websiteDomain}`;
+        this.origin = `https://${SANDBOX_APPS.mdlsPublicApp.websiteDomain}`;
         break;
       default:
-        this.origin = `https://${SANDBOX_APPS.maryDaphnePublicApp.websiteDomain}`;
+        this.origin = `https://${SANDBOX_APPS.mdlsPublicApp.websiteDomain}`;
         break;
     }
     return this.origin;
@@ -250,7 +250,7 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   private getPodcastEpisode(podcastEpisodeUrl: string): Observable<PodcastEpisode> {
-    const podcastId = PODCAST_PATHS.maryDaphne.rssFeedPath.split('users:')[1].split('/')[0]; // May change if RSS feed link changes
+    const podcastId = PODCAST_PATHS.mdls.rssFeedPath.split('users:')[1].split('/')[0]; // May change if RSS feed link changes
     const episodeId = this.uiService.createOrReverseFirebaseSafeUrl(podcastEpisodeUrl);
 
     const podcastEpisode$ = this.store$.select(PodcastStoreSelectors.selectEpisodeById(episodeId))

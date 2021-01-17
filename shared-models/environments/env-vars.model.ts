@@ -16,13 +16,13 @@ export const PRODUCTION_APPS = {
     storageBucket: 'explearning-admin.appspot.com',
     websiteDomain: 'admin.explearning.co'
   },
-  maryDaphnePublicApp: {
+  mdlsPublicApp: {
     databaseURL: 'https://marydaphne-public.firebaseio.com',
     projectId: 'marydaphne-public',
     storageBucket: 'marydaphne-public.appspot.com',
     websiteDomain: 'marydaphne.com'
   },
-  maryDaphneAdminApp: {
+  mdlsAdminApp: {
     databaseURL: 'https://marydaphne-admin.firebaseio.com',
     projectId: 'marydaphne-admin',
     storageBucket: 'marydaphne-admin.appspot.com',
@@ -67,13 +67,13 @@ export const SANDBOX_APPS = {
     storageBucket: 'explearning-sandbox-admin.appspot.com',
     websiteDomain: 'explearning-sandbox-admin.firebaseapp.com'
   },
-  maryDaphnePublicApp: {
+  mdlsPublicApp: {
     databaseURL: 'https://marydaphne-sandbox-public.firebaseio.com',
     projectId: 'marydaphne-sandbox-public',
     storageBucket: 'marydaphne-sandbox-public.appspot.com',
     websiteDomain: 'marydaphne-sandbox-public.firebaseapp.com'
   },
-  maryDaphneAdminApp: {
+  mdlsAdminApp: {
     databaseURL: 'https://marydaphne-sandbox-admin.firebaseio.com',
     projectId: 'marydaphne-sandbox-admin',
     storageBucket: 'marydaphne-sandbox-admin.appspot.com',
@@ -112,12 +112,12 @@ export enum ProductionCloudStorage {
   EXPLEARNING_ADMIN_PRODUCTS_STORAGE_FB = 'gs://explearning-admin-products',
   EXPLEARNING_ADMIN_BACKUP_STORAGE_AF_CF = 'explearning-admin-backup',
   EXPLEARNING_ADMIN_BACKUP_STORAGE_FB = 'gs://explearning-admin-backup',
-  MARY_DAPHNE_ADMIN_BLOG_STORAGE_AF_CF = 'marydaphne-admin-blog',
-  MARY_DAPHNE_ADMIN_BLOG_STORAGE_FB = 'gs://marydaphne-admin-blog',
-  MARY_DAPHNE_ADMIN_PRODUCTS_STORAGE_AF_CF = 'marydaphne-admin-products',
-  MARY_DAPHNE_ADMIN_PRODUCTS_STORAGE_FB = 'gs://marydaphne-admin-products',
-  MARY_DAPHNE_ADMIN_BACKUP_STORAGE_AF_CF = 'marydaphne-admin-backup',
-  MARY_DAPHNE_ADMIN_BACKUP_STORAGE_FB = 'gs://marydaphne-admin-backup',
+  MDLS_ADMIN_BLOG_STORAGE_AF_CF = 'marydaphne-admin-blog',
+  MDLS_ADMIN_BLOG_STORAGE_FB = 'gs://marydaphne-admin-blog',
+  MDLS_ADMIN_PRODUCTS_STORAGE_AF_CF = 'marydaphne-admin-products',
+  MDLS_ADMIN_PRODUCTS_STORAGE_FB = 'gs://marydaphne-admin-products',
+  MDLS_ADMIN_BACKUP_STORAGE_AF_CF = 'marydaphne-admin-backup',
+  MDLS_ADMIN_BACKUP_STORAGE_FB = 'gs://marydaphne-admin-backup',
   SYW_ADMIN_BLOG_STORAGE_AF_CF = 'syw-admin-blog',
   SYW_ADMIN_BLOG_STORAGE_FB = 'gs://syw-admin-blog',
   SYW_ADMIN_PRODUCTS_STORAGE_AF_CF = 'syw-admin-products',
@@ -139,12 +139,12 @@ export enum SandboxCloudStorage {
   EXPLEARNING_ADMIN_PRODUCTS_STORAGE_FB = 'gs://explearning-sandbox-admin-products',
   EXPLEARNING_ADMIN_BACKUP_STORAGE_AF_CF = 'explearning-sandbox-admin-backup',
   EXPLEARNING_ADMIN_BACKUP_STORAGE_FB = 'gs://explearning-sandbox-admin-backup',
-  MARY_DAPHNE_ADMIN_BLOG_STORAGE_AF_CF = 'marydaphne-sandbox-admin-blog',
-  MARY_DAPHNE_ADMIN_BLOG_STORAGE_FB = 'gs://marydaphne-sandbox-admin-blog',
-  MARY_DAPHNE_ADMIN_PRODUCTS_STORAGE_AF_CF = 'marydaphne-sandbox-admin-products',
-  MARY_DAPHNE_ADMIN_PRODUCTS_STORAGE_FB = 'gs://marydaphne-sandbox-admin-products',
-  MARY_DAPHNE_ADMIN_BACKUP_STORAGE_AF_CF = 'marydaphne-sandbox-admin-backup',
-  MARY_DAPHNE_ADMIN_BACKUP_STORAGE_FB = 'gs://marydaphne-sandbox-admin-backup',
+  MDLS_ADMIN_BLOG_STORAGE_AF_CF = 'marydaphne-sandbox-admin-blog',
+  MDLS_ADMIN_BLOG_STORAGE_FB = 'gs://marydaphne-sandbox-admin-blog',
+  MDLS_ADMIN_PRODUCTS_STORAGE_AF_CF = 'marydaphne-sandbox-admin-products',
+  MDLS_ADMIN_PRODUCTS_STORAGE_FB = 'gs://marydaphne-sandbox-admin-products',
+  MDLS_ADMIN_BACKUP_STORAGE_AF_CF = 'marydaphne-sandbox-admin-backup',
+  MDLS_ADMIN_BACKUP_STORAGE_FB = 'gs://marydaphne-sandbox-admin-backup',
   SYW_ADMIN_BLOG_STORAGE_AF_CF = 'syw-sandbox-admin-blog',
   SYW_ADMIN_BLOG_STORAGE_FB = 'gs://syw-sandbox-admin-blog',
   SYW_ADMIN_PRODUCTS_STORAGE_AF_CF = 'syw-sandbox-admin-products',
@@ -163,8 +163,8 @@ export enum SandboxCloudStorage {
 export enum StripePublishableKeys {
   EXPLEARNING_PROD = 'pk_live_2ybMSK15jNXw8mpoJ1MmIrfW00PvuSsi2F',
   EXPLEARNING_SANDBOX = 'pk_test_qiAhFPd39eG3eqgEtWM9Yx0v00p7PxdzcH',
-  MARY_DAPHNE_PROD = 'pk_live_2ybMSK15jNXw8mpoJ1MmIrfW00PvuSsi2F',
-  MARY_DAPHNE_SANDBOX = 'pk_test_qiAhFPd39eG3eqgEtWM9Yx0v00p7PxdzcH',
+  MDLS_PROD = 'pk_live_2ybMSK15jNXw8mpoJ1MmIrfW00PvuSsi2F',
+  MDLS_SANDBOX = 'pk_test_qiAhFPd39eG3eqgEtWM9Yx0v00p7PxdzcH',
   SYW_PROD = 'pk_live_2ybMSK15jNXw8mpoJ1MmIrfW00PvuSsi2F',
   SYW_SANDBOX = 'pk_test_qiAhFPd39eG3eqgEtWM9Yx0v00p7PxdzcH',
   ADVE_PROD = 'pk_live_2ybMSK15jNXw8mpoJ1MmIrfW00PvuSsi2F',
@@ -174,8 +174,8 @@ export enum StripePublishableKeys {
 export enum ProductionSsrDataLoadChecks {
   EXPLEARNING_BLOG_MIN = 39,
   EXPLEARNING_PODCAST_MIN = 39,
-  MARY_DAPHNE_BLOG_MIN = 14,
-  MARY_DAPHNE_PODCAST_MIN = 0,
+  MDLS_BLOG_MIN = 14,
+  MDLS_PODCAST_MIN = 0,
   SYW_BLOG_MIN = 20,
   SYW_PODCAST_MIN = 20,
   ADVE_BLOG_MIN = 1,
@@ -185,8 +185,8 @@ export enum ProductionSsrDataLoadChecks {
 export enum SandboxSsrDataLoadChecks {
   EXPLEARNING_BLOG_MIN = 2,
   EXPLEARNING_PODCAST_MIN = 2,
-  MARY_DAPHNE_BLOG_MIN = 1,
-  MARY_DAPHNE_PODCAST_MIN = 0,
+  MDLS_BLOG_MIN = 1,
+  MDLS_PODCAST_MIN = 0,
   SYW_BLOG_MIN = 2,
   SYW_PODCAST_MIN = 2,
   ADVE_BLOG_MIN = 2,

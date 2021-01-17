@@ -34,7 +34,7 @@ const fetchBlogPostIdAndHandle = async (episodeUrl: string) => {
 // Fetch podcast feed data from Soundcloud
 const fetchPodcastFeed = async () => {
 
-  const requestUrl = PODCAST_PATHS.maryDaphne.rssFeedPath;
+  const requestUrl = PODCAST_PATHS.mdls.rssFeedPath;
 
   const requestPromise = new Promise<{podcast: PodcastContainer, episodes: PodcastEpisode[]}>(async (resolve, reject) => {
 

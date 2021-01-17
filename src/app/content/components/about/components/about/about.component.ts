@@ -26,10 +26,10 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
-    const title = metaTagsContentPages.maryDaphnePublic.aboutMetaTitle;
+    const title = metaTagsContentPages.mdlsPublic.aboutMetaTitle;
     // tslint:disable-next-line:max-line-length
-    const description = metaTagsContentPages.maryDaphnePublic.aboutMetaDescription;
-    const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
+    const description = metaTagsContentPages.mdlsPublic.aboutMetaDescription;
+    const localImagePath = metaTagDefaults.mdlsPublic.metaTagDefaultImage;
     const canonicalUrlPath = PublicAppRoutes.ABOUT_ME;
 
     this.analyticsService.setSeoTags(title, description, localImagePath, canonicalUrlPath);

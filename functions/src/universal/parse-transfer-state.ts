@@ -29,7 +29,7 @@ export const parseTransferState = (htmlString: string, routeType: PublicAppRoute
 
   functions.logger.log('Attempting to parse html doc');
 
-  const appId: string = currentEnvironmentType === EnvironmentTypes.PRODUCTION ? PRODUCTION_APPS.maryDaphnePublicApp.projectId : SANDBOX_APPS.maryDaphnePublicApp.projectId;
+  const appId: string = currentEnvironmentType === EnvironmentTypes.PRODUCTION ? PRODUCTION_APPS.mdlsPublicApp.projectId : SANDBOX_APPS.mdlsPublicApp.projectId;
 
   const scriptId = `${appId}-state`;
 

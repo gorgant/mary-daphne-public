@@ -16,7 +16,7 @@ export class FooterComponent implements OnInit {
 
   @Input() appVersion: string;
   showAppVersion = false;
-  legalBusinessName = LegalBusinessNames.MARY_DAPHNE;
+  legalBusinessName = LegalBusinessNames.MDLS;
 
   activeUrl$: Observable<string>;
   appRoutes = PublicAppRoutes;

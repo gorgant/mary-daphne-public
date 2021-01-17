@@ -35,10 +35,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = metaTagDefaults.maryDaphnePublic.metaTagDefaultTitle;
+    const title = metaTagDefaults.mdlsPublic.metaTagDefaultTitle;
     // tslint:disable-next-line:max-line-length
-    const description = metaTagDefaults.maryDaphnePublic.metaTagDefaultDescription;
-    const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
+    const description = metaTagDefaults.mdlsPublic.metaTagDefaultDescription;
+    const localImagePath = metaTagDefaults.mdlsPublic.metaTagDefaultImage;
     const canonicalUrlPath = PublicAppRoutes.HOME;
 
     this.analyticsService.setSeoTags(title, description, localImagePath, canonicalUrlPath);
@@ -62,10 +62,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.heroData = {
       // pageTitle: 'Equip Yourself for Opportunity',
-      pageTitle: metaTagsContentPages.maryDaphnePublic.homePageTitle,
+      pageTitle: metaTagsContentPages.mdlsPublic.homePageTitle,
       pageHeroSubtitle: null,
       imageProps,
-      actionMessage: metaTagsContentPages.maryDaphnePublic.homeActionMessage
+      actionMessage: metaTagsContentPages.mdlsPublic.homeActionMessage
     };
   }
 

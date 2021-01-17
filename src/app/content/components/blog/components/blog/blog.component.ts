@@ -41,10 +41,10 @@ export class BlogComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = metaTagsContentPages.maryDaphnePublic.blogMetaTitle;
+    const title = metaTagsContentPages.mdlsPublic.blogMetaTitle;
     // tslint:disable-next-line:max-line-length
-    const description = metaTagsContentPages.maryDaphnePublic.blogMetaDescription;
-    const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
+    const description = metaTagsContentPages.mdlsPublic.blogMetaDescription;
+    const localImagePath = metaTagDefaults.mdlsPublic.metaTagDefaultImage;
     const canonicalUrlPath = PublicAppRoutes.BLOG;
 
     this.analyticsService.setSeoTags(title, description, localImagePath, canonicalUrlPath);
@@ -61,10 +61,10 @@ export class BlogComponent implements OnInit, OnDestroy {
     };
 
     this.heroData = {
-      pageTitle: metaTagsContentPages.maryDaphnePublic.blogPageTitle,
-      pageHeroSubtitle: metaTagsContentPages.maryDaphnePublic.blogPagHeroSubtitle,
+      pageTitle: metaTagsContentPages.mdlsPublic.blogPageTitle,
+      pageHeroSubtitle: metaTagsContentPages.mdlsPublic.blogPagHeroSubtitle,
       imageProps: blogImageProps,
-      actionMessage: metaTagsContentPages.maryDaphnePublic.blogActionMessage
+      actionMessage: metaTagsContentPages.mdlsPublic.blogActionMessage
     };
   }
 

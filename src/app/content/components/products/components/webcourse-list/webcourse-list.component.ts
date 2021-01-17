@@ -32,10 +32,10 @@ export class WebcourseListComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = metaTagsContentPages.maryDaphnePublic.webcourseListMetaTitle;
+    const title = metaTagsContentPages.mdlsPublic.webcourseListMetaTitle;
     // tslint:disable-next-line:max-line-length
-    const description = metaTagsContentPages.maryDaphnePublic.webcourseListMetaDescription;
-    const localImagePath = metaTagDefaults.maryDaphnePublic.metaTagDefaultImage;
+    const description = metaTagsContentPages.mdlsPublic.webcourseListMetaDescription;
+    const localImagePath = metaTagDefaults.mdlsPublic.metaTagDefaultImage;
     const canonicalUrlPath = PublicAppRoutes.WEBCOURSES;
 
     this.analyticsService.setSeoTags(title, description, localImagePath, canonicalUrlPath);

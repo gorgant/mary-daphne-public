@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   @ViewChild('matButton', { static: false }) matButton;
   activeUrl$: Observable<string>;
   appRoutes = PublicAppRoutes;
-  shorthandBusinessName = ShorthandBusinessNames.MARY_DAPHNE;
+  shorthandBusinessName = ShorthandBusinessNames.MDLS;
 
   constructor(
     private uiService: UiService,

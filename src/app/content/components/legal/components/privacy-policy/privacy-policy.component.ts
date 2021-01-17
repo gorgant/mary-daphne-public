@@ -12,8 +12,8 @@ import { LegalBusinessNames, ShorthandBusinessNames } from 'shared-models/forms-
 })
 export class PrivacyPolicyComponent implements OnInit, OnDestroy {
 
-  legalBusinessName = LegalBusinessNames.MARY_DAPHNE;
-  shorthandBusinessName = ShorthandBusinessNames.MARY_DAPHNE;
+  legalBusinessName = LegalBusinessNames.MDLS;
+  shorthandBusinessName = ShorthandBusinessNames.MDLS;
 
   constructor(
     private titleService: Title,
@@ -27,7 +27,7 @@ export class PrivacyPolicyComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = metaTagsContentPages.maryDaphnePublic.privacyPolicyMetaTitle;
+    const title = metaTagsContentPages.mdlsPublic.privacyPolicyMetaTitle;
     const canonicalUrlPath = PublicAppRoutes.PRIVACY_POLICY;
 
     this.titleService.setTitle(title);

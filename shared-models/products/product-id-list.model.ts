@@ -7,12 +7,12 @@ export enum ProductIdList {
   EXPLEARNING_ONLINE_INTERVIEWS = 'oemqpck1',
   EXPLEARNING_GROUP_INTERVIEWS = 'bug3hcqp',
   EXPLEARNING_ONLINE_TEAMWORK = 'kzu1v20b',
-  MARY_DAPHNE_REMOTE_COACH = '5fff82ic',
-  MARY_DAPHNE_EXECUTIVE_PRESENCE = 'oos6fw69',
-  MARY_DAPHNE_REMOTE_WORK = 'qo17xor5',
-  MARY_DAPHNE_ONLINE_INTERVIEWS = 'fapjp8i0',
-  MARY_DAPHNE_GROUP_INTERVIEWS = 'gfjrmdhq',
-  MARY_DAPHNE_ONLINE_TEAMWORK = '60j6rl1n',
+  MDLS_REMOTE_COACH = '5fff82ic',
+  MDLS_EXECUTIVE_PRESENCE = 'oos6fw69',
+  MDLS_REMOTE_WORK = 'qo17xor5',
+  MDLS_ONLINE_INTERVIEWS = 'fapjp8i0',
+  MDLS_GROUP_INTERVIEWS = 'gfjrmdhq',
+  MDLS_ONLINE_TEAMWORK = '60j6rl1n',
   SYW_REMOTE_COACH = 'hohk65sp',
   SYW_EXECUTIVE_PRESENCE = 'tbj97azw',
   SYW_REMOTE_WORK = 'dgp28sgc',
@@ -80,33 +80,33 @@ export const ProductReferenceList: ProductReferenceList = {
     productUrlSlug: ProductUrlSlugList.ONLINE_TEAMWORK,
     masterProductRef: ProductIdList.EXPLEARNING_REMOTE_COACH
   },
-  [ProductIdList.MARY_DAPHNE_REMOTE_COACH]: {
-    productId: ProductIdList.MARY_DAPHNE_REMOTE_COACH,
+  [ProductIdList.MDLS_REMOTE_COACH]: {
+    productId: ProductIdList.MDLS_REMOTE_COACH,
     productUrlSlug: ProductUrlSlugList.REMOTE_COACH,
     masterProductRef: ProductIdList.EXPLEARNING_REMOTE_COACH
   },
-  [ProductIdList.MARY_DAPHNE_EXECUTIVE_PRESENCE]: {
-    productId: ProductIdList.MARY_DAPHNE_EXECUTIVE_PRESENCE,
+  [ProductIdList.MDLS_EXECUTIVE_PRESENCE]: {
+    productId: ProductIdList.MDLS_EXECUTIVE_PRESENCE,
     productUrlSlug: ProductUrlSlugList.EXECUTIVE_PRESENCE,
     masterProductRef: ProductIdList.EXPLEARNING_EXECUTIVE_PRESENCE
   },
-  [ProductIdList.MARY_DAPHNE_REMOTE_WORK]: {
-    productId: ProductIdList.MARY_DAPHNE_REMOTE_WORK,
+  [ProductIdList.MDLS_REMOTE_WORK]: {
+    productId: ProductIdList.MDLS_REMOTE_WORK,
     productUrlSlug: ProductUrlSlugList.REMOTE_WORK,
     masterProductRef: ProductIdList.EXPLEARNING_REMOTE_WORK
   },
-  [ProductIdList.MARY_DAPHNE_ONLINE_INTERVIEWS]: {
-    productId: ProductIdList.MARY_DAPHNE_ONLINE_INTERVIEWS,
+  [ProductIdList.MDLS_ONLINE_INTERVIEWS]: {
+    productId: ProductIdList.MDLS_ONLINE_INTERVIEWS,
     productUrlSlug: ProductUrlSlugList.ONLINE_INTERVIEWS,
     masterProductRef: ProductIdList.EXPLEARNING_ONLINE_INTERVIEWS
   },
-  [ProductIdList.MARY_DAPHNE_GROUP_INTERVIEWS]: {
-    productId: ProductIdList.MARY_DAPHNE_GROUP_INTERVIEWS,
+  [ProductIdList.MDLS_GROUP_INTERVIEWS]: {
+    productId: ProductIdList.MDLS_GROUP_INTERVIEWS,
     productUrlSlug: ProductUrlSlugList.GROUP_INTERVIEWS,
     masterProductRef: ProductIdList.EXPLEARNING_GROUP_INTERVIEWS
   },
-  [ProductIdList.MARY_DAPHNE_ONLINE_TEAMWORK]: {
-    productId: ProductIdList.MARY_DAPHNE_ONLINE_TEAMWORK,
+  [ProductIdList.MDLS_ONLINE_TEAMWORK]: {
+    productId: ProductIdList.MDLS_ONLINE_TEAMWORK,
     productUrlSlug: ProductUrlSlugList.ONLINE_TEAMWORK,
     masterProductRef: ProductIdList.EXPLEARNING_ONLINE_TEAMWORK
   },

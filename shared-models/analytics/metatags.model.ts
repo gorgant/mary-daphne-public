@@ -18,13 +18,13 @@ export const metaTagDefaults = {
     metaTagCachedHtml: 'cachedHtml',
     metaTagIsBot: 'isBot',
   },
-  maryDaphnePublic: {
+  mdlsPublic: {
     metaTagDefaultTitle: 'Mary Daphne - Equip Yourself For Opportunity',
     // tslint:disable-next-line:max-line-length
     metaTagDefaultDescription: 'Welcome to my blog where we discuss health, fitness, travel, and personal growth. This is a place for me to share what I love and hopefully inspire people along the way.',
-    metaTagAuthor: LegalBusinessNames.MARY_DAPHNE,
+    metaTagAuthor: LegalBusinessNames.MDLS,
     metaTagDefaultKeywords: 'mary daphne, health, cooking, lifestyle, self improvement, fitness, travel, personal growth',
-    metaTagSiteName: ShorthandBusinessNames.MARY_DAPHNE,
+    metaTagSiteName: ShorthandBusinessNames.MDLS,
     metaTagFbAppId: '2361383644073374',
     metaTagTwitterHandle: '@MaryDaphne',
     metaTagTwitterCardType: 'summary_large_image',
@@ -104,7 +104,7 @@ export const metaTagsContentPages = {
     productListMetaTitle: `Products - ${metaTagDefaults.explearningPublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
     productListMetaDescription: `${metaTagDefaults.explearningPublic.metaTagSiteName} offers a variety of products to help you improve your social skills and professional interactions. From communications coaching to detailed web courses, our goal is to make you the best communicator you can be.`,
-    purchaseConfirmationMetaTitle: `Purchase Confirmation - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`,
+    purchaseConfirmationMetaTitle: `Purchase Confirmation - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`,
     serviceListMetaTitle: `Services - ${metaTagDefaults.explearningPublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
     serviceListMetaDescription: `${metaTagDefaults.explearningPublic.metaTagSiteName} offers a variety of services to help you improve your social skills and professional interactions. From communications coaching to detailed web courses, our goal is to make you the best communicator you can be.`,
@@ -118,20 +118,20 @@ export const metaTagsContentPages = {
     subscribeBoxDescription: `Sign up for the latest communication techniques and special offers.`,
     waitListBoxDescription: `Sign up for early bird prices on this webcourse along with our latest communication techniques.`,
   },
-  maryDaphnePublic: {
-    aboutMetaTitle: `About Us - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`,
+  mdlsPublic: {
+    aboutMetaTitle: `About Us - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
-    aboutMetaDescription: `Our mission at ${metaTagDefaults.maryDaphnePublic.metaTagSiteName} is to expand your sense of opportunity and possibility.`,
+    aboutMetaDescription: `Our mission at ${metaTagDefaults.mdlsPublic.metaTagSiteName} is to expand your sense of opportunity and possibility.`,
     aboutBodyVideoUrl: `https://youtu.be/X949bB9fqMA`,
-    blogMetaTitle: `Blog - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`,
+    blogMetaTitle: `Blog - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
-    blogMetaDescription: `On ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}'s blog you have access to our complete library of insights and personal development content.`,
+    blogMetaDescription: `On ${metaTagDefaults.mdlsPublic.metaTagSiteName}'s blog you have access to our complete library of insights and personal development content.`,
     blogPageTitle: `Our Blog`,
     blogPagHeroSubtitle: `Access our complete library of insights and personal development content`,
     blogActionMessage: `View Collection`,
-    contactMetaTitle: `Contact Us - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`,
+    contactMetaTitle: `Contact Us - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
-    contactMetaDescription: `Get in touch with the ${metaTagDefaults.maryDaphnePublic.metaTagSiteName} team using this contact form. We welcome questions, suggestions, and any thoughtful input.`,
+    contactMetaDescription: `Get in touch with the ${metaTagDefaults.mdlsPublic.metaTagSiteName} team using this contact form. We welcome questions, suggestions, and any thoughtful input.`,
     contactPageTitle: 'Contact Us',
     contactPageHeroSubtitle: 'Questions, suggestions, and thoughtful input are welcome',
     contactActionMessage: 'Get in Touch',
@@ -146,18 +146,18 @@ export const metaTagsContentPages = {
     homeCapIconThreePath: PublicIconPaths.LOTUS_FLOWER_ICON,
     homePageTitle: 'Expand your sense of possibility and opportunity',
     homeActionMessage: 'Learn More',
-    privacyPolicyMetaTitle: `Privacy Policy - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`,
-    termsAndConditionsMetaTitle: `Terms and Conditions - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`,
-    productListMetaTitle: `Products - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`,
+    privacyPolicyMetaTitle: `Privacy Policy - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`,
+    termsAndConditionsMetaTitle: `Terms and Conditions - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`,
+    productListMetaTitle: `Products - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
-    productListMetaDescription: `${metaTagDefaults.maryDaphnePublic.metaTagSiteName} offers a variety of services to help you improve your confidence, health, and decision making. From life coaching to high quality web courses, our goal is to equip you for when opportunity comes knocking.`,
-    purchaseConfirmationMetaTitle: `Purchase Confirmation - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`,
-    serviceListMetaTitle: `Services - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`,
+    productListMetaDescription: `${metaTagDefaults.mdlsPublic.metaTagSiteName} offers a variety of services to help you improve your confidence, health, and decision making. From life coaching to high quality web courses, our goal is to equip you for when opportunity comes knocking.`,
+    purchaseConfirmationMetaTitle: `Purchase Confirmation - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`,
+    serviceListMetaTitle: `Services - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
-    serviceListMetaDescription: `${metaTagDefaults.maryDaphnePublic.metaTagSiteName} offers a variety of services to help you improve your confidence, health, and decision making. From life coaching to high quality web courses, our goal is to equip you for when opportunity comes knocking.`,
-    webcourseListMetaTitle: `Web Courses - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`,
+    serviceListMetaDescription: `${metaTagDefaults.mdlsPublic.metaTagSiteName} offers a variety of services to help you improve your confidence, health, and decision making. From life coaching to high quality web courses, our goal is to equip you for when opportunity comes knocking.`,
+    webcourseListMetaTitle: `Web Courses - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
-    webcourseListMetaDescription: `${metaTagDefaults.maryDaphnePublic.metaTagSiteName} offers a variety of services to help you improve your confidence, health, and decision making. From life coaching to high quality web courses, our goal is to equip you for when opportunity comes knocking.`,
+    webcourseListMetaDescription: `${metaTagDefaults.mdlsPublic.metaTagSiteName} offers a variety of services to help you improve your confidence, health, and decision making. From life coaching to high quality web courses, our goal is to equip you for when opportunity comes knocking.`,
     downloadPromoTitle: `Afraid of Small Talk?`,
     downloadPromoDescription: `Sign up to get our five foolproof strategies for mastering small talk.`,
     downloadPromoDeclineButton: `Nah, I'm already a small talk pro.`,
@@ -205,7 +205,7 @@ export const metaTagsContentPages = {
     productListMetaTitle: `Products - ${metaTagDefaults.sywPublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
     productListMetaDescription: `${metaTagDefaults.sywPublic.metaTagSiteName} offers a variety of products to help you improve your wealth building skills. From personal finance, to financial independence, to investing in, and building, profitable businesses, our goal is to equip you to build the wealth you deserve.`,
-    purchaseConfirmationMetaTitle: `Purchase Confirmation - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`,
+    purchaseConfirmationMetaTitle: `Purchase Confirmation - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`,
     serviceListMetaTitle: `Services - ${metaTagDefaults.sywPublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
     serviceListMetaDescription: `${metaTagDefaults.sywPublic.metaTagSiteName} offers a variety of products to help you improve your wealth building skills. From personal finance, to financial independence, to investing in, and building, profitable businesses, our goal is to equip you to build the wealth you deserve.`,
@@ -228,7 +228,7 @@ export const metaTagsContentPages = {
     // tslint:disable-next-line: max-line-length
     blogMetaDescription: `On ${metaTagDefaults.advePublic.metaTagSiteName}'s blog you have access to our complete library of free lessons on advanced english. Our goal with our content is for you to learn to speak English fluently and confidently.`,
     blogPageTitle: `${metaTagDefaults.advePublic.metaTagSiteName} Blog`,
-    blogPagHeroSubtitle: `Access to our complete library of free lessons on speaking English fluently and confidently`,
+    blogPagHeroSubtitle: `Access our complete library of free lessons on speaking English fluently and confidently`,
     blogActionMessage: `View Collection`,
     contactMetaTitle: `Contact Us - ${metaTagDefaults.explearningPublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
@@ -259,7 +259,7 @@ export const metaTagsContentPages = {
     productListMetaTitle: `Products - ${metaTagDefaults.advePublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
     productListMetaDescription: `${metaTagDefaults.advePublic.metaTagSiteName} offers a variety of products to help you improve your advanced English fluency. From conversational English, to business English, to native-sounding English, our goal is to equip you to speak English with fluency and confidence.`,
-    purchaseConfirmationMetaTitle: `Purchase Confirmation - ${metaTagDefaults.maryDaphnePublic.metaTagSiteName}`,
+    purchaseConfirmationMetaTitle: `Purchase Confirmation - ${metaTagDefaults.mdlsPublic.metaTagSiteName}`,
     serviceListMetaTitle: `Services - ${metaTagDefaults.advePublic.metaTagSiteName}`,
     // tslint:disable-next-line: max-line-length
     serviceListMetaDescription: `${metaTagDefaults.advePublic.metaTagSiteName} offers a variety of products to help you improve your advanced English fluency. From conversational English, to business English, to native-sounding English, our goal is to equip you to speak English with fluency and confidence.`,

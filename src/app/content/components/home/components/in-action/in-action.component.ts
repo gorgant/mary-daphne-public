@@ -21,7 +21,7 @@ export class InActionComponent implements OnInit {
 
   appRoutes = PublicAppRoutes;
 
-  siteName = ShorthandBusinessNames.MARY_DAPHNE;
+  siteName = ShorthandBusinessNames.MDLS;
 
   constructor(
     private store$: Store<RootStoreState.State>

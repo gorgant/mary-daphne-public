@@ -30,7 +30,7 @@ import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = metaTagDefaults.maryDaphnePublic.metaTagDefaultTitle;
+  title = metaTagDefaults.mdlsPublic.metaTagDefaultTitle;
   appVersion = '1.3.6';
 
   private userAuthenticationRequested: boolean;
@@ -156,7 +156,7 @@ export class AppComponent implements OnInit {
   }
 
   private checkForBot() {
-    const botMetaTag = this.metaTagService.getTag(`name=${metaTagDefaults.maryDaphnePublic.metaTagIsBot}`);
+    const botMetaTag = this.metaTagService.getTag(`name=${metaTagDefaults.mdlsPublic.metaTagIsBot}`);
     if (botMetaTag) {
       this.store$.dispatch(new UiStoreActions.BotDetected());
       console.log('Bot detected', botMetaTag);
@@ -184,7 +184,7 @@ export class AppComponent implements OnInit {
   }
 
   private checkIfCachedHtml() {
-    const cachedMetaTag = this.metaTagService.getTag(`name=${metaTagDefaults.maryDaphnePublic.metaTagCachedHtml}`);
+    const cachedMetaTag = this.metaTagService.getTag(`name=${metaTagDefaults.mdlsPublic.metaTagCachedHtml}`);
     if (cachedMetaTag) {
       this.store$.dispatch(new UiStoreActions.HTMLCacheActivated());
       console.log('Cached content detected', cachedMetaTag);

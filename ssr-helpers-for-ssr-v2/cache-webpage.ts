@@ -1,12 +1,22 @@
-import { createOrReverseFirebaseSafeUrl } from "../config/global-helpers";
-import { metaTagDefaults } from "../../../shared-models/analytics/metatags.model";
-import { Webpage } from "../../../shared-models/ssr/webpage.model";
+import { metaTagDefaults } from "../shared-models/analytics/metatags.model";
+import { Webpage } from "../shared-models/ssr/webpage.model";
 import { now } from "moment";
-import { publicFirestore } from "../config/db-config";
-import { PublicCollectionPaths } from "../../../shared-models/routes-and-paths/fb-collection-paths";
-import * as functions from 'firebase-functions';
+import { PublicCollectionPaths } from "../shared-models/routes-and-paths/fb-collection-paths";
+import { createOrReverseFirebaseSafeUrl } from "./createOrReverseFirebaseSafeUrl";
 
-const db = publicFirestore;
+import * as firebase from 'firebase/app';
+import { environment } from "src/environments/environment";
+import { environment as sandboxEnv } from "src/environments/environment.sandbox";
+
+let productionEnvironment: boolean;
+
+// Explicitly distinguish btwn prod and sandbox bc this happens outside the app
+const fbApp = firebase.default.initializeApp(
+  productionEnvironment ? environment.firebase : sandboxEnv.firebase,
+  'mdlsPublicApp'
+);
+
+const db = fbApp.firestore();
 const charLimit = 700000; // Sets the character limit for a segment (FB max is 1M bytes, which is typically ~1.2x chars)
 
 const updateHtml = (html: string, docTarget: string, textToAdd: string): string => {
@@ -20,7 +30,7 @@ const tagCacheInHtml = (html: string): string => {
   const docTarget = '<head>';
   const cacheTag = `<meta name="${metaTagDefaults.mdlsPublic.metaTagCachedHtml}" content="true">`;
   const updatedHtml = updateHtml(html, docTarget, cacheTag);
-  functions.logger.log('Marking cache in HTML');
+  console.log('Marking cache in HTML');
   return updatedHtml;
 }
 
@@ -29,7 +39,7 @@ const tagBotInHtml = (html: string): string => {
   const docTarget = '<head>';
   const botTag = `<meta name="${metaTagDefaults.mdlsPublic.metaTagIsBot}" content="true">`;
   const updatedHtml = updateHtml(html, docTarget, botTag);
-  functions.logger.log('Marking bot in HTML');
+  console.log('Marking bot in HTML');
   return updatedHtml;
 }
 
@@ -87,26 +97,26 @@ const storePageHtmlSegments = async (url: string, userAgent: string, html: strin
   // Upload segments to database
   const uploadWebpageSegments = webpageArray.map( async (webpage, index) => {
     await db.collection(PublicCollectionPaths.PUBLIC_SITE_CACHE).doc(webpage.segmentId as string).set(webpage)
-      .catch(err => {functions.logger.log(`Failed to update webpage on public database:`, err); throw new functions.https.HttpsError('internal', err);});
+      .catch(err => {console.log(`Failed to update webpage on public database:`, err); throw new Error(err);});
   })
 
   const uploadResponse = await Promise.all(uploadWebpageSegments);
 
-  functions.logger.log('All blog html segments uploaded');
+  console.log('All blog html segments uploaded');
   return uploadResponse;
 }
 
 // Fetch the webpage segments using the ref doc
 const retrieveSegmentedWebPageCache = async (segmentRefData: Webpage, isBot: boolean) => {
   
-  functions.logger.log('Segmented data detected, parsing segments');
+  console.log('Segmented data detected, parsing segments');
 
   const htmlSegementIdArray: string[] = segmentRefData.htmlSegmentIdArray as string[];
   
   // Unpack the html segments using the array of ids
   const segementPromiseArray = htmlSegementIdArray.map( async (segementId) => {
-    const blogSegmentDoc: FirebaseFirestore.DocumentSnapshot = await db.collection(PublicCollectionPaths.PUBLIC_SITE_CACHE).doc(segementId).get()
-      .catch(err => {functions.logger.log(`Error fetching blog segment:`, err); throw new functions.https.HttpsError('internal', err);});
+    const blogSegmentDoc = await db.collection(PublicCollectionPaths.PUBLIC_SITE_CACHE).doc(segementId).get()
+      .catch(err => {console.log(`Error fetching blog segment:`, err); throw new Error(err);});
     const segmentData = blogSegmentDoc.data() as Webpage;
     return segmentData.payload;
   });
@@ -144,7 +154,10 @@ const retrieveSegmentedWebPageCache = async (segmentRefData: Webpage, isBot: boo
 
 
 // Store cache in Firebase for rapid access
-export const storeWebPageCache = async (url: string, userAgent: string, html: string) => {
+export const storeWebPageCache = async (url: string, userAgent: string, html: string, isProductionEnv: boolean) => {
+
+  // Set environment before code runs
+  productionEnvironment = isProductionEnv;
   
   const fbSafeUrl: string = createOrReverseFirebaseSafeUrl(url);
 
@@ -155,7 +168,7 @@ export const storeWebPageCache = async (url: string, userAgent: string, html: st
   // If char limit exceeded, store as segments and exit function
   const htmlCharLength = updatedHtml.length;
   if (htmlCharLength > charLimit) {
-    functions.logger.log('Char length exceeded, attempting to store page html segements')
+    console.log('Char length exceeded, attempting to store page html segements')
     const segmentedWebpageFbRes = await storePageHtmlSegments(url, userAgent, html, htmlCharLength);
     return segmentedWebpageFbRes;
   }
@@ -171,8 +184,8 @@ export const storeWebPageCache = async (url: string, userAgent: string, html: st
   }
   
   const fbRes = await db.collection(PublicCollectionPaths.PUBLIC_SITE_CACHE).doc(fbSafeUrl).set(webpage)
-    .catch(err => {functions.logger.log(`Error updating webpage cache on public database:`, err); throw new functions.https.HttpsError('internal', err);});
-  functions.logger.log('Web page cached with this id', webpage.url);
+    .catch(err => {console.log(`Error updating webpage cache on public database:`, err); throw new Error(err);});
+  console.log('Web page cached with this id', webpage.url);
   return fbRes;
 }
 
@@ -193,19 +206,22 @@ const executeActions = async (webPageData: Webpage, isBot: boolean): Promise<Web
 }
 
 // Retrieve cached page from Firebase
-export const retrieveWebPageCache = async (url: string, isBot: boolean): Promise<Webpage | undefined> => {
+export const retrieveWebPageCache = async (url: string, isBot: boolean, isProductionEnv: boolean): Promise<Webpage | undefined> => {
+
+  // Set environment before code runs
+  productionEnvironment = isProductionEnv;
   
   const fbSafeUrl = createOrReverseFirebaseSafeUrl(url);
   
-  functions.logger.log('Attempting to retrieve cached page with id: ', fbSafeUrl);
-  const pageDoc: FirebaseFirestore.DocumentSnapshot = await db.collection(PublicCollectionPaths.PUBLIC_SITE_CACHE).doc(fbSafeUrl).get()
-    .catch(err => {functions.logger.log(`Error fetching webpage doc from public database:`, err); throw new functions.https.HttpsError('internal', err);});
+  console.log('Attempting to retrieve cached page with id: ', fbSafeUrl);
+  const pageDoc = await db.collection(PublicCollectionPaths.PUBLIC_SITE_CACHE).doc(fbSafeUrl).get()
+    .catch(err => {console.log(`Error fetching webpage doc from public database:`, err); throw new Error(err);});
 
   if (!pageDoc.exists) {
-    functions.logger.log('No cached page found');
+    console.log('No cached page found');
     return undefined;
   }
-  functions.logger.log('Cached page exists');
+  console.log('Cached page exists');
   const webPageData = pageDoc.data() as Webpage;
 
   return await executeActions(webPageData, isBot);

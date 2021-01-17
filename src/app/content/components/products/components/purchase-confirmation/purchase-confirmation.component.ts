@@ -17,7 +17,7 @@ import { ShorthandBusinessNames } from 'shared-models/forms-and-components/legal
 export class PurchaseConfirmationComponent implements OnInit, OnDestroy {
 
   purchaseData$: Observable<StripeDefs.Charge>;
-  shorthandBusinessName = ShorthandBusinessNames.MARY_DAPHNE;
+  shorthandBusinessName = ShorthandBusinessNames.MDLS;
 
   constructor(
     private store$: Store<RootStoreState.State>,
@@ -33,7 +33,7 @@ export class PurchaseConfirmationComponent implements OnInit, OnDestroy {
   // Add async data as needed and fire once loaded
   private configSeoAndAnalytics() {
 
-    const title = metaTagsContentPages.maryDaphnePublic.purchaseConfirmationMetaTitle;
+    const title = metaTagsContentPages.mdlsPublic.purchaseConfirmationMetaTitle;
     const canonicalUrlPath = PublicAppRoutes.PURCHASE_CONFIRMATION;
 
     this.titleService.setTitle(title);

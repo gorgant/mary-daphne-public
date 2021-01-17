@@ -83,14 +83,14 @@ export class StripeElementsComponent implements OnInit, OnDestroy {
     switch (this.productionEnvironment) {
       case true:
         console.log('Setting publishable key to production');
-        this.stripePublishableKey = StripePublishableKeys.MARY_DAPHNE_PROD;
+        this.stripePublishableKey = StripePublishableKeys.MDLS_PROD;
         break;
       case false:
         console.log('Setting publishable key to sandbox');
-        this.stripePublishableKey = StripePublishableKeys.MARY_DAPHNE_SANDBOX;
+        this.stripePublishableKey = StripePublishableKeys.MDLS_SANDBOX;
         break;
       default:
-        this.stripePublishableKey = StripePublishableKeys.MARY_DAPHNE_SANDBOX;
+        this.stripePublishableKey = StripePublishableKeys.MDLS_SANDBOX;
         break;
     }
   }
@@ -151,7 +151,7 @@ export class StripeElementsComponent implements OnInit, OnDestroy {
           if (billingError) {
             this.paymentSucceeded = false;
             this.paymentSubmitted = false;
-            this.cardErrors = `Fatal billing error. Please contact ${EmailSenderAddresses.MARY_DAPHNE_SUPPORT}`;
+            this.cardErrors = `Fatal billing error. Please contact ${EmailSenderAddresses.MDLS_SUPPORT}`;
             console.log('Billing function error, resetting payment loop', billingError);
           }
 
