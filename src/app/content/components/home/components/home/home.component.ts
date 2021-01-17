@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private setProductPaths() {
     this.expnUrl = `https://${PRODUCTION_APPS.expnPublicApp.websiteDomain}`;
     // tslint:disable-next-line:max-line-length
-    this.remoteCoachUrl = `${this.expnUrl}${this.appRoutes.PRODUCTS}/${ProductIdList.EXPLEARNING_REMOTE_COACH}/${ProductUrlSlugList.REMOTE_COACH}`;
+    this.remoteCoachUrl = `${this.expnUrl}${this.appRoutes.PRODUCTS}/${ProductIdList.EXPN_REMOTE_COACH}/${ProductUrlSlugList.REMOTE_COACH}`;
   }
 
   private initializeHeroData() {
