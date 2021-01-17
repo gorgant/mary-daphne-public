@@ -20,7 +20,7 @@
 // // The Express app is exported so that it can be used by serverless Functions.
 // export function app(isProdEnv: boolean): express.Express {
 //   const server = express();
-//   // const distFolder = join(process.cwd(), 'dist/mary-daphne-public/browser');
+//   // const distFolder = join(process.cwd(), 'dist/mdls-public/browser');
 //   // const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 //   const distFolder = __dirname;
 //   const indexHtml = 'index-server';

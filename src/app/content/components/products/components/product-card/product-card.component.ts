@@ -14,7 +14,7 @@ import { SANDBOX_APPS, PRODUCTION_APPS } from 'shared-models/environments/env-va
 export class ProductCardComponent implements OnInit {
 
   private productionEnvironment: boolean = environment.production;
-  explearningUrl: string;
+  expnUrl: string;
   productUrl: string;
 
   @Input() product: Product;
@@ -41,19 +41,19 @@ export class ProductCardComponent implements OnInit {
       switch (this.productionEnvironment) {
         case true:
           console.log('Setting productIdList to production');
-          this.explearningUrl = `https://${PRODUCTION_APPS.explearningPublicApp.websiteDomain}`;
+          this.expnUrl = `https://${PRODUCTION_APPS.expnPublicApp.websiteDomain}`;
           break;
         case false:
           console.log('Setting productIdList to sandbox');
-          this.explearningUrl = `https://${SANDBOX_APPS.explearningPublicApp.websiteDomain}`;
+          this.expnUrl = `https://${SANDBOX_APPS.expnPublicApp.websiteDomain}`;
           break;
         default:
           console.log('Setting productIdList to sandbox');
-          this.explearningUrl = `https://${SANDBOX_APPS.explearningPublicApp.websiteDomain}`;
+          this.expnUrl = `https://${SANDBOX_APPS.expnPublicApp.websiteDomain}`;
           break;
       }
-      const explearningProductId = ProductReferenceList[this.product.id].masterProductRef;
-      this.productUrl = `${this.explearningUrl}${this.appRoutes.PRODUCTS}/${explearningProductId}/${productSlug}`;
+      const expnProductId = ProductReferenceList[this.product.id].masterProductRef;
+      this.productUrl = `${this.expnUrl}${this.appRoutes.PRODUCTS}/${expnProductId}/${productSlug}`;
 
     } catch {
       console.log('Product slug not found from this id', this.product.id);

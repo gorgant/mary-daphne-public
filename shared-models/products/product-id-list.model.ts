@@ -1,12 +1,12 @@
 import { SubSourceProductIdReferenceList, SubscriptionSource } from '../subscribers/subscription-source.model';
 
 export enum ProductIdList {
-  EXPLEARNING_REMOTE_COACH = '907jvhn4',
-  EXPLEARNING_EXECUTIVE_PRESENCE = 'ko8wpx0c',
-  EXPLEARNING_REMOTE_WORK = 'v7h7td9h',
-  EXPLEARNING_ONLINE_INTERVIEWS = 'oemqpck1',
-  EXPLEARNING_GROUP_INTERVIEWS = 'bug3hcqp',
-  EXPLEARNING_ONLINE_TEAMWORK = 'kzu1v20b',
+  EXPN_REMOTE_COACH = '907jvhn4',
+  EXPN_EXECUTIVE_PRESENCE = 'ko8wpx0c',
+  EXPN_REMOTE_WORK = 'v7h7td9h',
+  EXPN_ONLINE_INTERVIEWS = 'oemqpck1',
+  EXPN_GROUP_INTERVIEWS = 'bug3hcqp',
+  EXPN_ONLINE_TEAMWORK = 'kzu1v20b',
   MDLS_REMOTE_COACH = '5fff82ic',
   MDLS_EXECUTIVE_PRESENCE = 'oos6fw69',
   MDLS_REMOTE_WORK = 'qo17xor5',
@@ -50,136 +50,136 @@ export interface ProductReferenceList {
 
 // Set the key to the Product ID Searchable by product ID
 export const ProductReferenceList: ProductReferenceList = {
-  [ProductIdList.EXPLEARNING_REMOTE_COACH]: {
-    productId: ProductIdList.EXPLEARNING_REMOTE_COACH,
+  [ProductIdList.EXPN_REMOTE_COACH]: {
+    productId: ProductIdList.EXPN_REMOTE_COACH,
     productUrlSlug: ProductUrlSlugList.REMOTE_COACH,
-    masterProductRef: ProductIdList.EXPLEARNING_REMOTE_COACH
+    masterProductRef: ProductIdList.EXPN_REMOTE_COACH
   },
-  [ProductIdList.EXPLEARNING_EXECUTIVE_PRESENCE]: {
-    productId: ProductIdList.EXPLEARNING_EXECUTIVE_PRESENCE,
+  [ProductIdList.EXPN_EXECUTIVE_PRESENCE]: {
+    productId: ProductIdList.EXPN_EXECUTIVE_PRESENCE,
     productUrlSlug: ProductUrlSlugList.EXECUTIVE_PRESENCE,
-    masterProductRef: ProductIdList.EXPLEARNING_REMOTE_COACH
+    masterProductRef: ProductIdList.EXPN_REMOTE_COACH
   },
-  [ProductIdList.EXPLEARNING_REMOTE_WORK]: {
-    productId: ProductIdList.EXPLEARNING_REMOTE_WORK,
+  [ProductIdList.EXPN_REMOTE_WORK]: {
+    productId: ProductIdList.EXPN_REMOTE_WORK,
     productUrlSlug: ProductUrlSlugList.REMOTE_WORK,
-    masterProductRef: ProductIdList.EXPLEARNING_REMOTE_COACH
+    masterProductRef: ProductIdList.EXPN_REMOTE_COACH
   },
-  [ProductIdList.EXPLEARNING_ONLINE_INTERVIEWS]: {
-    productId: ProductIdList.EXPLEARNING_ONLINE_INTERVIEWS,
+  [ProductIdList.EXPN_ONLINE_INTERVIEWS]: {
+    productId: ProductIdList.EXPN_ONLINE_INTERVIEWS,
     productUrlSlug: ProductUrlSlugList.ONLINE_INTERVIEWS,
-    masterProductRef: ProductIdList.EXPLEARNING_REMOTE_COACH
+    masterProductRef: ProductIdList.EXPN_REMOTE_COACH
   },
-  [ProductIdList.EXPLEARNING_GROUP_INTERVIEWS]: {
-    productId: ProductIdList.EXPLEARNING_GROUP_INTERVIEWS,
+  [ProductIdList.EXPN_GROUP_INTERVIEWS]: {
+    productId: ProductIdList.EXPN_GROUP_INTERVIEWS,
     productUrlSlug: ProductUrlSlugList.GROUP_INTERVIEWS,
-    masterProductRef: ProductIdList.EXPLEARNING_REMOTE_COACH
+    masterProductRef: ProductIdList.EXPN_REMOTE_COACH
   },
-  [ProductIdList.EXPLEARNING_ONLINE_TEAMWORK]: {
-    productId: ProductIdList.EXPLEARNING_ONLINE_TEAMWORK,
+  [ProductIdList.EXPN_ONLINE_TEAMWORK]: {
+    productId: ProductIdList.EXPN_ONLINE_TEAMWORK,
     productUrlSlug: ProductUrlSlugList.ONLINE_TEAMWORK,
-    masterProductRef: ProductIdList.EXPLEARNING_REMOTE_COACH
+    masterProductRef: ProductIdList.EXPN_REMOTE_COACH
   },
   [ProductIdList.MDLS_REMOTE_COACH]: {
     productId: ProductIdList.MDLS_REMOTE_COACH,
     productUrlSlug: ProductUrlSlugList.REMOTE_COACH,
-    masterProductRef: ProductIdList.EXPLEARNING_REMOTE_COACH
+    masterProductRef: ProductIdList.EXPN_REMOTE_COACH
   },
   [ProductIdList.MDLS_EXECUTIVE_PRESENCE]: {
     productId: ProductIdList.MDLS_EXECUTIVE_PRESENCE,
     productUrlSlug: ProductUrlSlugList.EXECUTIVE_PRESENCE,
-    masterProductRef: ProductIdList.EXPLEARNING_EXECUTIVE_PRESENCE
+    masterProductRef: ProductIdList.EXPN_EXECUTIVE_PRESENCE
   },
   [ProductIdList.MDLS_REMOTE_WORK]: {
     productId: ProductIdList.MDLS_REMOTE_WORK,
     productUrlSlug: ProductUrlSlugList.REMOTE_WORK,
-    masterProductRef: ProductIdList.EXPLEARNING_REMOTE_WORK
+    masterProductRef: ProductIdList.EXPN_REMOTE_WORK
   },
   [ProductIdList.MDLS_ONLINE_INTERVIEWS]: {
     productId: ProductIdList.MDLS_ONLINE_INTERVIEWS,
     productUrlSlug: ProductUrlSlugList.ONLINE_INTERVIEWS,
-    masterProductRef: ProductIdList.EXPLEARNING_ONLINE_INTERVIEWS
+    masterProductRef: ProductIdList.EXPN_ONLINE_INTERVIEWS
   },
   [ProductIdList.MDLS_GROUP_INTERVIEWS]: {
     productId: ProductIdList.MDLS_GROUP_INTERVIEWS,
     productUrlSlug: ProductUrlSlugList.GROUP_INTERVIEWS,
-    masterProductRef: ProductIdList.EXPLEARNING_GROUP_INTERVIEWS
+    masterProductRef: ProductIdList.EXPN_GROUP_INTERVIEWS
   },
   [ProductIdList.MDLS_ONLINE_TEAMWORK]: {
     productId: ProductIdList.MDLS_ONLINE_TEAMWORK,
     productUrlSlug: ProductUrlSlugList.ONLINE_TEAMWORK,
-    masterProductRef: ProductIdList.EXPLEARNING_ONLINE_TEAMWORK
+    masterProductRef: ProductIdList.EXPN_ONLINE_TEAMWORK
   },
   [ProductIdList.SYW_REMOTE_COACH]: {
     productId: ProductIdList.SYW_REMOTE_COACH,
     productUrlSlug: ProductUrlSlugList.REMOTE_COACH,
-    masterProductRef: ProductIdList.EXPLEARNING_REMOTE_COACH
+    masterProductRef: ProductIdList.EXPN_REMOTE_COACH
   },
   [ProductIdList.SYW_EXECUTIVE_PRESENCE]: {
     productId: ProductIdList.SYW_EXECUTIVE_PRESENCE,
     productUrlSlug: ProductUrlSlugList.EXECUTIVE_PRESENCE,
-    masterProductRef: ProductIdList.EXPLEARNING_EXECUTIVE_PRESENCE
+    masterProductRef: ProductIdList.EXPN_EXECUTIVE_PRESENCE
   },
   [ProductIdList.SYW_REMOTE_WORK]: {
     productId: ProductIdList.SYW_REMOTE_WORK,
     productUrlSlug: ProductUrlSlugList.REMOTE_WORK,
-    masterProductRef: ProductIdList.EXPLEARNING_REMOTE_WORK
+    masterProductRef: ProductIdList.EXPN_REMOTE_WORK
   },
   [ProductIdList.SYW_ONLINE_INTERVIEWS]: {
     productId: ProductIdList.SYW_ONLINE_INTERVIEWS,
     productUrlSlug: ProductUrlSlugList.ONLINE_INTERVIEWS,
-    masterProductRef: ProductIdList.EXPLEARNING_ONLINE_INTERVIEWS
+    masterProductRef: ProductIdList.EXPN_ONLINE_INTERVIEWS
   },
   [ProductIdList.SYW_GROUP_INTERVIEWS]: {
     productId: ProductIdList.SYW_GROUP_INTERVIEWS,
     productUrlSlug: ProductUrlSlugList.GROUP_INTERVIEWS,
-    masterProductRef: ProductIdList.EXPLEARNING_GROUP_INTERVIEWS
+    masterProductRef: ProductIdList.EXPN_GROUP_INTERVIEWS
   },
   [ProductIdList.SYW_ONLINE_TEAMWORK]: {
     productId: ProductIdList.SYW_ONLINE_TEAMWORK,
     productUrlSlug: ProductUrlSlugList.ONLINE_TEAMWORK,
-    masterProductRef: ProductIdList.EXPLEARNING_ONLINE_TEAMWORK
+    masterProductRef: ProductIdList.EXPN_ONLINE_TEAMWORK
   },
   [ProductIdList.ADVE_REMOTE_COACH]: {
     productId: ProductIdList.ADVE_REMOTE_COACH,
     productUrlSlug: ProductUrlSlugList.REMOTE_COACH,
-    masterProductRef: ProductIdList.EXPLEARNING_REMOTE_COACH
+    masterProductRef: ProductIdList.EXPN_REMOTE_COACH
   },
   [ProductIdList.ADVE_EXECUTIVE_PRESENCE]: {
     productId: ProductIdList.ADVE_EXECUTIVE_PRESENCE,
     productUrlSlug: ProductUrlSlugList.EXECUTIVE_PRESENCE,
-    masterProductRef: ProductIdList.EXPLEARNING_EXECUTIVE_PRESENCE
+    masterProductRef: ProductIdList.EXPN_EXECUTIVE_PRESENCE
   },
   [ProductIdList.ADVE_REMOTE_WORK]: {
     productId: ProductIdList.ADVE_REMOTE_WORK,
     productUrlSlug: ProductUrlSlugList.REMOTE_WORK,
-    masterProductRef: ProductIdList.EXPLEARNING_REMOTE_WORK
+    masterProductRef: ProductIdList.EXPN_REMOTE_WORK
   },
   [ProductIdList.ADVE_ONLINE_INTERVIEWS]: {
     productId: ProductIdList.ADVE_ONLINE_INTERVIEWS,
     productUrlSlug: ProductUrlSlugList.ONLINE_INTERVIEWS,
-    masterProductRef: ProductIdList.EXPLEARNING_ONLINE_INTERVIEWS
+    masterProductRef: ProductIdList.EXPN_ONLINE_INTERVIEWS
   },
   [ProductIdList.ADVE_GROUP_INTERVIEWS]: {
     productId: ProductIdList.ADVE_GROUP_INTERVIEWS,
     productUrlSlug: ProductUrlSlugList.GROUP_INTERVIEWS,
-    masterProductRef: ProductIdList.EXPLEARNING_GROUP_INTERVIEWS
+    masterProductRef: ProductIdList.EXPN_GROUP_INTERVIEWS
   },
   [ProductIdList.ADVE_ONLINE_TEAMWORK]: {
     productId: ProductIdList.ADVE_ONLINE_TEAMWORK,
     productUrlSlug: ProductUrlSlugList.ONLINE_TEAMWORK,
-    masterProductRef: ProductIdList.EXPLEARNING_ONLINE_TEAMWORK
+    masterProductRef: ProductIdList.EXPN_ONLINE_TEAMWORK
   },
 };
 
 // Used for managing waitlist contact lists on sendgrid
 export const SubSourceProductIdReferences: SubSourceProductIdReferenceList = {
-  [ProductIdList.EXPLEARNING_EXECUTIVE_PRESENCE]: {
+  [ProductIdList.EXPN_EXECUTIVE_PRESENCE]: {
     subSource: SubscriptionSource.WAIT_LIST_EXECUTIVE_PRESENCE,
-    productId: ProductIdList.EXPLEARNING_EXECUTIVE_PRESENCE
+    productId: ProductIdList.EXPN_EXECUTIVE_PRESENCE
   },
-  [ProductIdList.EXPLEARNING_REMOTE_WORK]: {
+  [ProductIdList.EXPN_REMOTE_WORK]: {
     subSource: SubscriptionSource.WAIT_LIST_REMOTE_WORK,
-    productId: ProductIdList.EXPLEARNING_REMOTE_WORK
+    productId: ProductIdList.EXPN_REMOTE_WORK
   }
 };

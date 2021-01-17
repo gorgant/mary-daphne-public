@@ -45,20 +45,20 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   private initializeProducts() {
     this.products$ = this.store$.select(ProductStoreSelectors.selectAllProducts)
-    .pipe(
-      withLatestFrom(
-        this.store$.select(ProductStoreSelectors.selectProductsLoaded)
-      ),
-      map(([products, productsLoaded]) => {
-        // Check if items are loaded, if not fetch from server
-        if (!productsLoaded) {
-          console.log('No products loaded, loading those now');
-          this.store$.dispatch(new ProductStoreActions.AllProductsRequested());
-        }
-        return products;
-      }),
-      filter(products => products.length > 0) // Catches the first emission which is an empty array
-    );
+      .pipe(
+        withLatestFrom(
+          this.store$.select(ProductStoreSelectors.selectProductsLoaded)
+        ),
+        map(([products, productsLoaded]) => {
+          // Check if items are loaded, if not fetch from server
+          if (!productsLoaded) {
+            console.log('No products loaded, loading those now');
+            this.store$.dispatch(new ProductStoreActions.AllProductsRequested());
+          }
+          return products;
+        }),
+        filter(products => products.length > 0) // Catches the first emission which is an empty array
+      );
   }
 
   ngOnDestroy() {

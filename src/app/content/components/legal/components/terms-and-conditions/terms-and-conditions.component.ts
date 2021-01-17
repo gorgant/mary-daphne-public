@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AnalyticsService } from 'src/app/core/services/analytics/analytics.service';
-import { metaTagsContentPages } from 'shared-models/analytics/metatags.model';
 import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model';
+import { metaTagsContentPages } from 'shared-models/analytics/metatags.model';
 import { LegalBusinessNames } from 'shared-models/forms-and-components/legal-vars.model';
+import { BlogDomains } from 'shared-models/posts/blog-domains.model';
 
 @Component({
   selector: 'app-terms-and-conditions',
@@ -14,6 +15,7 @@ export class TermsAndConditionsComponent implements OnInit, OnDestroy {
 
   appRoutes = PublicAppRoutes;
   legalBusinessName = LegalBusinessNames.MDLS;
+  businessDomain = BlogDomains.MDLS;
 
   constructor(
     private titleService: Title,

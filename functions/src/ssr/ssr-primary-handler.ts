@@ -1,16 +1,11 @@
 import * as functions from 'firebase-functions';
-
-import { ngExpressEngine } from '@nguniversal/express-engine';
-import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 // tslint:disable-next-line:no-import-side-effect
 import 'zone.js/dist/zone-node';
 // tslint:disable-next-line:no-import-side-effect
 import 'reflect-metadata';
 import * as express from 'express';
-import { enableProdMode } from '@angular/core';
 
-import * as compression from 'compression';
-import { detectUaBot } from '../web-cache/detect-ua-bot';
+import { detectUaBot } from './detect-ua-bot';
 import { WebpageRequestType } from '../../../shared-models/ssr/webpage-request-type.model';
 import { storeWebPageCache, retrieveWebPageCache } from '../web-cache/cache-webpage';
 import { PublicAppRoutes } from '../../../shared-models/routes-and-paths/app-routes.model';
@@ -21,12 +16,6 @@ import { PodcastEpisode } from '../../../shared-models/podcast/podcast-episode.m
 import { WebpageLoadFailureData } from '../../../shared-models/ssr/webpage-load-failure-data.model';
 import { transmitWebpageLoadFailureDataToAdmin } from '../web-cache/transmit-webpage-load-failure-data-to-admin';
 import { BlogIndexPostRef } from '../../../shared-models/posts/post.model';
-
-// Also consider Universal with Nest in Cloud Run https://fireship.io/courses/angular/ssr-nest/
-
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../../../app-bundle/main');
-
-
 
 // These are a few globals to help with longpage loads
 let minBlogPostCount: number = ProductionSsrDataLoadChecks.MDLS_BLOG_MIN;
@@ -181,84 +170,46 @@ const renderAndCachePageWithUniversal = async (res: express.Response, req: expre
   });
 }
 
+export const handleServerRequest = async (res: express.Response, req: express.Request, indexHtml: "index.original.html" | "index" | "index-server") => {
+  // Render the index view (name of file w/ out extension)
+  // The engine will use the reqest data to determine the correct route to render
+  // It will then serve that view to the client
+  functions.logger.log('Routing through Cloud Functions server', req);
+  functions.logger.log('Received route request', req);
+  functions.logger.log('Req referrer:', req.headers.referer);
+  functions.logger.log('Found these headers', req.headers);
+  functions.logger.log('Found these parameters', req.query)
 
-// Primary Server Function
-const customExpressApp = () => {
-  
-  enableProdMode();
-  
-  const app = express();
-  
-  const distFolder = __dirname + '/../../../app-bundle';
-  
-  app.use(compression());
-  
-  // Define a custom express engine using the Universal Adapter
-  // This engine will be reading the index HTML from the file system directly, so no need to pass it in manually
-  app.engine('html', ngExpressEngine({
-      bootstrap: AppServerModuleNgFactory,
-      // Configure Angular specific injectable services only available on server
-      providers: [
-        provideModuleMap(LAZY_MODULE_MAP), // Enable lazy loading functionality
-      ]
-  }) as any);
-  
-  app.set('view engine', 'html'); // Set the view engine to our custom adapter above
-  app.set('views', distFolder); // Tell express where to find the view files, only one with an SPA
-  
-  // First statically serve any bundle files from the dist folder directly
-  app.get('*.*', express.static(distFolder, {
-      maxAge: '1y' // Cache for one year, will be replaced if new bundle
-  }));
-  
-  app.get('*', async (req, res) => {
-      // Render the index view (name of file w/ out extension)
-      // The engine will use the reqest data to determine the correct route to render
-      // It will then serve that view to the client
-      functions.logger.log('Received route request', req);
-      functions.logger.log('Req referrer:', req.headers.referer);
-      functions.logger.log('Found these headers', req.headers);
-      functions.logger.log('Found these parameters', req.query)
+  const url = req.path;
+  functions.logger.log('Requested url is', url);
+  const userAgent: string = (req.headers['user-agent'] as string) ? (req.headers['user-agent'] as string) : '';
+  const isBot = detectUaBot(userAgent);
+  const isGoogleBot: boolean = userAgent.toLowerCase().includes('googlebot') ? true : false;
+  const requestType = isAutoCache(req) ? WebpageRequestType.AUTO_CACHE : (
+      isGoogleBot ? WebpageRequestType.GOOGLE_BOT : (
+        isBot ? WebpageRequestType.OTHER_BOT : WebpageRequestType.NO_BOT
+      )
+    );
+  functions.logger.log('Detected this request type', requestType);
 
-      const url = req.path;
-      functions.logger.log('Requested url is', url);
-      const userAgent: string = (req.headers['user-agent'] as string) ? (req.headers['user-agent'] as string) : '';
-      const isBot = detectUaBot(userAgent);
-      const isGoogleBot: boolean = userAgent.toLowerCase().includes('googlebot') ? true : false;
-      const requestType = isAutoCache(req) ? WebpageRequestType.AUTO_CACHE : (
-          isGoogleBot ? WebpageRequestType.GOOGLE_BOT : (
-            isBot ? WebpageRequestType.OTHER_BOT : WebpageRequestType.NO_BOT
-          )
-        );
-      functions.logger.log('Detected this request type', requestType);
+  // If auto-cache request, bypass cache check and perform render request
+  if (requestType === WebpageRequestType.AUTO_CACHE) {
+    await renderAndCachePageWithUniversal(res, req, userAgent);
+    return;
+  }
 
-      // If auto-cache request, bypass cache check and perform render request
-      if (requestType === WebpageRequestType.AUTO_CACHE) {
-        await renderAndCachePageWithUniversal(res, req, userAgent);
-        return;
-      }
+  // Retrieve cached page if it exists
+  const cachedPage = await retrieveWebPageCache(url, isBot);
 
-      // Retrieve cached page if it exists
-      const cachedPage = await retrieveWebPageCache(url, isBot);
+  // If cached page exists, return that and end the function
+  if (cachedPage) {
+    functions.logger.log('Returning cached page payload');
+    res.status(200).send(cachedPage.payload);
+    return;
+  }
 
-      // If cached page exists, return that and end the function
-      if (cachedPage) {
-        functions.logger.log('Returning cached page payload');
-        res.status(200).send(cachedPage.payload);
-        return;
-      }
+  // If cached page doesn't exist, render with universal
+  await renderAndCachePageWithUniversal(res, req, userAgent);
 
-      // If cached page doesn't exist, render with universal
-      await renderAndCachePageWithUniversal(res, req, userAgent);
-
-      return;
-  });
-
-  return app;
-
+  return;
 }
-
-/////// DEPLOYABLE FUNCTIONS ///////
-
-const opts = {memory: '512MB', timeoutSeconds: 20};
-export const universalSsr = functions.runWith((opts as functions.RuntimeOptions)).https.onRequest(customExpressApp());

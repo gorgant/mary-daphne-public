@@ -4,6 +4,7 @@ import { AnalyticsService } from 'src/app/core/services/analytics/analytics.serv
 import { metaTagsContentPages } from 'shared-models/analytics/metatags.model';
 import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model';
 import { LegalBusinessNames, ShorthandBusinessNames } from 'shared-models/forms-and-components/legal-vars.model';
+import { BlogDomains } from 'shared-models/posts/blog-domains.model';
 
 @Component({
   selector: 'app-privacy-policy',
@@ -14,6 +15,7 @@ export class PrivacyPolicyComponent implements OnInit, OnDestroy {
 
   legalBusinessName = LegalBusinessNames.MDLS;
   shorthandBusinessName = ShorthandBusinessNames.MDLS;
+  businessDomain = BlogDomains.MDLS;
 
   constructor(
     private titleService: Title,

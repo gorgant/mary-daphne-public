@@ -1,7 +1,7 @@
 
 <div class="page-container" fxLayout="column" fxLayoutAlign="center center">
   <app-page-hero [heroData]="heroData"></app-page-hero>
-  <p class="header">From original insights to creativity boosting strategies, our goal is to expand your sense of possibility.</p>
+  <p class="header">{{ pageHeader }}</p>
   <div class="collection-container">
     <app-post-collection [posts]="posts$ | async"></app-post-collection>
   </div>

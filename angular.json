@@ -3,11 +3,14 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mary-daphne": {
+    "mdls-public": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
       "root": "",
@@ -17,12 +20,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mary-daphne",
+            "outputPath": "dist/mdls-public/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -45,9 +48,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -56,6 +57,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ]
             },
@@ -64,18 +70,12 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.sandbox.ts"
-                },
-                {
-                  "replace": "src/robots.txt",
-                  "with": "src/environments/sandbox-robot/robots.txt"
                 }
               ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -84,6 +84,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ]
             }
@@ -92,18 +97,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mary-daphne:build"
+            "browserTarget": "mdls-public:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mary-daphne:build:production"
+              "browserTarget": "mdls-public:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mary-daphne:build"
+            "browserTarget": "mdls-public:build"
           }
         },
         "test": {
@@ -118,9 +123,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/theme.scss"
-
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -131,7 +134,8 @@
             "tsConfig": [
               "tsconfig.app.json",
               "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "e2e/tsconfig.json",
+              "tsconfig.server.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -142,11 +146,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mary-daphne:serve"
+            "devServerTarget": "mdls-public:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mary-daphne:serve:production"
+              "devServerTarget": "mdls-public:serve:production"
             }
           }
         },
@@ -154,11 +158,28 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "functions/lib/app-bundle",
-            "main": "src/main.server.ts",
-            "tsConfig": "tsconfig.server.json"
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "externalDependencies": [
+              "firebase",
+              "@firebase/app",
+              "@firebase/analytics",
+              "@firebase/auth",
+              "@firebase/component",
+              "@firebase/database",
+              "@firebase/firestore",
+              "@firebase/functions",
+              "@firebase/installations",
+              "@firebase/messaging",
+              "@firebase/storage",
+              "@firebase/performance",
+              "@firebase/remote-config",
+              "@firebase/util"
+            ]
           },
           "configurations": {
             "production": {
+              "outputHashing": "media",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -166,32 +187,79 @@
                 }
               ],
               "sourceMap": false,
-              "optimization": {
-                "scripts": false,
-                "styles": true
-              }
+              "optimization": true
             },
             "sandbox": {
+              "outputHashing": "media",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.sandbox.ts"
-                },
-                {
-                  "replace": "src/robots.txt",
-                  "with": "src/environments/sandbox-robot/robots.txt"
                 }
               ],
               "sourceMap": false,
-              "optimization": {
-                "scripts": false,
-                "styles": true
-              }
+              "optimization": true
             }
           }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "mdls-public:build",
+            "serverTarget": "mdls-public:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mdls-public:build:production",
+              "serverTarget": "mdls-public:server:production"
+            },
+            "sandbox": {
+              "browserTarget": "mdls-public:build:sandbox",
+              "serverTarget": "mdls-public:server:sandbox"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "mdls-public:build",
+            "serverTarget": "mdls-public:server",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mdls-public:build:production",
+              "serverTarget": "mdls-public:server:production"
+            },
+            "sandbox": {
+              "browserTarget": "mdls-public:build:sandbox",
+              "serverTarget": "mdls-public:server:sandbox"
+            }
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "ssr": true,
+            "buildTarget": "mdls-public:build:sandbox",
+            "firebaseProject": "sandbox-public",
+            "functionsNodeVersion": 14
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "mdls-public:build:production",
+              "firebaseProject": "default"
+            },
+            "sandbox": {
+              "buildTarget": "mdls-public:build:sandbox",
+              "firebaseProject": "sandbox-public"
+            }
+          } 
         }
       }
     }
   },
-  "defaultProject": "mary-daphne"
+  "defaultProject": "mdls-public"
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -19,12 +18,12 @@ const routes: Routes = [
     RouterModule.forRoot(
       routes,
       {
-        scrollPositionRestoration: 'top',
-        initialNavigation: 'enabled'
-       }
+    scrollPositionRestoration: 'top',
+    initialNavigation: 'enabled',
+    relativeLinkResolution: 'legacy'
+}
     )
   ],
   exports: [RouterModule]
 })
-
 export class AppRoutingModule { }

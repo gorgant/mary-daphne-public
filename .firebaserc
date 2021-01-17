@@ -1,6 +1,22 @@
 {
   "projects": {
-    "default": "mdls-public",
-    "sandbox-public": "mdls-sandbox-public"
+    "default": "marydaphne-public",
+    "sandbox-public": "marydaphne-sandbox-public"
+  },
+  "targets": {
+    "marydaphne-sandbox-public": {
+      "hosting": {
+        "mdls-public": [
+          "marydaphne-sandbox-public"
+        ]
+      }
+    },
+    "marydaphne-public": {
+      "hosting": {
+        "mdls-public": [
+          "marydaphne-public"
+        ]
+      }
+    }
   }
 }

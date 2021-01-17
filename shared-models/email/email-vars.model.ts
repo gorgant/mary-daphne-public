@@ -13,10 +13,10 @@ export enum EmailCategories {
 
 // Ids sourced from Sendgrid template system
 export enum EmailTemplateIds {
-  EXPLEARNING_WELCOME_EMAIL = 'd-7327446fd2714cf0a605884dc9ce67fa',
-  EXPLEARNING_OPT_IN_CONFIRMATION = 'd-b6beec26f3d644e3b4eafc4213d281db',
-  EXPLEARNING_CONTACT_FORM_CONFIRMATION = 'd-0dbb4cd9b1a74e6faf8a62d2765046f2',
-  EXPLEARNING_REMOTE_COACH_PURCHASE_CONFIRMATION = 'd-ee7b672fe47a4570b9ad381486604a1d',
+  EXPN_WELCOME_EMAIL = 'd-7327446fd2714cf0a605884dc9ce67fa',
+  EXPN_OPT_IN_CONFIRMATION = 'd-b6beec26f3d644e3b4eafc4213d281db',
+  EXPN_CONTACT_FORM_CONFIRMATION = 'd-0dbb4cd9b1a74e6faf8a62d2765046f2',
+  EXPN_REMOTE_COACH_PURCHASE_CONFIRMATION = 'd-ee7b672fe47a4570b9ad381486604a1d',
   MDLS_WELCOME_EMAIL = 'd-1d5174c867e445be9fc4f4eaed7bc241',
   MDLS_OPT_IN_CONFIRMATION = 'd-ff70ac624ec243e789efa74b0411f971',
   MDLS_CONTACT_FORM_CONFIRMATION = 'd-68ffed5939564e2181e07f17b1380869',
@@ -29,9 +29,9 @@ export enum EmailTemplateIds {
 }
 
 export enum EmailContactListIds {
-  EXPLEARNING_PRIMARY_NEWSLETTER = '12e2e831-4713-458f-a103-f96bc48c314b',
-  EXPLEARNING_EXECUTIVE_PRESENCE_WAIT_LIST = 'f3bb8e68-537c-45ad-8fc4-7116ea2db470',
-  EXPLEARNING_REMOTE_WORK_WAIT_LIST = 'cb970561-2b4c-435f-82e4-4665cdc37de6',
+  EXPN_PRIMARY_NEWSLETTER = '12e2e831-4713-458f-a103-f96bc48c314b',
+  EXPN_EXECUTIVE_PRESENCE_WAIT_LIST = 'f3bb8e68-537c-45ad-8fc4-7116ea2db470',
+  EXPN_REMOTE_WORK_WAIT_LIST = 'cb970561-2b4c-435f-82e4-4665cdc37de6',
   MDLS_PRIMARY_NEWSLETTER = 'e0b66287-629c-4365-b1ed-fbec6f71db67',
   MDLS_EXECUTIVE_PRESENCE_WAIT_LIST = 'cbb8f762-6fb9-4b3d-8427-00f1b9d26a80',
   MDLS_REMOTE_WORK_WAIT_LIST = 'a0426571-77ea-45a4-ac96-a0668904282d',
@@ -44,9 +44,9 @@ export enum EmailContactListIds {
 }
 
 export enum EmailUnsubscribeGroupIds {
-  EXPLEARNING_PRIMARY_NEWSLETTER = 13988,
-  EXPLEARNING_EXECUTIVE_PRESENCE_WAIT_LIST = 15125,
-  EXPLEARNING_REMOTE_WORK_WAIT_LIST = 15126,
+  EXPN_PRIMARY_NEWSLETTER = 13988,
+  EXPN_EXECUTIVE_PRESENCE_WAIT_LIST = 15125,
+  EXPN_REMOTE_WORK_WAIT_LIST = 15126,
   MDLS_PRIMARY_NEWSLETTER = 10012,
   MDLS_EXECUTIVE_PRESENCE_WAIT_LIST = 13699,
   MDLS_REMOTE_WORK_WAIT_LIST = 13700,
@@ -57,31 +57,31 @@ export enum EmailUnsubscribeGroupIds {
 // Set the key to the Product ID Searchable by product ID
 // For now the MD and SYW products will use the Explearning email template
 export const ProductEmailTemplates: ProductEmailTemplateList = {
-  [ProductIdList.EXPLEARNING_REMOTE_COACH]: {
-    templateId: EmailTemplateIds.EXPLEARNING_REMOTE_COACH_PURCHASE_CONFIRMATION,
-    productId: ProductIdList.EXPLEARNING_REMOTE_COACH
+  [ProductIdList.EXPN_REMOTE_COACH]: {
+    templateId: EmailTemplateIds.EXPN_REMOTE_COACH_PURCHASE_CONFIRMATION,
+    productId: ProductIdList.EXPN_REMOTE_COACH
   },
   [ProductIdList.MDLS_REMOTE_COACH]: {
-    templateId: EmailTemplateIds.EXPLEARNING_REMOTE_COACH_PURCHASE_CONFIRMATION,
+    templateId: EmailTemplateIds.EXPN_REMOTE_COACH_PURCHASE_CONFIRMATION,
     productId: ProductIdList.MDLS_REMOTE_COACH
   },
   [ProductIdList.SYW_REMOTE_COACH]: {
-    templateId: EmailTemplateIds.EXPLEARNING_REMOTE_COACH_PURCHASE_CONFIRMATION,
+    templateId: EmailTemplateIds.EXPN_REMOTE_COACH_PURCHASE_CONFIRMATION,
     productId: ProductIdList.SYW_REMOTE_COACH
   },
   [ProductIdList.ADVE_REMOTE_COACH]: {
-    templateId: EmailTemplateIds.EXPLEARNING_REMOTE_COACH_PURCHASE_CONFIRMATION,
+    templateId: EmailTemplateIds.EXPN_REMOTE_COACH_PURCHASE_CONFIRMATION,
     productId: ProductIdList.ADVE_REMOTE_COACH
   },
 
 };
 
 export enum EmailSenderAddresses {
-  EXPLEARNING_DEFAULT = 'hello@explearning.co',
-  EXPLEARNING_NEWSLETTER = 'newsletter@explearning.co',
-  EXPLEARNING_ORDERS = 'orders@explearning.co',
-  EXPLEARNING_ADMIN = 'admin@explearning.co',
-  EXPLEARNING_SUPPORT = 'support@explearning.co',
+  EXPN_DEFAULT = 'hello@explearning.co',
+  EXPN_NEWSLETTER = 'newsletter@explearning.co',
+  EXPN_ORDERS = 'orders@explearning.co',
+  EXPN_ADMIN = 'admin@explearning.co',
+  EXPN_SUPPORT = 'support@explearning.co',
   MDLS_DEFAULT = 'hello@marydaphne.com',
   MDLS_NEWSLETTER = 'newsletter@marydaphne.com',
   MDLS_ORDERS = 'orders@marydaphne.com',
@@ -100,9 +100,9 @@ export enum EmailSenderAddresses {
 }
 
 export enum EmailSenderNames {
-  EXPLEARNING_DEFAULT = 'Explearning',
-  EXPLEARNING_NEWSLETTER = 'Mary Daphne with Explearning',
-  EXPLEARNING_ADMIN = 'Explearning ADMIN',
+  EXPN_DEFAULT = 'Explearning',
+  EXPN_NEWSLETTER = 'Mary Daphne with Explearning',
+  EXPN_ADMIN = 'Explearning ADMIN',
   MDLS_DEFAULT = 'Mary Daphne',
   MDLS_NEWSLETTER = 'Mary Daphne',
   MDLS_ADMIN = 'Mary Daphne ADMIN',
@@ -115,9 +115,9 @@ export enum EmailSenderNames {
 }
 
 export const AdminEmailAddresses = {
-  EXPLEARNING_GREG_ONLY: 'greg@explearning.co',
-  EXPLEARNING_GREG_AND_MD: ['greg@explearning.co, md@explearning.co'],
-  EXPLEARNING_DEFAULT: 'hello@explearning.co',
+  EXPN_GREG_ONLY: 'greg@explearning.co',
+  EXPN_GREG_AND_MD: ['greg@explearning.co, md@explearning.co'],
+  EXPN_DEFAULT: 'hello@explearning.co',
   MDLS_GREG_ONLY: 'greg@marydaphne.com',
   MDLS_GREG_AND_MD: ['greg@marydaphne.com, md@marydaphne.com'],
   MDLS_DEFAULT: 'hello@marydaphne.com',

@@ -2,7 +2,7 @@
 @import '~@angular/material/theming';
 
 // Copied from theme.scss
-$mary-daphne-primary: (
+$mdls-primary: (
     50 : #e0f2f1,
     100 : #b3e0db,
     200 : #80cbc4,
@@ -35,7 +35,7 @@ $mary-daphne-primary: (
     )
 );
 
-$mary-daphne-accent: (
+$mdls-accent: (
     50 : #fae0fe,
     100 : #f2b3fd,
     200 : #ea80fc,
@@ -68,8 +68,8 @@ $mary-daphne-accent: (
     )
 );
 
-$theme-primary: mat-palette($mary-daphne-primary);
-$theme-accent:  mat-palette($mary-daphne-accent);
+$theme-primary: mat-palette($mdls-primary);
+$theme-accent:  mat-palette($mdls-accent);
 $theme-warn:    mat-palette($mat-red);
 
 // Create your Sass color vars (will be available in all the project)

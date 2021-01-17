@@ -20,7 +20,6 @@ export class InActionComponent implements OnInit {
   requestedPosts: boolean;
 
   appRoutes = PublicAppRoutes;
-
   siteName = ShorthandBusinessNames.MDLS;
 
   constructor(

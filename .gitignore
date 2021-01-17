@@ -11,6 +11,10 @@
 # dependencies
 /node_modules
 
+#app-engine
+/app-engine/node_modules
+/app-engine/build
+
 # profiling files
 chrome-profiler-events.json
 speed-measure-plugin.json

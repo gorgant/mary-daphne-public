@@ -4,13 +4,13 @@ export enum EnvironmentTypes {
 }
 
 export const PRODUCTION_APPS = {
-  explearningPublicApp: {
+  expnPublicApp: {
     databaseURL: 'https://explearning-76d93.firebaseio.com',
     projectId: 'explearning-76d93',
     storageBucket: 'explearning-76d93.appspot.com',
     websiteDomain: 'explearning.co'
   },
-  explearningAdminApp: {
+  expnAdminApp: {
     databaseURL: 'https://explearning-admin.firebaseio.com',
     projectId: 'explearning-admin',
     storageBucket: 'explearning-admin.appspot.com',
@@ -55,13 +55,13 @@ export const PRODUCTION_APPS = {
 };
 
 export const SANDBOX_APPS = {
-  explearningPublicApp: {
+  expnPublicApp: {
     databaseURL: 'https://explearning-sandbox-public.firebaseio.com',
     projectId: 'explearning-sandbox-public',
     storageBucket: 'explearning-sandbox-public.appspot.com',
     websiteDomain: 'explearning-sandbox-public.firebaseapp.com'
   },
-  explearningAdminApp: {
+  expnAdminApp: {
     databaseURL: 'https://explearning-sandbox-admin.firebaseio.com',
     projectId: 'explearning-sandbox-admin',
     storageBucket: 'explearning-sandbox-admin.appspot.com',
@@ -106,12 +106,12 @@ export const SANDBOX_APPS = {
 };
 
 export enum ProductionCloudStorage {
-  EXPLEARNING_ADMIN_BLOG_STORAGE_AF_CF = 'explearning-admin-blog',
-  EXPLEARNING_ADMIN_BLOG_STORAGE_FB = 'gs://explearning-admin-blog',
-  EXPLEARNING_ADMIN_PRODUCTS_STORAGE_AF_CF = 'explearning-admin-products',
-  EXPLEARNING_ADMIN_PRODUCTS_STORAGE_FB = 'gs://explearning-admin-products',
-  EXPLEARNING_ADMIN_BACKUP_STORAGE_AF_CF = 'explearning-admin-backup',
-  EXPLEARNING_ADMIN_BACKUP_STORAGE_FB = 'gs://explearning-admin-backup',
+  EXPN_ADMIN_BLOG_STORAGE_AF_CF = 'explearning-admin-blog',
+  EXPN_ADMIN_BLOG_STORAGE_FB = 'gs://explearning-admin-blog',
+  EXPN_ADMIN_PRODUCTS_STORAGE_AF_CF = 'explearning-admin-products',
+  EXPN_ADMIN_PRODUCTS_STORAGE_FB = 'gs://explearning-admin-products',
+  EXPN_ADMIN_BACKUP_STORAGE_AF_CF = 'explearning-admin-backup',
+  EXPN_ADMIN_BACKUP_STORAGE_FB = 'gs://explearning-admin-backup',
   MDLS_ADMIN_BLOG_STORAGE_AF_CF = 'marydaphne-admin-blog',
   MDLS_ADMIN_BLOG_STORAGE_FB = 'gs://marydaphne-admin-blog',
   MDLS_ADMIN_PRODUCTS_STORAGE_AF_CF = 'marydaphne-admin-products',
@@ -133,12 +133,12 @@ export enum ProductionCloudStorage {
 }
 
 export enum SandboxCloudStorage {
-  EXPLEARNING_ADMIN_BLOG_STORAGE_AF_CF = 'explearning-sandbox-admin-blog',
-  EXPLEARNING_ADMIN_BLOG_STORAGE_FB = 'gs://explearning-sandbox-admin-blog',
-  EXPLEARNING_ADMIN_PRODUCTS_STORAGE_AF_CF = 'explearning-sandbox-admin-products',
-  EXPLEARNING_ADMIN_PRODUCTS_STORAGE_FB = 'gs://explearning-sandbox-admin-products',
-  EXPLEARNING_ADMIN_BACKUP_STORAGE_AF_CF = 'explearning-sandbox-admin-backup',
-  EXPLEARNING_ADMIN_BACKUP_STORAGE_FB = 'gs://explearning-sandbox-admin-backup',
+  EXPN_ADMIN_BLOG_STORAGE_AF_CF = 'explearning-sandbox-admin-blog',
+  EXPN_ADMIN_BLOG_STORAGE_FB = 'gs://explearning-sandbox-admin-blog',
+  EXPN_ADMIN_PRODUCTS_STORAGE_AF_CF = 'explearning-sandbox-admin-products',
+  EXPN_ADMIN_PRODUCTS_STORAGE_FB = 'gs://explearning-sandbox-admin-products',
+  EXPN_ADMIN_BACKUP_STORAGE_AF_CF = 'explearning-sandbox-admin-backup',
+  EXPN_ADMIN_BACKUP_STORAGE_FB = 'gs://explearning-sandbox-admin-backup',
   MDLS_ADMIN_BLOG_STORAGE_AF_CF = 'marydaphne-sandbox-admin-blog',
   MDLS_ADMIN_BLOG_STORAGE_FB = 'gs://marydaphne-sandbox-admin-blog',
   MDLS_ADMIN_PRODUCTS_STORAGE_AF_CF = 'marydaphne-sandbox-admin-products',
@@ -161,8 +161,8 @@ export enum SandboxCloudStorage {
 
 // Currently all apps use the Explearning keys
 export enum StripePublishableKeys {
-  EXPLEARNING_PROD = 'pk_live_2ybMSK15jNXw8mpoJ1MmIrfW00PvuSsi2F',
-  EXPLEARNING_SANDBOX = 'pk_test_qiAhFPd39eG3eqgEtWM9Yx0v00p7PxdzcH',
+  EXPN_PROD = 'pk_live_2ybMSK15jNXw8mpoJ1MmIrfW00PvuSsi2F',
+  EXPN_SANDBOX = 'pk_test_qiAhFPd39eG3eqgEtWM9Yx0v00p7PxdzcH',
   MDLS_PROD = 'pk_live_2ybMSK15jNXw8mpoJ1MmIrfW00PvuSsi2F',
   MDLS_SANDBOX = 'pk_test_qiAhFPd39eG3eqgEtWM9Yx0v00p7PxdzcH',
   SYW_PROD = 'pk_live_2ybMSK15jNXw8mpoJ1MmIrfW00PvuSsi2F',
@@ -172,8 +172,8 @@ export enum StripePublishableKeys {
 }
 
 export enum ProductionSsrDataLoadChecks {
-  EXPLEARNING_BLOG_MIN = 39,
-  EXPLEARNING_PODCAST_MIN = 39,
+  EXPN_BLOG_MIN = 39,
+  EXPN_PODCAST_MIN = 39,
   MDLS_BLOG_MIN = 14,
   MDLS_PODCAST_MIN = 0,
   SYW_BLOG_MIN = 20,
@@ -183,8 +183,8 @@ export enum ProductionSsrDataLoadChecks {
 }
 
 export enum SandboxSsrDataLoadChecks {
-  EXPLEARNING_BLOG_MIN = 2,
-  EXPLEARNING_PODCAST_MIN = 2,
+  EXPN_BLOG_MIN = 2,
+  EXPN_PODCAST_MIN = 2,
   MDLS_BLOG_MIN = 1,
   MDLS_PODCAST_MIN = 0,
   SYW_BLOG_MIN = 2,
