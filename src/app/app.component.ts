@@ -32,7 +32,7 @@ import { PublicAppRoutes } from 'shared-models/routes-and-paths/app-routes.model
 })
 export class AppComponent implements OnInit {
   title = metaTagDefaults.mdlsPublic.metaTagDefaultTitle;
-  appVersion = '1.3.7';
+  appVersion = '1.3.8';
 
   private userAuthenticationRequested: boolean;
   private userLoaded: boolean;
